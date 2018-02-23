@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   to_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/02/23 21:20:03 by galy             ###   ########.fr       */
+/*   Created: 2018/02/23 20:53:28 by galy              #+#    #+#             */
+/*   Updated: 2018/02/23 21:27:57 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-int	main(int argc, char **argv)
+void	to_exit(t_vault *vault)
 {
-	t_vault	*vault;
 
-	vault = init_vault();
-	if (argc < 2)
-	{
-		print_usage();
-		return (0);
-	}
-	// j'ouvre mon fichier
-	if (open_file(argv[1], vault) == 1)
-		return (EXIT_FAILURE);
+	//free le vault..
+	if (vault == NULL)
+		exit(-1);
+	if (vault->f_buff != NULL)
+		munmap(vault->f_buff, vault->f_stat.st_size);
 
-	
-	return (EXIT_SUCCESS);
+	exit(-1);
+
 }

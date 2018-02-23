@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/02/22 14:20:46 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/23 21:26:48 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,28 @@ typedef struct		s_header
 	unsigned int	flags;			// uint32 :flags
 }					t_header;
 
-typedef struct		s_vault
+typedef struct				s_vault
 {
-	struct stat		f_stat;
-	void			*f_buff;
-	t_header		header;
-}					t_vault;
+	struct stat				f_stat;
+	void					*f_buff;
+	struct mach_header_64	*header_64;
+}							t_vault;
 
 
 
 
 //print_usage.c
 void	print_usage(void);
+
+//vault_func.c
+void	*init_vault(void);
+
+//open_file.c
+int		open_file(char *path, t_vault *vault);
+int		check_magic_num(t_vault *vault);
+
+
+//to_exit.c
+void	to_exit(t_vault *vault);
 
 #endif

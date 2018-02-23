@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   vault_func.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/02/23 21:20:03 by galy             ###   ########.fr       */
+/*   Created: 2018/02/23 20:59:32 by galy              #+#    #+#             */
+/*   Updated: 2018/02/23 21:28:08 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-int	main(int argc, char **argv)
+void	*init_vault(void)
 {
-	t_vault	*vault;
+	t_vault *init;
 
-	vault = init_vault();
-	if (argc < 2)
+	if ((init = malloc(sizeof(t_vault))) == NULL)
 	{
-		print_usage();
-		return (0);
+		ft_printf("\033[31mnm (init.c - line 19) error :\nmalloc vault struct space FAILED\033[0m\n");
+		to_exit(NULL);
 	}
-	// j'ouvre mon fichier
-	if (open_file(argv[1], vault) == 1)
-		return (EXIT_FAILURE);
+	init->f_buff = NULL;
+	return (init);
 
-	
-	return (EXIT_SUCCESS);
 }

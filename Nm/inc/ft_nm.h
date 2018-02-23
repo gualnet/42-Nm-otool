@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/02/22 11:55:39 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/22 14:20:46 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <fcntl.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
+#include <mach-o/loader.h>
 #include "ft_printf.h"
 #include "get_next_line.h"
 
@@ -38,6 +39,7 @@ typedef struct		s_header
 typedef struct		s_vault
 {
 	struct stat		f_stat;
+	void			*f_buff;
 	t_header		header;
 }					t_vault;
 

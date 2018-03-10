@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/02/23 21:26:48 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/10 13:16:24 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,26 @@
 #include "get_next_line.h"
 
 
-typedef struct		s_header
+// enum						e_header_type
+// {
+// 	int 32_little,
+// 	int 32_big,
+// 	int 64_little,
+// 	int 64_big,
+// };
+
+union						u_header
 {
-	unsigned int	magic;			// uint32 :magic
-	int				cpu_type;		// int32 :cputype
-	int				cpu_subtype;	// int32 :cpusubtype
-	unsigned int	file_type;		// uint32 :filetype
-	unsigned int	ncmds;			// uint32 :ncmds
-	unsigned int	sizeofcmds;		// uint32 :sizeofcmds
-	unsigned int	flags;			// uint32 :flags
-}					t_header;
+	struct mach_header		_32;
+	struct mach_header_64	_64;
+	// enum e_header_type		type;
+};
 
 typedef struct				s_vault
 {
 	struct stat				f_stat;
 	void					*f_buff;
-	struct mach_header_64	*header_64;
+	union u_header			*header;
 }							t_vault;
 
 
@@ -55,6 +59,10 @@ void	*init_vault(void);
 //open_file.c
 int		open_file(char *path, t_vault *vault);
 int		check_magic_num(t_vault *vault);
+
+//inter_cmds.c
+void	inter_cmds(t_vault *vault);
+void	inter_cmds_2(t_vault *vault);
 
 
 //to_exit.c

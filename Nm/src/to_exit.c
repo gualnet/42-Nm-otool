@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:53:28 by galy              #+#    #+#             */
-/*   Updated: 2018/02/23 21:27:57 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/23 21:32:12 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ void	to_exit(t_vault *vault)
 	if (vault->f_buff != NULL)
 		munmap(vault->f_buff, vault->f_stat.st_size);
 
-	exit(-1);
+	exit(EXIT_FAILURE);
 
 }

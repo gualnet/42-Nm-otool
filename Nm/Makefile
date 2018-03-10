@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/16 16:38:21 by galy              #+#    #+#              #
-#    Updated: 2018/02/23 21:05:15 by galy             ###   ########.fr        #
+#    Updated: 2018/03/10 10:28:51 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,9 @@ LIBDIR		=	lib
 CRESET		=	\033[0m
 CRED		=	\033[31m
 CGREEN		=	\033[32m
+CGREEN+		=	\033[32;1;5m
 CYELLOW		=	\033[33m
+CYELLOW+	=	\033[33;1m
 CBLUE		=	\033[34m
 CMAGENTA	=	\033[35m
 CCYAN		=	\033[36m
@@ -54,29 +56,38 @@ OBJP		=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
 ####RULEZ####
 
-all			:	make_lib OBJD $(NAME)
+all			:	reset_cursor make_lib OBJD $(NAME)
 
 $(NAME)		: $(OBJP)
 	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) $^ -o $(NAME)
-	@printf "$(CUR_RST)$(CGREEN)BUILD $(NAME) : SUCCESS$(CRESET)$(CUR_CLR)\n"
+	@printf "$(CUR_RST)$(CGREEN)                         $(CRESET)$(CUR_CLR)"
+	@printf "$(CUR_RST)$(CGREEN)BUILD FT_NM		: SUCCESS$(CRESET)$(CUR_CLR)\n"
 	
 
 clean		:
-	@make fclean -C $(LIBDIR)
-	@rm -f $(OBJP)
-	@rm -rf $(OBJDIR)	
+	@make clean -C $(LIBDIR)
+	@$(RM) -f $(OBJP)
+	@$(RM) -r $(OBJDIR)
+	@printf "$(CYELLOW)NM	: CLEANED $(CRESET)\n"
 	
-fclean		: clean
-	@rm -f $(NAME)
 
-re			: fclean all
+mini_clean	:
+	@$(RM)  $(OBJP)
+	@$(RM) -r $(OBJDIR)
+
+fclean		: mini_clean
+	@make fclean -C $(LIBDIR)
+	@$(RM) $(NAME)
+	@printf "$(CYELLOW)RAZ FT_NM	: Ok$(CRESET)\n"	
+
+re			: fclean print_inter_line all
 
 
 ####MORE_RULEZ####
 
 $(OBJDIR)/%.o	:	$(SRCDIR)/%.c
 	@$(CC) $(CFLAGS) -I$(INCDIR) -c $< -o $@
-	@printf "$(CUR_RST)$(CUR_SVE)$(CYELLOW)BUILD ASM OBJECTS : $<$(CRESET)$(CUR_CLR)"
+	@printf "$(CUR_RST)$(CUR_SVE)$(CYELLOW)BUILD FT_NM OBJECTS	: $<$(CRESET)$(CUR_CLR)"
 
 make_lib	:
 	@make -C $(LIBDIR)
@@ -86,3 +97,9 @@ tests	:
 	
 OBJD		:
 	@mkdir -p $(OBJDIR)
+
+reset_cursor	:
+	@printf "$(CUR_SVE)"
+
+print_inter_line	:
+	@printf "$(CYELLOW+)	-----	-----	-----$(CRESET)\n"

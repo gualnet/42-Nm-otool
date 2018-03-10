@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 16:28:28 by galy              #+#    #+#              #
-#    Updated: 2017/03/22 11:28:58 by kriz             ###   ########.fr        #
+#    Updated: 2018/03/09 20:32:04 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,19 +59,19 @@ all : reset_cursor $(NAME)
 
 $(NAME) : $(OBJ)
 	@ar -rc $(NAME) $(OBJ)
-	@printf "$(CUR_RST)$(CGREEN)BUILD LIBFT : SUCCESS$(CRESET)$(CUR_CLR)\n"
+	@printf "$(CUR_RST)$(CGREEN)BUILD LIBFT		: SUCCESS$(CRESET)$(CUR_CLR)\n"
 
 %.o : %.c
 	@gcc $(FLAGS) -I$(INCDIR) -c $< -o $@
-	@printf "$(CUR_RST)$(CUR_SVE)$(CYELLOW)BUILD LIBFT : $<$(CRESET)$(CUR_CLR)"
+	@printf "$(CUR_RST)$(CUR_SVE)$(CYELLOW)BUILD LIBFT		: $<$(CRESET)$(CUR_CLR)"
 
 clean :
 	@rm -f $(OBJ)
-	@printf "$(CYELLOW)LIBFT OBJECTS CLEARED$(CRESET)\n"
+#	@printf "$(CYELLOW)LIBFT OBJECTS CLEARED01$(CRESET)\n"
 
 fclean : clean
 	@rm -f $(NAME)
-	@printf "$(CYELLOW)$(NAME) CLEARED$(CRESET)\n"
+	@printf "$(CYELLOW)RAZ LIBFT	: Ok$(CRESET)\n"
 
 
 re : fclean all

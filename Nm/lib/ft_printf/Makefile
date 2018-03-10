@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 16:28:28 by galy              #+#    #+#              #
-#    Updated: 2017/03/22 11:19:00 by kriz             ###   ########.fr        #
+#    Updated: 2018/03/10 10:06:18 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,21 +57,21 @@ all : reset_cursor $(NAME)
 
 $(NAME) : make_libft $(OBJ)
 	@ar -rc $(NAME) $(OBJ)
-	@printf "$(CUR_RST)$(CGREEN)BUILD FT_PRINTF : SUCCESS$(CRESET)$(CUR_CLR)\n"
+	@printf "$(CUR_RST)$(CGREEN)BUILD FT_PRINTF		: SUCCESS$(CRESET)$(CUR_CLR)\n"
 
 %.o : %.c
 	@gcc $(FLAGS) $(INCP) -c $< -o $@
-	@printf "$(CUR_RST)$(CUR_SVE)$(CYELLOW)BUILD FT_PRINTF : $<$(CRESET)$(CUR_CLR)"
+	@printf "$(CUR_RST)$(CUR_SVE)$(CYELLOW)BUILD FT_PRINTF		: $<$(CRESET)$(CUR_CLR)"
 
 
 clean :
 	@rm -f $(OBJ)
-	@printf "$(CYELLOW)FT_PRINTF OBJECTS CLEARED$(CRESET)\n"
+#	@printf "$(CYELLOW)FT_PRINTF OBJECTS CLEARED$(CRESET)\n"
 
 fclean : clean
-	@make fclean -C ../libft
+#	@make fclean -C ../libft
 	@rm -f $(NAME)
-	@printf "$(CYELLOW)$(NAME) CLEARED$(CRESET)\n"
+	@printf "$(CYELLOW)RAZ FT_PRINTF	: Ok$(CRESET)\n"
 
 re : fclean all
 

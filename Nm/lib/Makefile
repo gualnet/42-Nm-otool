@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 16:28:28 by galy              #+#    #+#              #
-#    Updated: 2018/03/10 10:34:54 by galy             ###   ########.fr        #
+#    Updated: 2018/03/10 11:09:15 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,16 +72,16 @@ OBJLIBFT	=	$(addprefix $(DIRLIBFT)/, $(SRCLIBFT:.c=.o))
 OBJGNL	=	$(addprefix $(DIRGNL)/, $(SRCGNL:.c=.o))
 OBJFTPRINTF	=	$(addprefix $(DIRFTPRINTF)/, $(SRCFTPRINTF:.c=.o))
 
-all : reset_cursor $(NAME)
+all : $(NAME)
 
-$(NAME)	: make_libs
+$(NAME)	: make_libs reset_cursor
 	@ar -rc $(NAME) $(OBJLIBFT)
 #	@printf "$(CUR_SVE)$(CYELLOW)Adding libft.a to $(NAME)$(CRESET)$(CUR_CLR)"
 	@ar -rc $(NAME) $(OBJGNL)
 #	@printf "$(CUR_RST)$(CUR_SVE)$(CYELLOW)Adding get_next_line.a to $(NAME)$(CRESET)$(CUR_CLR)"
 	@ar -rc $(NAME) $(OBJFTPRINTF)
 #	@printf "$(CUR_RST)$(CUR_SVE)$(CYELLOW)Adding ft_printf.a to $(NAME)$(CRESET)$(CUR_CLR)"
-	@printf "$(CUR_RST)$(CUR_SVE)$(CGREEN)MERGE FULL LIBFT 	: SUCCESS$(CRESET)$(CUR_CLR)\n"
+	@printf "$(CUR_RST)$(CGREEN)MERGE FULL LIBFT 	: SUCCESS$(CRESET)$(CUR_CLR)\n"
 
 clean :
 	@make clean -C $(DIRLIBFT)

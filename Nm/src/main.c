@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/03/10 13:49:22 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/12 15:48:00 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,12 @@ int run(char **argv, t_vault *vault)
 		to_exit(vault);
 	
 	// check magic number
-	check_magic_num(vault);
+	if (check_magic_num(vault) == -1)
+	{
+		ft_printf("\033[31mnm error :\nECHEC check magic num.\033[0m");
+		return (-1);
+	}
+		
 
 	// load commands
 	inter_cmds(vault);

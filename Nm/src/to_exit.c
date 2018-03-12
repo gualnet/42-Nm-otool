@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:53:28 by galy              #+#    #+#             */
-/*   Updated: 2018/02/23 21:32:12 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/12 11:03:38 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	to_exit(t_vault *vault)
 	//free le vault..
 	if (vault == NULL)
 		exit(-1);
-	if (vault->f_buff != NULL)
-		munmap(vault->f_buff, vault->f_stat.st_size);
+	if (vault->f_dump != NULL)
+		munmap(vault->f_dump, vault->f_stat.st_size);
 
 	exit(EXIT_FAILURE);
 

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/03/10 13:16:24 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/12 18:05:16 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,33 +21,22 @@
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <mach-o/loader.h>
+#include <mach-o/nlist.h>
 #include "ft_printf.h"
 #include "get_next_line.h"
 
-
-// enum						e_header_type
-// {
-// 	int 32_little,
-// 	int 32_big,
-// 	int 64_little,
-// 	int 64_big,
-// };
-
-union						u_header
-{
-	struct mach_header		_32;
-	struct mach_header_64	_64;
-	// enum e_header_type		type;
-};
+#define	MH_32 struct mach_header
+#define MH_64 struct mach_header_64
 
 typedef struct				s_vault
 {
 	struct stat				f_stat;
-	void					*f_buff;
-	union u_header			*header;
+	void					*f_dump;
+	void					*f_dumptest;
+	void					*header;
+	int						file_nfo;
+	// bit-flags ::::::swap endian:0x02-64bit:0x01-32bit
 }							t_vault;
-
-
 
 
 //print_usage.c
@@ -64,8 +53,10 @@ int		check_magic_num(t_vault *vault);
 void	inter_cmds(t_vault *vault);
 void	inter_cmds_2(t_vault *vault);
 
-
 //to_exit.c
 void	to_exit(t_vault *vault);
+
+//dev_func.c
+void print_symtab_command(void *sym_cmd);
 
 #endif

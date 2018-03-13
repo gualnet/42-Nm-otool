@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/16 16:38:21 by galy              #+#    #+#              #
-#    Updated: 2018/03/12 19:03:55 by galy             ###   ########.fr        #
+#    Updated: 2018/03/13 15:09:58 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ CUR_CLR		=	\033[K
 SRC			=	\
 				dev_func.c \
 				iter_cmds.c  main.c       open_file.c  to_exit.c \
-				usage.c      vault_func.c
+				usage.c      vault_func.c sort_alnum.c
 
 
 ####FUNC####

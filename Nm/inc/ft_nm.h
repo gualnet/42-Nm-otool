@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/03/12 18:05:16 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/13 15:10:21 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct				s_vault
 	// bit-flags ::::::swap endian:0x02-64bit:0x01-32bit
 }							t_vault;
 
-
 //print_usage.c
 void	print_usage(void);
 
@@ -55,6 +54,9 @@ void	inter_cmds_2(t_vault *vault);
 
 //to_exit.c
 void	to_exit(t_vault *vault);
+
+//sort_alnum.c
+void	sort_alnum(char **tab_symstr, unsigned int tab_len);
 
 //dev_func.c
 void print_symtab_command(void *sym_cmd);

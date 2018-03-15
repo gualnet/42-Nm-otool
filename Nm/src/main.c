@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/03/12 15:48:00 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/15 12:06:48 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ int run(char **argv, t_vault *vault)
 		return (-1);
 	}
 		
-
 	// load commands
 	inter_cmds(vault);
 
+	display_list(vault);
+	ft_printf("\nEND\n");
 	return (1);
 }
 

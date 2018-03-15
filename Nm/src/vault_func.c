@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:59:32 by galy              #+#    #+#             */
-/*   Updated: 2018/03/12 11:03:42 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/15 11:20:42 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	*init_vault(void)
 		to_exit(NULL);
 	}
 	init->f_dump = NULL;
+	init->lc_lst = NULL;
 	return (init);
 
 }

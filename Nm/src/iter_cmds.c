@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 21:36:21 by galy              #+#    #+#             */
-/*   Updated: 2018/03/15 12:09:14 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/15 12:42:56 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ void	inter_cmds(t_vault *vault)
 	ft_printf("vault->header_64->ncmds [%d]\n", header->ncmds);
 	while (i < header->ncmds)
 	{
-		ft_printf("[%d]lc->cmd [%x]\n", i, lc->cmd);
-		ft_printf("lc->cmdsize [%x]\n", lc->cmdsize);
+		// ft_printf("[%d]lc->cmd [%x]\n", i, lc->cmd);
+		// ft_printf("lc->cmdsize [%x]\n", lc->cmdsize);
 		add_new_link(vault, lc);
 		if (lc->cmd == LC_SYMTAB)
 		{

@@ -6,15 +6,49 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 15:16:41 by galy              #+#    #+#             */
-/*   Updated: 2018/03/15 12:10:44 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/15 12:49:39 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-search_seg_sect_name(t_vault *vault)
+void	test(struct load_command *lc)
 {
-	t_lc_lnk *
+	struct segment_command_64	*segcmd;
+	struct section_64			*seccmd;
+
+	segcmd = (void*)lc;
+	ft_printf("segcmd->cmd [%x]\n", segcmd->cmd);
+	ft_printf("segcmd->cmdsize [%x]\n", segcmd->cmdsize);
+	ft_printf("segcmd->nsects [%d]\n\n", segcmd->nsects);
+
+	int i = 0;
+	while (i < segcmd->nsects)
+	{
+		seccmd = (void*)lc + sizeof(struct segment_command_64);
+		ft_printf("seccmd->sectname [%s]\n",seccmd->sectname);
+		ft_printf("seccmd->segname [%s]\n",seccmd->segname);
+		i++;
+	}
+	if (lc->cmd == LC_SEGMENT)
+	{
+		
+	}
+	
+	
+}
+
+void	search_seg_sect_name(t_vault *vault)
+{
+	t_lc_lnk			*save;
+	struct load_command	*lc;	
+
+	save = vault->lc_lst;
+	
+	ft_printf("sizeof(struct segment_command_64) [%x]\n",sizeof(struct segment_command_64));
+
+	lc = vault->lc_lst->lc;
+	test(lc);
 }
 
 void	print_sym_sect(t_vault *vault, unsigned int i)
@@ -52,6 +86,8 @@ void	display_list(t_vault *vault)
 	j = 0;
 	
 	// ft_printf("vault->nsyms %d\n", vault->nsyms);
+	search_seg_sect_name(vault);
+	exit(0);
 
 	ft_printf("test\n");
 	ft_printf("N_STAB [%b]\n",N_STAB);

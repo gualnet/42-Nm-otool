@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/03/15 12:05:22 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/15 17:16:39 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,16 @@ typedef struct				s_sym_meta
 	char	n_sect; // section number
 }							t_sym_meta;
 
+typedef struct				s_sect_lnk
+{
+	struct section_64		*sect;
+	void					*next;
+}							t_sect_lnk;
+
 typedef struct				s_lc_lnk
 {
 	struct load_command		*lc;
+	t_sect_lnk				*sect_lst;
 	void					*next;
 }							t_lc_lnk;
 
@@ -76,7 +83,8 @@ void	sort_alnum(t_vault *vault, unsigned int tab_len);
 void	display_list(t_vault *vault);
 
 //lst_func.c
-t_lc_lnk	*add_new_link(t_vault *vault, void *adr);
+t_lc_lnk	*add_new_lclink(t_vault *vault, void *adr);
+t_sect_lnk	*add_new_sectlnk(t_lc_lnk *lc_lnk, void *adr);
 
 //dev_func.c
 void print_symtab_command(void *sym_cmd);

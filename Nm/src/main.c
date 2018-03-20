@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/03/15 12:06:48 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/20 14:05:48 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	main(int argc, char **argv)
 	vault = init_vault();
 	if (argc < 2)
 	{
+		//check de a.out si pas d'args.
 		print_usage();
 		return (0);
 	}

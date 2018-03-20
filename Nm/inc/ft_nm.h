@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/03/15 17:16:39 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/20 17:45:07 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@
 
 typedef struct				s_sym_meta
 {
-	char	*name;	// symbol name
-	char	n_type;	// type flag
-	char	n_sect; // section number
+	char					*name;	// symbol name
+	char					n_type;	// type flag
+	char					n_sect; // section number
+	unsigned long			n_value;
 }							t_sym_meta;
 
 typedef struct				s_sect_lnk
@@ -85,6 +86,9 @@ void	display_list(t_vault *vault);
 //lst_func.c
 t_lc_lnk	*add_new_lclink(t_vault *vault, void *adr);
 t_sect_lnk	*add_new_sectlnk(t_lc_lnk *lc_lnk, void *adr);
+
+//check_sym_sect.c
+char	print_sym_sect(t_vault *vault, unsigned int i);
 
 //dev_func.c
 void print_symtab_command(void *sym_cmd);

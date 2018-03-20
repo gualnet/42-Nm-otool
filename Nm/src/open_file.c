@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 21:01:03 by galy              #+#    #+#             */
-/*   Updated: 2018/03/12 17:14:54 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/20 13:44:12 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ int	open_file(char *path, t_vault *vault)
 		ft_printf("\033[31mnm error :\n[$s] memory maping has failed\033[0m", path);
 		return (-1);
 	}
-	ft_printf("OPEN FILE OK vault->f_dump[%p]\n", vault->f_dump);
+	// ft_printf("OPEN FILE OK vault->f_dump[%p]\n", vault->f_dump);
 	if (close(fd) != 0)
 	{
 		ft_printf("\033[33mnm warning :\n[$s] close not complete\033[0m", path);

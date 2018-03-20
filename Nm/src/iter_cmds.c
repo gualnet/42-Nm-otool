@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 21:36:21 by galy              #+#    #+#             */
-/*   Updated: 2018/03/15 17:16:45 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/20 14:25:09 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	symtab_loop(t_vault *vault, struct symtab_command *symtab_cmd, void *strtab
 			vault->tab_sym_meta[j]->name[ft_strlen(str)] = '\0';
 			vault->tab_sym_meta[j]->n_sect = nlist[i].n_sect;
 			vault->tab_sym_meta[j]->n_type = nlist[i].n_type;
+			vault->tab_sym_meta[j]->n_value = nlist[i].n_value;
 			j++;
 		}
 		i++;
@@ -71,7 +72,7 @@ void	handle_symtab(t_vault *vault, struct load_command *lc)
 	nlist = (void*) vault->f_dump + symtab_cmd->symoff;
 	strtab = (void*) vault->f_dump + symtab_cmd->stroff;
 	vault->nsyms = symtab_cmd->nsyms;
-	print_symtab_command(symtab_cmd);
+	// print_symtab_command(symtab_cmd);
 	alloc_tab_sym_meta(vault, symtab_cmd);
 	symtab_loop(vault, symtab_cmd, strtab, nlist);
 	sort_alnum(vault, symtab_cmd->nsyms);
@@ -88,8 +89,8 @@ void	inter_cmds(t_vault *vault)
 	header = vault->header;
 	// ft_printf("sizeof(struct mach_header_64) [%d]\n", sizeof(*header));
 	lc = (void*)vault->f_dump + sizeof(*header);
-	ft_printf("vault->f_dump [%p]\n", vault->f_dump);
-	ft_printf("vault->header_64->ncmds [%d]\n", header->ncmds);
+	// ft_printf("vault->f_dump [%p]\n", vault->f_dump);
+	// ft_printf("vault->header_64->ncmds [%d]\n", header->ncmds);
 	while (i < header->ncmds)
 	{
 		// ft_printf("[%d]lc->cmd [%x]\n", i, lc->cmd);
@@ -97,11 +98,11 @@ void	inter_cmds(t_vault *vault)
 		add_new_lclink(vault, lc);
 		if (lc->cmd == LC_SYMTAB)
 		{
-			ft_printf("BINGO i = %d\n", i);
+			// ft_printf("BINGO i = %d\n", i);
 			handle_symtab(vault, lc);
 		}
 		lc = (void*)lc + lc->cmdsize;
 		i++;
 	}
-	ft_printf("\nEND INTER_CMDS\n");
+	// ft_printf("\nEND INTER_CMDS\n");
 }

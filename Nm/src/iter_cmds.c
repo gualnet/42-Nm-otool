@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 21:36:21 by galy              #+#    #+#             */
-/*   Updated: 2018/03/20 20:35:30 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/21 14:17:54 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	symtab_loop(t_vault *vault, struct symtab_command *symtab_cmd, void *strtab
 			vault->tab_sym_meta[j]->n_sect = nlist[i].n_sect;
 			vault->tab_sym_meta[j]->n_type = nlist[i].n_type;
 			vault->tab_sym_meta[j]->n_value = nlist[i].n_value;
-			ft_printf("%016x %s\n", vault->tab_sym_meta[j]->n_value, vault->tab_sym_meta[j]->name);
+			// ft_printf("%016x %s\n", vault->tab_sym_meta[j]->n_value, vault->tab_sym_meta[j]->name);
 			j++;
 		}
 		i++;

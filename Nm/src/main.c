@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/03/20 14:05:48 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/22 12:04:04 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,12 @@ int run(char **argv, t_vault *vault)
 	}
 		
 	// load commands
-	inter_cmds(vault);
+	if ((vault->file_nfo & M_64B) != 0)
+	{
+		inter_cmds(vault);
+	}
+	else
+		exit(0);
 
 	display_list(vault);
 	ft_printf("\nEND\n");

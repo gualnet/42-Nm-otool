@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/03/20 17:45:07 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/21 15:11:47 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,22 @@
 #include <sys/stat.h>
 #include <mach-o/loader.h>
 #include <mach-o/nlist.h>
+#include <mach-o/fat.h>
+#include <ar.h>
 #include "ft_printf.h"
 #include "get_next_line.h"
 
-#define	MH_32 struct mach_header
-#define MH_64 struct mach_header_64
+/*
+**	Defines for file_nfo
+**	M_32B			- 32 bits
+**	M_64B			- 64 bits
+**	M_SWAP_ENDIAN	-
+**	M_ARCH			- archive 
+*/
+#define M_32B				0x01
+#define M_64B				0x02
+#define M_SWAP_ENDIAN		0x04
+#define M_ARCH				0x08
 
 typedef struct				s_sym_meta
 {

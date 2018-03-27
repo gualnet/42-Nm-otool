@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 21:36:21 by galy              #+#    #+#             */
-/*   Updated: 2018/03/21 14:17:54 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/27 18:39:21 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,17 +92,19 @@ void	inter_cmds(t_vault *vault)
 	// ft_printf("sizeof(struct mach_header_64) [%d]\n", sizeof(*header));
 	lc = (void*)vault->f_dump + sizeof(*header);
 	// ft_printf("vault->f_dump [%p]\n", vault->f_dump);
-	// ft_printf("vault->header_64->ncmds [%d]\n", header->ncmds);
+	ft_printf("vault->header_64->ncmds [%d]\n", header->ncmds);
 	while (i < header->ncmds)
 	{
-		// ft_printf("[%d]lc->cmd [%x]\n", i, lc->cmd);
-		// ft_printf("lc->cmdsize [%x]\n", lc->cmdsize);
+		ft_printf("[%d]lc->cmd [%x]\n", i, lc->cmd);
+		ft_printf("lc->cmdsize [%x]\n", lc->cmdsize);
 		add_new_lclink(vault, lc);
 		if (lc->cmd == LC_SYMTAB)
 		{
 			// ft_printf("BINGO i = %d\n", i);
 			handle_symtab(vault, lc);
 		}
+		if (i < 10)
+			break;
 		lc = (void*)lc + lc->cmdsize;
 		i++;
 	}

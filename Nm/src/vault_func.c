@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:59:32 by galy              #+#    #+#             */
-/*   Updated: 2018/03/15 11:20:42 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/28 15:03:55 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@ void	*init_vault(void)
 		ft_printf("\033[31mnm (init.c - line 19) error :\nmalloc vault struct space FAILED\033[0m\n");
 		to_exit(NULL);
 	}
+	init->ar_dump = NULL;
 	init->f_dump = NULL;
+	init->header = NULL;
 	init->lc_lst = NULL;
+	init->file_nfo = 0;
+	init->nsyms = 0;
 	return (init);
 
 }

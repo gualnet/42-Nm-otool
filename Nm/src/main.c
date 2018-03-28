@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/03/23 11:16:44 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/28 18:34:03 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ int run(char **argv, t_vault *vault)
 	if ((vault->file_nfo & M_64B) != 0)
 	{
 		inter_cmds(vault);
+		display_list(vault);
 	}
 	else if ((vault->file_nfo & M_ARCH) != 0)
 	{
 		handle_arch(vault);
-		ft_printf("\nEXIT - main.c line 36\n");
-		exit(0);
+		// ft_printf("\nEXIT - main.c line 36\n");
+		// exit(0);
 	}
 	else
 		exit(0);
 
-	display_list(vault);
 	ft_printf("\nEND\n");
 	return (1);
 }

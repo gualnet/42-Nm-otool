@@ -6,13 +6,13 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/16 16:38:21 by galy              #+#    #+#              #
-#    Updated: 2018/03/26 20:59:03 by galy             ###   ########.fr        #
+#    Updated: 2018/03/28 19:20:50 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	ft_nm
-# CFLAGS	=	-Wall -Werror -Wextra
-CFLAGS	=	-Wall -Werror -Wextra -fsanitize=address
+# CFLAGS	=	-Wall -Werror -Wextra -g
+CFLAGS	=	-Wall -Werror -Wextra -fsanitize=address -g
 CC		=	clang 
 
 LIBFLAG		=	-L./lib -lftall

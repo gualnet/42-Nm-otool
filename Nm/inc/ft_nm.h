@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/03/27 18:37:58 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/28 18:51:51 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ void	display_list(t_vault *vault);
 //lst_func.c
 t_lc_lnk	*add_new_lclink(t_vault *vault, void *adr);
 t_sect_lnk	*add_new_sectlnk(t_lc_lnk *lc_lnk, void *adr);
+int			delete_all_lst(t_vault *vault);
 
 //check_sym_sect.c
 char	print_sym_sect(t_vault *vault, unsigned int i);

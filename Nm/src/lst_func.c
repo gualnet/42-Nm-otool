@@ -6,11 +6,52 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 10:32:54 by galy              #+#    #+#             */
-/*   Updated: 2018/03/20 19:10:13 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/28 19:21:27 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
+
+int		dal_2(t_sect_lnk *sect_lnk)
+{
+	t_sect_lnk	*tmp;
+	t_sect_lnk	*sve;
+
+	tmp = sect_lnk;
+	while (tmp != NULL)
+	{
+		// ft_printf("[%s][%s]\n", tmp->sect->sectname, tmp->sect->segname);
+		sve = tmp->next;
+		free(tmp);
+		tmp = sve;
+	}
+	return (0);
+}	
+
+int		delete_all_lst(t_vault *vault)
+{
+	t_lc_lnk	*tmp;
+	t_lc_lnk	*sve;
+
+	if(vault->lc_lst == NULL)
+		return (0);
+	tmp = vault->lc_lst;
+	while (tmp != NULL)
+	{
+		// ft_printf("tmp->lc->cmd [%x]\n", tmp->lc->cmd);
+		// ft_printf("tmp->lc->cmdsize [%x]\n", tmp->lc->cmdsize);
+		if(tmp->sect_lst != NULL)
+		{
+			dal_2(tmp->sect_lst);
+			tmp->sect_lst = NULL;
+			// ft_printf("tmp->sect_lst[%p]\n",tmp->sect_lst);
+		}
+		sve = tmp->next;
+		free(tmp);
+		tmp = sve;
+	}
+	return (0);
+}
 
 t_lc_lnk	*add_new_lclink(t_vault *vault, void *adr)
 {

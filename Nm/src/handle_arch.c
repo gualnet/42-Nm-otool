@@ -6,13 +6,38 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 11:09:12 by galy              #+#    #+#             */
-/*   Updated: 2018/03/27 18:46:13 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/28 20:19:19 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-void	print_
+void	print_offset(t_vault *vault, void *ptr)
+{
+	void	*start;
+	if (vault->ar_dump != NULL)
+	{
+		start = (void*)vault->ar_dump;
+		ft_printf("-->001");
+	}
+	else
+		start = (void*)vault->f_dump;
+
+	// ft_printf("1-start[%p]\n", start);
+	// ft_printf("2-ptr[%p]\n", ptr);
+	// ft_printf("3-ptr - start[%p]\n", ptr - start);
+	ft_printf("\n\033[36moffset[%x]\033[00m\n", ptr - start,ptr - start);
+}
+
+void	free_useless_vault_components(t_vault *vault)
+{
+	ft_printf("\nCALL FREE_USELESS_VAULT_COMP\n");
+	delete_all_lst(vault);
+
+	vault->f_dump = NULL;
+	
+	ft_printf("END FREE_USELESS_VAULT_COMP\n");
+}
 
 void	offset_init(t_vault *vault, t_arch_info *arch)
 {
@@ -54,17 +79,20 @@ void	jump_obj_hdr(t_vault *vault, t_arch_info *arch)
 {
 	ft_printf("\nCALL JUMP_OBJ_HDR\n");
 	struct ar_hdr	*obj_hdr;
-	// void			*obj_ptr;
 	
-	obj_hdr = (void*)arch->off_symbol_tab + ft_atoll(arch->off_symtab_hdr->ar_size) - LONG_NAME_SIZE;
+	obj_hdr = (void*)arch->off_symbol_tab + ft_atoi(arch->off_symtab_hdr->ar_size) - LONG_NAME_SIZE;
 	
-	// ft_printf("[%s]\n", obj_hdr);
-	
-	vault->f_dump = obj_hdr + sizeof(*obj_hdr) + LONG_NAME_SIZE;
+	vault->f_dump = (void*)obj_hdr + sizeof(*obj_hdr) + LONG_NAME_SIZE;
 	vault->header = vault->f_dump;
 	inter_cmds(vault);
+	display_list(vault);
+	free_useless_vault_components(vault);
+
+	print_offset(vault, obj_hdr);
+	obj_hdr = NULL;
 	
-	
+
+	print_offset(vault, obj_hdr);
 }
 
 void	handle_arch(t_vault *vault)

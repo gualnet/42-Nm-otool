@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 20:50:48 by galy              #+#    #+#             */
-/*   Updated: 2018/03/26 21:00:30 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/29 19:27:10 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ void	read_undelimited_str(char *ptr, size_t size)
 		ft_putchar(ptr[i]);
 		i++;
 	}
-	ft_putchar('\n');
+	// ft_putchar('\n');
 }

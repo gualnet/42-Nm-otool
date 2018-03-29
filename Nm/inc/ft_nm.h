@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/03/28 18:51:51 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/29 19:27:24 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 #define M_SWAP_ENDIAN		0x04
 #define M_ARCH				0x08
 #define LONG_NAME_SIZE		20
+#define AR_NAME_SIZE		16
 
 typedef struct				s_sym_meta
 {
@@ -114,7 +115,7 @@ int			delete_all_lst(t_vault *vault);
 char	print_sym_sect(t_vault *vault, unsigned int i);
 
 //handle_arch.c
-void	handle_arch(t_vault *vault);
+void	handle_arch(t_vault *vault, char *path);
 
 // read_undelimited_str.c
 void	read_undelimited_str(char *ptr, size_t size);

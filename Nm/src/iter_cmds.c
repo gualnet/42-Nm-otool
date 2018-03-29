@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 21:36:21 by galy              #+#    #+#             */
-/*   Updated: 2018/03/28 18:07:49 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/29 18:35:23 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void alloc_tab_sym_meta(t_vault *vault, struct symtab_command *symtab_cmd)
 {
-	ft_printf("\nCALL ALLOC_TAB_SYM_META\n");
+	// ft_printf("\nCALL ALLOC_TAB_SYM_META\n");
 	unsigned int	i;
 
 	// ft_printf("%p - %p\n", &vault->tab_sym_meta, vault->tab_sym_meta);
@@ -64,7 +64,7 @@ void	symtab_loop(t_vault *vault, struct symtab_command *symtab_cmd, void *strtab
 
 void	handle_symtab(t_vault *vault, struct load_command *lc)
 {
-	ft_printf("\nCALL HANDLE_SIMTAB\n");
+	// ft_printf("\nCALL HANDLE_SIMTAB\n");
 
 	void					*strtab;
 	struct symtab_command	*symtab_cmd;
@@ -82,7 +82,7 @@ void	handle_symtab(t_vault *vault, struct load_command *lc)
 
 void	inter_cmds(t_vault *vault)
 {
-	ft_printf("\nCALL INTER_CMDS\n");
+	// ft_printf("\nCALL INTER_CMDS\n");
 	unsigned int			i;
 	struct mach_header_64	*header;
 	struct load_command		*lc;

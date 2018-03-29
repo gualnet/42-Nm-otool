@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 10:32:54 by galy              #+#    #+#             */
-/*   Updated: 2018/03/28 19:21:27 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/29 18:31:13 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int		dal_2(t_sect_lnk *sect_lnk)
 		// ft_printf("[%s][%s]\n", tmp->sect->sectname, tmp->sect->segname);
 		sve = tmp->next;
 		free(tmp);
+		tmp = NULL;
 		tmp = sve;
 	}
 	return (0);
@@ -48,8 +49,10 @@ int		delete_all_lst(t_vault *vault)
 		}
 		sve = tmp->next;
 		free(tmp);
+		tmp = NULL;
 		tmp = sve;
 	}
+	vault->lc_lst = NULL;
 	return (0);
 }
 
@@ -102,30 +105,22 @@ t_sect_lnk	*add_new_sectlnk(t_lc_lnk *lc_lnk, void *adr)
 	new_elem->next = NULL;
 	if (tmp == NULL)
 	{
-		// ft_printf("---2\n");
 		tmp = new_elem;
 		entry = new_elem;
 	}
 	else
 	{
-		// ft_printf("---2\n");
 		int i = 0;
 		entry = (void*)lc_lnk->sect_lst;
 		while (tmp->next != NULL)
 		{
-			// ft_printf("---4\n");
 			tmp = tmp->next;
 			i++;
-			// if (i == 5)
-			// 	exit(0);
 		}
-		// ft_printf("---4\n");
 		tmp->next = new_elem;
 
 	}
-	// ft_printf("---8\n");
 	lc_lnk->sect_lst = entry;
 	// ft_printf("\nEND ADD_NEW_SECTION LINK [%p]\n", lc_lnk->sect_lst);
-	// ft_printf("---9\n");
 	return (new_elem);
 }

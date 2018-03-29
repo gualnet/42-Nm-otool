@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/03/28 18:34:03 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/29 19:31:16 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int run(char **argv, t_vault *vault)
 		ft_printf("\033[31mnm error :\nECHEC check magic num.\033[0m");
 		return (-1);
 	}
-		
+	
+	char *path;
+
+	path = argv[1];
 	// load commands
 	if ((vault->file_nfo & M_64B) != 0)
 	{
@@ -33,14 +36,15 @@ int run(char **argv, t_vault *vault)
 	}
 	else if ((vault->file_nfo & M_ARCH) != 0)
 	{
-		handle_arch(vault);
+		
+		handle_arch(vault, path);
 		// ft_printf("\nEXIT - main.c line 36\n");
 		// exit(0);
 	}
 	else
 		exit(0);
 
-	ft_printf("\nEND\n");
+	// ft_printf("\nEND\n");
 	return (1);
 }
 

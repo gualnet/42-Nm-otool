@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 11:09:12 by galy              #+#    #+#             */
-/*   Updated: 2018/03/28 20:19:19 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/29 19:33:57 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	print_offset(t_vault *vault, void *ptr)
 	if (vault->ar_dump != NULL)
 	{
 		start = (void*)vault->ar_dump;
-		ft_printf("-->001");
 	}
 	else
 		start = (void*)vault->f_dump;
@@ -31,12 +30,12 @@ void	print_offset(t_vault *vault, void *ptr)
 
 void	free_useless_vault_components(t_vault *vault)
 {
-	ft_printf("\nCALL FREE_USELESS_VAULT_COMP\n");
+	// ft_printf("\nCALL FREE_USELESS_VAULT_COMP\n");
 	delete_all_lst(vault);
 
 	vault->f_dump = NULL;
 	
-	ft_printf("END FREE_USELESS_VAULT_COMP\n");
+	// ft_printf("END FREE_USELESS_VAULT_COMP\n");
 }
 
 void	offset_init(t_vault *vault, t_arch_info *arch)
@@ -75,29 +74,58 @@ void	get_nbr_symbols(t_vault *vault, t_arch_info *arch)
 	arch->nbr_obj = counter;
 }
 
-void	jump_obj_hdr(t_vault *vault, t_arch_info *arch)
+void	print_object_path(struct ar_hdr *obj_hdr, char *path)
 {
-	ft_printf("\nCALL JUMP_OBJ_HDR\n");
+	char *o_name;
+
+	o_name = (void*)obj_hdr + sizeof(struct ar_hdr);
+	ft_putchar('\n');
+	ft_printf("%s", path);
+	ft_putchar('(');
+	read_undelimited_str(o_name, LONG_NAME_SIZE);
+	ft_putstr("):\n");
+	// ft_printf("(%p)\n", );
+
+	
+}
+
+void	jump_obj_hdr(t_vault *vault, t_arch_info *arch, char *path)
+{
+	// ft_printf("\nCALL JUMP_OBJ_HDR\n");
 	struct ar_hdr	*obj_hdr;
+	unsigned int	i;
 	
 	obj_hdr = (void*)arch->off_symbol_tab + ft_atoi(arch->off_symtab_hdr->ar_size) - LONG_NAME_SIZE;
 	
 	vault->f_dump = (void*)obj_hdr + sizeof(*obj_hdr) + LONG_NAME_SIZE;
 	vault->header = vault->f_dump;
 	inter_cmds(vault);
+	print_object_path(obj_hdr, path);
 	display_list(vault);
 	free_useless_vault_components(vault);
-
-	print_offset(vault, obj_hdr);
-	obj_hdr = NULL;
 	
+	i = 1;
+	while (i < arch->nbr_obj)
+	{
+		// print_offset(vault, obj_hdr);
+		obj_hdr = (void*)obj_hdr + sizeof(*obj_hdr) + ft_atoi(obj_hdr->ar_size);
+		// print_offset(vault, obj_hdr);
 
-	print_offset(vault, obj_hdr);
+		vault->f_dump = (void*)obj_hdr + sizeof(*obj_hdr) + LONG_NAME_SIZE;
+		vault->header = vault->f_dump;
+		inter_cmds(vault);
+		print_object_path(obj_hdr, path);
+		display_list(vault);
+		free_useless_vault_components(vault);
+		i++;
+	}
+	
+	
 }
 
-void	handle_arch(t_vault *vault)
+void	handle_arch(t_vault *vault, char *path)
 {
-	ft_printf("\nCALL HANDLE_ARCH\n");
+	// ft_printf("\nCALL HANDLE_ARCH\n");
 	t_arch_info	*arch_info;
 	arch_info = malloc(sizeof(struct s_arch_info));
 
@@ -108,5 +136,5 @@ void	handle_arch(t_vault *vault)
 	// ft_printf("\narch_info->nbr_obj %d\n", arch_info->nbr_obj);
 
 	//jump between objects
-	jump_obj_hdr(vault, arch_info);
+	jump_obj_hdr(vault, arch_info, path);
 }

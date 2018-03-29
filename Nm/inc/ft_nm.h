@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/03/21 15:11:47 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/29 19:27:24 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@
 #define M_64B				0x02
 #define M_SWAP_ENDIAN		0x04
 #define M_ARCH				0x08
+#define LONG_NAME_SIZE		20
+#define AR_NAME_SIZE		16
 
 typedef struct				s_sym_meta
 {
@@ -60,9 +62,19 @@ typedef struct				s_lc_lnk
 	void					*next;
 }							t_lc_lnk;
 
+typedef struct				s_arch_info
+{
+	struct ar_hdr			*off_symtab_hdr;
+	void					*off_symbol_tab;
+	void					*off_symstr_tab;
+	unsigned int			nbr_obj;
+	
+}							t_arch_info;
+
 typedef struct				s_vault
 {
 	struct stat				f_stat;
+	void					*ar_dump;
 	void					*f_dump;
 	void					*header;
 	t_lc_lnk				*lc_lst;
@@ -97,9 +109,16 @@ void	display_list(t_vault *vault);
 //lst_func.c
 t_lc_lnk	*add_new_lclink(t_vault *vault, void *adr);
 t_sect_lnk	*add_new_sectlnk(t_lc_lnk *lc_lnk, void *adr);
+int			delete_all_lst(t_vault *vault);
 
 //check_sym_sect.c
 char	print_sym_sect(t_vault *vault, unsigned int i);
+
+//handle_arch.c
+void	handle_arch(t_vault *vault, char *path);
+
+// read_undelimited_str.c
+void	read_undelimited_str(char *ptr, size_t size);
 
 //dev_func.c
 void print_symtab_command(void *sym_cmd);

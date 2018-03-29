@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vault_func.c                                       :+:      :+:    :+:   */
+/*   read_undelimited_str.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/23 20:59:32 by galy              #+#    #+#             */
-/*   Updated: 2018/03/28 15:03:55 by galy             ###   ########.fr       */
+/*   Created: 2018/03/26 20:50:48 by galy              #+#    #+#             */
+/*   Updated: 2018/03/29 19:27:10 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-void	*init_vault(void)
+void	read_undelimited_str(char *ptr, size_t size)
 {
-	t_vault *init;
+	size_t	i;
 
-	if ((init = malloc(sizeof(t_vault))) == NULL)
+	i = 0;
+	while (i < size)
 	{
-		ft_printf("\033[31mnm (init.c - line 19) error :\nmalloc vault struct space FAILED\033[0m\n");
-		to_exit(NULL);
+		if (ptr[i] == '\n')
+		{
+			ft_printf("\n read_undelimited_str ??\n");
+			exit(-1);
+		}
+		ft_putchar(ptr[i]);
+		i++;
 	}
-	init->ar_dump = NULL;
-	init->f_dump = NULL;
-	init->header = NULL;
-	init->lc_lst = NULL;
-	init->file_nfo = 0;
-	init->nsyms = 0;
-	return (init);
-
+	// ft_putchar('\n');
 }

@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/16 16:38:21 by galy              #+#    #+#              #
-#    Updated: 2018/03/28 19:20:50 by galy             ###   ########.fr        #
+#    Updated: 2018/03/30 19:33:35 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,11 +46,15 @@ CUR_CLR		=	\033[K
 ####FILES####
 
 SRC			=	\
-				_dev_func.c \
-				handle_arch.c    main.c           to_exit.c \
-				check_seg_sect.c iter_cmds.c      open_file.c      usage.c \
-				display.c        lst_func.c       sort_alnum.c     vault_func.c \
-				read_undelimited_str.c
+				main.c					to_exit.c \
+				open_file.c				usage.c \
+				read_undelimited_str.c	vault_func.c \
+				sort_alnum.c			offset_jumper.c \
+				check_magic.c \
+				_64/check_seg_sect.c	_64/display.c \
+				_64/iter_cmds.c		_64/lst_func.c \
+				_arch/handle_arch.c \
+				_dev/_dev_func.c
 
 
 ####FUNC####
@@ -101,6 +105,9 @@ tests	:
 	
 OBJD		:
 	@mkdir -p $(OBJDIR)
+	@mkdir -p $(OBJDIR)/_64
+	@mkdir -p $(OBJDIR)/_arch
+	@mkdir -p $(OBJDIR)/_dev
 
 reset_cursor	:
 	@printf "$(CUR_SVE)"

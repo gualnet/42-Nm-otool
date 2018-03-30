@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 10:08:45 by galy              #+#    #+#             */
-/*   Updated: 2018/03/30 14:53:07 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/30 16:51:43 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,3 @@ char	print_sym_sect(t_vault *vault, unsigned int i)
 	return (letter);
 	// ft_printf("%c ", letter); //sortie
 }
-
-// #define	N_UNDF	0x0		/* undefined, n_sect == NO_SECT */
-// #define	N_ABS	0x2		/* absolute, n_sect == NO_SECT */
-// #define	N_SECT	0xe		/* defined in section number n_sect */
-// #define	N_PBUD	0xc		/* prebound undefined (defined in a dylib) */
-// #define N_INDR	0xa		/* indirect */

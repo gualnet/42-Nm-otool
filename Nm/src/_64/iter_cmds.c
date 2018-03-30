@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 21:36:21 by galy              #+#    #+#             */
-/*   Updated: 2018/03/30 14:12:51 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/30 22:31:20 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	symtab_loop(t_vault *vault, struct symtab_command *symtab_cmd, void *strtab
 	j = 0;
 	while (i < symtab_cmd->nsyms)
 	{
-		str = (char*)(strtab + nlist[i].n_un.n_strx);
+		// str = (char*)(strtab + nlist[i].n_un.n_strx);
+		str = offset_jumper(vault, strtab, nlist[i].n_un.n_strx);
 		if (nlist[i].n_un.n_strx != 0)
 		{
 			vault->tab_sym_meta[j]->name = malloc((ft_strlen(str) + 1) * sizeof(char));
@@ -71,8 +72,10 @@ void	handle_symtab(t_vault *vault, struct load_command *lc)
 	struct nlist_64			*nlist;
 	
 	symtab_cmd = (void*)lc;
-	nlist = (void*) vault->f_dump + symtab_cmd->symoff;
-	strtab = (void*) vault->f_dump + symtab_cmd->stroff;
+	// nlist = (void*) vault->f_dump + symtab_cmd->symoff;
+	nlist = offset_jumper(vault, vault->f_dump, symtab_cmd->symoff);
+	// strtab = (void*) vault->f_dump + symtab_cmd->stroff;
+	strtab = offset_jumper(vault, vault->f_dump, symtab_cmd->stroff);
 	vault->nsyms = symtab_cmd->nsyms;
 	// print_symtab_command(symtab_cmd);
 	alloc_tab_sym_meta(vault, symtab_cmd);
@@ -90,7 +93,8 @@ void	inter_cmds(t_vault *vault)
 	i = 0;
 	header = vault->header;
 	// ft_printf("sizeof(struct mach_header_64) [%d]\n", sizeof(*header));
-	lc = (void*)vault->f_dump + sizeof(*header);
+	// lc = (void*)vault->f_dump + sizeof(*header);
+	lc = offset_jumper(vault, vault->f_dump, sizeof(*header));
 	// ft_printf("vault->f_dump [%p]\n", vault->f_dump);
 	// ft_printf("vault->header_64->ncmds [%d]\n", header->ncmds);
 	while (i < header->ncmds)
@@ -100,13 +104,19 @@ void	inter_cmds(t_vault *vault)
 		// ft_printf("[%d]lc->cmd [%x]\n", i, lc->cmd);
 		// ft_printf("lc->cmdsize [%x]\n", lc->cmdsize);
 		add_new_lclink(vault, lc);
+		// print_offset(vault, lc);
+		// ft_printf("000\n");
+		// ft_printf("lc->cmd[%p]\n", lc->cmd);
+		// ft_printf("000\n");
 		if (lc->cmd == LC_SYMTAB)
 		{
+			// ft_printf("001\n");
 			handle_symtab(vault, lc);
+			// ft_printf("002\n");
 		}
-		if (i > 5)
-			exit(-1);
-		lc = (void*)lc + lc->cmdsize;
+		// ft_printf("003\n");
+		// lc = (void*)lc + lc->cmdsize;
+		lc = offset_jumper(vault, lc, lc->cmdsize);
 		i++;
 	}
 	// ft_printf("\nEND INTER_CMDS\n");

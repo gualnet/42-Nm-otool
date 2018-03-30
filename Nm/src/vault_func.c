@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:59:32 by galy              #+#    #+#             */
-/*   Updated: 2018/03/28 15:03:55 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/30 16:46:29 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	*init_vault(void)
 	init->f_dump = NULL;
 	init->header = NULL;
 	init->lc_lst = NULL;
+	init->tab_sym_meta = NULL;
 	init->file_nfo = 0;
 	init->nsyms = 0;
 	return (init);

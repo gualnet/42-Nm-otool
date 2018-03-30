@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 10:08:45 by galy              #+#    #+#             */
-/*   Updated: 2018/03/20 19:14:44 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/30 14:53:07 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,20 @@
 
 char	handle_sect_name_to_letter(char *sectname, int upper)
 {
+	// ft_printf("==sect [%s]\n", sectname);
 	if (ft_strcmp(sectname, "__text") == 0)
+	{
 		return (upper ? 'T' : 't');
-	return '^';
+	}
+	if (ft_strcmp(sectname, "__bss") == 0)
+	{
+		return (upper ? 'B' : 'b');
+	}
+	return ('^');
 }
 
 char	get_sect_letter(t_vault *vault, unsigned int n_sect, int upper)
 {
-	// ft_printf("coucou\n");
 	unsigned int	i;
 	t_lc_lnk		*tmp_seg;
 	t_sect_lnk		*tmp_sect;
@@ -37,18 +43,23 @@ char	get_sect_letter(t_vault *vault, unsigned int n_sect, int upper)
 		// ft_printf("i[%d] - header->ncmds[%d]\n", i, header->ncmds);
 		// ft_printf("vault->lc_lst->sect->segname[%p]\n", vault->lc_lst->sect_lst->sect->segname);
 		
-		tmp_sect = tmp_seg->sect_lst;
+		// tmp_sect = tmp_seg->sect_lst;
 		// ft_printf("tmp_sect[%p]\n", tmp_sect);
 		if (i == n_sect && tmp_sect != NULL)
 		{
 			// ft_printf("\tbreak @ %d\n", i);
 			break;
 		}
+		// ft_printf("----------------i[%d]->sectname[%s]\n", i, tmp_sect->sect->sectname);
 		i = (tmp_sect != NULL) ? (i + 1) : i;
-		tmp_seg = (tmp_sect == NULL) ? tmp_seg->next : tmp_seg;
+		if (tmp_sect->next != NULL)
+			tmp_sect = tmp_sect->next;
+		else
+			tmp_seg = tmp_seg->next;
+		// ft_printf("----------------i[%d]->sectname[%s]\n", i, tmp_sect->sect->sectname);
 	}
-	// ft_printf("[%d]tmp [%s]\n", i, tmp->sect->segname);
-	// ft_printf("[%d]tmp [%s]\n", i, tmp->sect->sectname);
+	// ft_printf("[%d]tmp [%s]\n", i, tmp_sect->sect->segname);
+	// ft_printf("[%d]tmp [%s]\n", i, tmp_sect->sect->sectname);
 	return (handle_sect_name_to_letter(tmp_sect->sect->sectname, upper));
 	exit (0);
 }
@@ -58,7 +69,6 @@ char	handle_n_type_mask(t_vault *vault, unsigned int i, int upper)
 	char letter;
 	
 	letter = '@';
-	
 	if ((vault->tab_sym_meta[i]->n_type & N_TYPE) == N_ABS)
 		letter = upper ? 'A' : 'a';
 	else if ((vault->tab_sym_meta[i]->n_type & N_TYPE) == N_SECT)

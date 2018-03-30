@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 11:09:12 by galy              #+#    #+#             */
-/*   Updated: 2018/03/29 19:33:57 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/30 16:27:01 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,34 @@ void	offset_init(t_vault *vault, t_arch_info *arch)
 	arch->off_symbol_tab = (void*)arch->off_symtab_hdr + sizeof(*arch->off_symtab_hdr) + LONG_NAME_SIZE;
 }
 
+// int		compare_object_name(int old_offset, int new_offset)
+// {
+	
+// }
+
+int		check_double_occur(t_vault *vault, t_arch_info *arch, int tabsym_off, unsigned int max_offset)
+{
+	unsigned int	cur_offset;
+	void			*symtab;
+	
+	cur_offset = arch->off_symbol_tab - vault->ar_dump + 4;
+	while (cur_offset < max_offset)
+	{
+		symtab = (void*)vault->ar_dump + cur_offset;
+		if (tabsym_off == *(int*)(symtab + 4))
+			return (-1);
+		cur_offset += (sizeof(void*));
+	}
+	return (1);
+}
+
 void	get_nbr_symbols(t_vault *vault, t_arch_info *arch)
 {
 	unsigned int	counter;
 	unsigned int	symtab_size;
 	unsigned int	max_offset;
 	unsigned int	cur_offset;
+	void			*symtab;
 
 	counter = 0;
 	symtab_size = *(size_t*)arch->off_symbol_tab;
@@ -60,32 +82,46 @@ void	get_nbr_symbols(t_vault *vault, t_arch_info *arch)
 	cur_offset = arch->off_symbol_tab - vault->ar_dump + 4;
 	arch->off_symstr_tab = (void*)arch->off_symbol_tab + symtab_size;
 
-	// void	*symtab = (void*)vault->ar_dump + cur_offset; // pour le print
+	symtab = (void*)vault->ar_dump + cur_offset;
 	// void	*strtab = symtab + symtab_size; // pour le print
 	while (cur_offset < max_offset)
 	{
-		// symtab = (void*)vault->ar_dump + cur_offset;
+		symtab = (void*)vault->ar_dump + cur_offset;
 		// ft_printf("offset count [%x/%x]-", cur_offset, max_offset);
 		// ft_printf("[%x]-", *(int*)symtab);
-		// ft_printf("[%s]\n", strtab + *(int*)symtab + 4);
-		counter++;
+		// ft_printf("[%s]-->", strtab + *(int*)symtab + 4);
+		// ft_printf("[%x]-", *(int*)(symtab + 4));
+		// ft_printf("\n");
+		if (check_double_occur(vault, arch, *(int*)(symtab + 4), cur_offset) == 1)
+		{
+			counter++;
+		}
 		cur_offset += (sizeof(void*));
+		// ft_printf("counter[%d]\n", counter);
 	}
 	arch->nbr_obj = counter;
 }
 
-void	print_object_path(struct ar_hdr *obj_hdr, char *path)
+void	print_object_path(struct ar_hdr *obj_hdr, char *path, char hdr_ext)
 {
 	char *o_name;
 
-	o_name = (void*)obj_hdr + sizeof(struct ar_hdr);
-	ft_putchar('\n');
-	ft_printf("%s", path);
-	ft_putchar('(');
-	read_undelimited_str(o_name, LONG_NAME_SIZE);
-	ft_putstr("):\n");
-	// ft_printf("(%p)\n", );
-
+	if (hdr_ext == 1)
+	{
+		o_name = (void*)obj_hdr + sizeof(struct ar_hdr);
+		ft_printf("%s", path);
+		ft_printf("(");
+		read_undelimited_str(o_name, LONG_NAME_SIZE);
+		ft_printf("):\n");
+	}
+	else
+	{
+		o_name = (void*)obj_hdr->ar_name;
+		ft_printf("%s", path);
+		ft_printf("(");
+		read_undelimited_str(o_name, AR_NAME_SIZE);
+		ft_printf("):\n");
+	}
 	
 }
 
@@ -94,27 +130,49 @@ void	jump_obj_hdr(t_vault *vault, t_arch_info *arch, char *path)
 	// ft_printf("\nCALL JUMP_OBJ_HDR\n");
 	struct ar_hdr	*obj_hdr;
 	unsigned int	i;
+	char			hdr_ext;
 	
-	obj_hdr = (void*)arch->off_symbol_tab + ft_atoi(arch->off_symtab_hdr->ar_size) - LONG_NAME_SIZE;
+	obj_hdr = (void*)arch->off_symtab_hdr + sizeof(*arch->off_symtab_hdr) + ft_atoi(arch->off_symtab_hdr->ar_size);
 	
-	vault->f_dump = (void*)obj_hdr + sizeof(*obj_hdr) + LONG_NAME_SIZE;
+	
+	if (ft_strncmp(obj_hdr->ar_name, AR_EFMT1, 2) == 0)
+	{
+		vault->f_dump = (void*)obj_hdr + sizeof(*obj_hdr) + LONG_NAME_SIZE;
+		hdr_ext = 1;
+	}
+	else
+	{
+		vault->f_dump = (void*)obj_hdr + sizeof(*obj_hdr);
+		hdr_ext = 0;
+	}
+	
 	vault->header = vault->f_dump;
+	
+	// print_offset(vault, (void*)obj_hdr);
 	inter_cmds(vault);
-	print_object_path(obj_hdr, path);
+	print_object_path(obj_hdr, path, hdr_ext);
 	display_list(vault);
 	free_useless_vault_components(vault);
 	
 	i = 1;
 	while (i < arch->nbr_obj)
 	{
-		// print_offset(vault, obj_hdr);
 		obj_hdr = (void*)obj_hdr + sizeof(*obj_hdr) + ft_atoi(obj_hdr->ar_size);
-		// print_offset(vault, obj_hdr);
 
-		vault->f_dump = (void*)obj_hdr + sizeof(*obj_hdr) + LONG_NAME_SIZE;
-		vault->header = vault->f_dump;
+		if (ft_strncmp(obj_hdr->ar_name, AR_EFMT1, 2) == 0)
+		{
+			vault->f_dump = (void*)obj_hdr + sizeof(*obj_hdr) + LONG_NAME_SIZE;
+			hdr_ext = 1;
+		}
+		else
+		{
+			vault->f_dump = (void*)obj_hdr + sizeof(*obj_hdr);
+			hdr_ext = 0;
+		}
+		vault->header = (void*)vault->f_dump - 8;
 		inter_cmds(vault);
-		print_object_path(obj_hdr, path);
+		// print_offset(vault, (void*)obj_hdr);
+		print_object_path(obj_hdr, path, hdr_ext);
 		display_list(vault);
 		free_useless_vault_components(vault);
 		i++;

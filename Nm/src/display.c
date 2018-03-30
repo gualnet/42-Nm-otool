@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 15:16:41 by galy              #+#    #+#             */
-/*   Updated: 2018/03/29 18:35:11 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/30 16:23:42 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,7 @@ void	display_list(t_vault *vault)
 		ft_printf("%s\n", vault->tab_sym_meta[i]->name);
 		i++;
 	}
+	if (vault->ar_dump != NULL)
+		ft_printf("\n");
 	// ft_printf("\nEND DISPLAY_LIST\n");
 }

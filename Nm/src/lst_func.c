@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 10:32:54 by galy              #+#    #+#             */
-/*   Updated: 2018/03/29 18:31:13 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/30 14:40:24 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int		delete_all_lst(t_vault *vault)
 	tmp = vault->lc_lst;
 	while (tmp != NULL)
 	{
+		// ft_printf("\n");
 		// ft_printf("tmp->lc->cmd [%x]\n", tmp->lc->cmd);
 		// ft_printf("tmp->lc->cmdsize [%x]\n", tmp->lc->cmdsize);
 		if(tmp->sect_lst != NULL)

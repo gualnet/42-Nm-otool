@@ -33,6 +33,6 @@
 *.su
 
 # Perso
-.vscode
+# .vscode
 ./ft_malloc
 ./OLD_STUFF

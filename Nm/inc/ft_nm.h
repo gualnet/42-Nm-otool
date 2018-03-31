@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/03/29 19:27:24 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/30 23:27:36 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,16 @@ char	print_sym_sect(t_vault *vault, unsigned int i);
 
 //handle_arch.c
 void	handle_arch(t_vault *vault, char *path);
+void	print_offset(t_vault *vault, void *ptr);
 
 // read_undelimited_str.c
 void	read_undelimited_str(char *ptr, size_t size);
+
+//offset_jumper.c
+void	*offset_jumper(t_vault *vault, void *ptr, long jumpsize);
+
+//check_magic.c
+int	check_magic_num(t_vault *vault);
 
 //dev_func.c
 void print_symtab_command(void *sym_cmd);

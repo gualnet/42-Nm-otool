@@ -6,43 +6,51 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/03/30 21:52:53 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/31 04:13:46 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-int run(char **argv, t_vault *vault)
+int run(char **argv, int argc, t_vault *vault)
 {
-	// j'ouvre mon fichier
-	if (open_file(argv[1], vault) != 1)
-		to_exit(vault);
-	
-	// check magic number
-	if (check_magic_num(vault) == -1)
-	{
-		ft_printf("\033[31mnm error :\nECHEC check magic num.\033[0m");
-		return (-1);
-	}
-	
-	char *path;
+	char	*path;
+	int		i;
 
-	path = argv[1];
-	// load commands
-	if ((vault->file_nfo & M_64B) != 0)
+	i = 1;
+	while (i < argc)
 	{
-		inter_cmds(vault);
-		display_list(vault);
-	}
-	else if ((vault->file_nfo & M_ARCH) != 0)
-	{
+		// j'ouvre mon fichier
+		if (open_file(argv[i], vault) != 1)
+			to_exit(vault);
+		// check magic number
+		if (check_magic_num(vault) == -1)
+		{
+			ft_printf("\033[31mnm error :\nECHEC check magic num.\033[0m");
+			return (-1);
+		}
 		
-		handle_arch(vault, path);
-		// ft_printf("\nEXIT - main.c line 36\n");
-		// exit(0);
+		path = argv[i];
+		if (argc > 2)
+			ft_printf("\n%s:\n", path);
+		// load commands
+		if ((vault->file_nfo & M_64B) != 0)
+		{
+			inter_cmds(vault);
+			display_list(vault);
+		}
+		else if ((vault->file_nfo & M_ARCH) != 0)
+		{
+			
+			handle_arch(vault, path);
+			// ft_printf("\nEXIT - main.c line 36\n");
+			// exit(0);
+		}
+		else
+			exit(0);
+		i++;
 	}
-	else
-		exit(0);
+	
 
 	// ft_printf("\nEND\n");
 	return (1);
@@ -60,7 +68,7 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	
-	run(argv, vault);
+	run(argv, argc, vault);
 
 	return (EXIT_SUCCESS);
 }

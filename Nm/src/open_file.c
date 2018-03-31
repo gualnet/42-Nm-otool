@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 21:01:03 by galy              #+#    #+#             */
-/*   Updated: 2018/03/30 21:20:31 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/31 02:30:43 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	open_file(char *path, t_vault *vault)
 		ft_printf("\033[31mnm error :\n[$s] memory alloc has failed\033[0m", path);
 		return (-1);
 	}
-	ft_printf("OPEN FILE OK vault->f_dump[%p]\n", vault->f_dump);
+	// ft_printf("OPEN FILE OK vault->f_dump[%p]\n", vault->f_dump);
 	if (close(fd) != 0)
 	{
 		ft_printf("\033[33mnm warning :\n[$s] close not complete\033[0m", path);

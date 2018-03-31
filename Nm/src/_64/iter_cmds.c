@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 21:36:21 by galy              #+#    #+#             */
-/*   Updated: 2018/03/30 22:31:20 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/31 02:30:22 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ void	inter_cmds(t_vault *vault)
 		}
 		// ft_printf("003\n");
 		// lc = (void*)lc + lc->cmdsize;
+		// ft_printf("jump of lc->cmdsize [%d]\n", lc->cmdsize);
+		// print_offset(vault, lc);
 		lc = offset_jumper(vault, lc, lc->cmdsize);
 		i++;
 	}

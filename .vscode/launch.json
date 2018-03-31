@@ -5,7 +5,7 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "(lldb) Launch",
+			"name": "Launch ftprintf.a",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/Nm/ft_nm",
@@ -14,6 +14,32 @@
 			"cwd": "${workspaceFolder}",
 			"environment": [],
 			"externalConsole": true,
+			"MIMode": "lldb",
+			"preLaunchTask": "make ft_nm",
+		},
+		{
+			"name": "Launch libftall.a",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/Nm/ft_nm",
+			"args": ["${workspaceFolder}/Nm/lib/libftall.a"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": true,
+			"MIMode": "lldb",
+			"preLaunchTask": "make ft_nm"
+		},
+		{
+			"name": "Launch bash",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/Nm/ft_nm",
+			"args": ["${workspaceFolder}/testing_files/bash"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
 			"MIMode": "lldb",
 			"preLaunchTask": "make ft_nm"
 		}

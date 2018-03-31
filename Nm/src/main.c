@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/03/31 04:13:46 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/31 04:47:07 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ int run(char **argv, int argc, t_vault *vault)
 			handle_arch(vault, path);
 			// ft_printf("\nEXIT - main.c line 36\n");
 			// exit(0);
+		}
+		else if ((vault->file_nfo & M_32B) != 0)
+		{
+			handle_32bits(vault);
 		}
 		else
 			exit(0);

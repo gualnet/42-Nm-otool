@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/16 16:38:21 by galy              #+#    #+#              #
-#    Updated: 2018/03/30 19:33:35 by galy             ###   ########.fr        #
+#    Updated: 2018/03/31 05:40:33 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,8 +52,11 @@ SRC			=	\
 				sort_alnum.c			offset_jumper.c \
 				check_magic.c \
 				_64/check_seg_sect.c	_64/display.c \
-				_64/iter_cmds.c		_64/lst_func.c \
+				_64/iter_cmds.c			_64/lst_func.c \
 				_arch/handle_arch.c \
+				_32/handle_32.c			_32/iter_cmds_32.c \
+				_32/lst_func_32.c		_32/display_32.c \
+				_32/check_seg_sect_32.c \
 				_dev/_dev_func.c
 
 
@@ -105,6 +108,7 @@ tests	:
 	
 OBJD		:
 	@mkdir -p $(OBJDIR)
+	@mkdir -p $(OBJDIR)/_32
 	@mkdir -p $(OBJDIR)/_64
 	@mkdir -p $(OBJDIR)/_arch
 	@mkdir -p $(OBJDIR)/_dev

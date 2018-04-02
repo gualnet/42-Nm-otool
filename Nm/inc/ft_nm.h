@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/04/02 14:37:45 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/02 18:45:38 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ typedef struct				s_vault
 void	print_usage(void);
 
 //vault_func.c
-void	*init_vault(void);
+void	*init_vault(t_vault *vault);
+void	reset_tab_sym_meta(t_vault *vault);
 
 //open_file.c
 int		open_file(char *path, t_vault *vault);
@@ -142,6 +143,9 @@ void	*offset_jumper(t_vault *vault, void *ptr, long jumpsize);
 
 //check_magic.c
 int	check_magic_num(t_vault *vault);
+
+//handle_64.c
+void	handle_64bits(t_vault *vault);
 
 //handle_32.c
 void	handle_32bits(t_vault *vault);

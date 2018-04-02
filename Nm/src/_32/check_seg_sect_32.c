@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 05:28:34 by galy              #+#    #+#             */
-/*   Updated: 2018/04/02 14:57:20 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/02 16:40:17 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ char	handle_sect_name_to_letter_32(char *sectname, int upper)
 		return (upper ? 'B' : 'b');
 	if (ft_strcmp(sectname, "__data") == 0)
 		return (upper ? 'D' : 'd');
+	if (ft_strcmp(sectname, "__common") == 0)
+		return (upper ? 'S' : 's');
+	if (ft_strcmp(sectname, "__const") == 0)
+		return (upper ? 'S' : 's');
 	return ('^');
 }
 
@@ -43,15 +47,16 @@ char	get_sect_letter_32(t_vault *vault, unsigned int n_sect, int upper)
 		}
 		else
 		{
-			// tmp_sect = tmp_seg->sect_lst;
-			ft_printf("%d - inter sectname [%s]\n", i, tmp_sect->sect_32->sectname);
 			if (i == n_sect && tmp_sect != NULL)
 				break;
 			i = (tmp_sect != NULL) ? (i + 1) : i;
 			if (tmp_sect->next != NULL)
 				tmp_sect = tmp_sect->next;
 			else
+			{
 				tmp_seg = tmp_seg->next;
+				tmp_sect = tmp_seg->sect_lst.lnk_32;
+			}
 		}
 	}
 	return (handle_sect_name_to_letter_32(tmp_sect->sect_32->sectname, upper));
@@ -66,7 +71,6 @@ char	handle_n_type_mask_32(t_vault *vault, unsigned int i, int upper)
 		letter = upper ? 'A' : 'a';
 	else if ((vault->tab_sym_meta[i]->n_type & N_TYPE) == N_SECT)
 	{
-		print_offset(vault->f_dump, vault->tab_sym_meta[i]);
 		letter = get_sect_letter_32(vault, vault->tab_sym_meta[i]->n_sect, upper);
 	}
 	else if ((vault->tab_sym_meta[i]->n_type & N_TYPE) == N_INDR)

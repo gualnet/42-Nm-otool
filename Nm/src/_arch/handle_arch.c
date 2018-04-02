@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 11:09:12 by galy              #+#    #+#             */
-/*   Updated: 2018/03/31 02:29:07 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/02 18:23:12 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@ void	print_offset(t_vault *vault, void *ptr)
 	}
 	else
 		start = (void*)vault->f_dump;
-
-	// ft_printf("1-start[%p]\n", start);
-	// ft_printf("2-ptr[%p]\n", ptr);
-	// ft_printf("3-ptr - start[%p]\n", ptr - start);
 	ft_printf("\n\033[36moffset[%x]\033[00m\n", ptr - start,ptr - start);
 }
 
@@ -49,11 +45,6 @@ void	offset_init(t_vault *vault, t_arch_info *arch)
 	jump = sizeof(*arch->off_symtab_hdr) + LONG_NAME_SIZE;
 	arch->off_symbol_tab = offset_jumper(vault, (void*)arch->off_symtab_hdr, jump);
 }
-
-// int		compare_object_name(int old_offset, int new_offset)
-// {
-	
-// }
 
 int		check_double_occur(t_vault *vault, t_arch_info *arch, int tabsym_off, unsigned int max_offset)
 {
@@ -91,11 +82,6 @@ void	get_nbr_symbols(t_vault *vault, t_arch_info *arch)
 	while (cur_offset < max_offset)
 	{
 		symtab = offset_jumper(vault, vault->ar_dump, cur_offset);
-		// ft_printf("offset count [%x/%x]-", cur_offset, max_offset);
-		// ft_printf("[%x]-", *(int*)symtab);
-		// ft_printf("[%s]-->", strtab + *(int*)symtab + 4);
-		// ft_printf("[%x]-", *(int*)(symtab + 4));
-		// ft_printf("\n");
 		if (check_double_occur(vault, arch, *(int*)(symtab + 4), cur_offset) == 1)
 		{
 			counter++;
@@ -161,6 +147,7 @@ void	jump_obj_hdr(t_vault *vault, t_arch_info *arch, char *path)
 	print_object_path(vault, obj_hdr, path, hdr_ext);
 	display_list(vault);
 	free_useless_vault_components(vault);
+	reset_tab_sym_meta(vault);
 	
 	i = 1;
 	while (i < arch->nbr_obj)
@@ -190,6 +177,7 @@ void	jump_obj_hdr(t_vault *vault, t_arch_info *arch, char *path)
 		if (i < arch->nbr_obj - 1)
 			ft_printf("\n");
 		free_useless_vault_components(vault);
+		reset_tab_sym_meta(vault);
 		i++;
 	}
 	

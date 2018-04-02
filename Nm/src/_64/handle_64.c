@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   handle_64.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/05 12:25:26 by galy              #+#    #+#             */
-/*   Updated: 2018/04/02 16:38:11 by galy             ###   ########.fr       */
+/*   Created: 2018/04/02 18:43:29 by galy              #+#    #+#             */
+/*   Updated: 2018/04/02 18:44:17 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "ft_nm.h"
 
-void	ft_putchar(char c)
+void	handle_64bits(t_vault *vault)
 {
-	write(1, &c, 1);
+	inter_cmds(vault);
+	display_list(vault);
 }

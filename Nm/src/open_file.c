@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 21:01:03 by galy              #+#    #+#             */
-/*   Updated: 2018/03/31 02:30:43 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/02 17:39:55 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	open_file(char *path, t_vault *vault)
 	}
 	if ((fstat(fd, &vault->f_stat)) < 0)
 	{
-		ft_printf("\033[31mnm error :\n[$s] stat gethering has failed\033[0m", path);
+		ft_printf("\033[31mnm error :\n[%s] stat gethering has failed\033[0m", path);
 		return (-1);
 	}
 	if ((vault->f_dump = (void *)mmap(NULL, vault->f_stat.st_size, PROT_READ, MAP_FILE | MAP_PRIVATE, fd, 0)) == MAP_FAILED)

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 10:08:45 by galy              #+#    #+#             */
-/*   Updated: 2018/04/02 13:10:22 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/02 16:44:26 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ char	handle_sect_name_to_letter(char *sectname, int upper)
 		return (upper ? 'B' : 'b');
 	if (ft_strcmp(sectname, "__data") == 0)
 		return (upper ? 'D' : 'd');
+	if (ft_strcmp(sectname, "__common") == 0)
+		return (upper ? 'S' : 's');
+	if (ft_strcmp(sectname, "__const") == 0)
+		return (upper ? 'S' : 's');
 	return ('^');
 }
 
@@ -35,8 +39,9 @@ char	get_sect_letter(t_vault *vault, unsigned int n_sect, int upper)
 	tmp_seg = vault->lc_lst;
 	tmp_sect = tmp_seg->sect_lst.lnk_64;
 	header = vault->header;
+	// ft_printf("n_sect[%d]\n", n_sect);
 	// ft_printf("tmp_seg[%p]\n", tmp_seg);
-	while (i < header->ncmds && tmp_seg != NULL)
+	while (i < header->ncmds && tmp_seg)
 	{
 		// ft_printf("i[%d] - header->ncmds[%d]\n", i, header->ncmds);
 		if (tmp_sect == NULL)
@@ -46,22 +51,16 @@ char	get_sect_letter(t_vault *vault, unsigned int n_sect, int upper)
 		}
 		else
 		{
-			// ft_printf("vault->lc_lst->sect->segname[%p]\n", tmp_sect->sect->segname);
-			
-			// tmp_sect = tmp_seg->sect_lst.lnk_64;
-			// ft_printf("tmp_sect[%p]\n", tmp_sect);
 			if (i == n_sect && tmp_sect != NULL)
-			{
-				// ft_printf("\tbreak @ %d\n", i);
 				break;
-			}
-			// ft_printf("----------------i[%d]->sectname[%s]\n", i, tmp_sect->sect->sectname);
 			i = (tmp_sect != NULL) ? (i + 1) : i;
 			if (tmp_sect->next != NULL)
 				tmp_sect = tmp_sect->next;
-			else
+			else if (tmp_seg->next != NULL)
+			{
 				tmp_seg = tmp_seg->next;
-			// ft_printf("----------------i[%d]->sectname[%s]\n", i, tmp_sect->sect->sectname);
+				tmp_sect = tmp_seg->sect_lst.lnk_64;
+			}
 		}
 		
 	}
@@ -98,7 +97,7 @@ char	print_sym_sect(t_vault *vault, unsigned int i)
 	letter = '*';
 	// ft_printf("---[%b]---", vault->tab_sym_meta[i]->n_type);
 	if ((vault->tab_sym_meta[i]->n_type & N_STAB) != 0)
-		letter = 'N';
+		return (letter = 'N');
 	if ((vault->tab_sym_meta[i]->n_type & N_PEXT) != 0)
 	{
 		// ft_printf("private external symbol ");

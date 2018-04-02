@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 15:16:41 by galy              #+#    #+#             */
-/*   Updated: 2018/03/31 05:24:22 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/02 16:44:09 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	display_list(t_vault *vault)
 	{		
 		letter = '?';
 		letter = print_sym_sect(vault, i);
-		if (letter != '@')
+		if (letter != '?' && letter != 'N')
 		{
 			if (letter != 'U')
 				ft_printf("%016llx ",vault->tab_sym_meta[i]->n_value);

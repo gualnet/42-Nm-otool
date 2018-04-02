@@ -42,6 +42,50 @@
 			"externalConsole": false,
 			"MIMode": "lldb",
 			"preLaunchTask": "make ft_nm"
-		}
+		},
+		{
+			"name": "Launch test_moins_facile",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/Nm/ft_nm",
+			"args": ["${workspaceFolder}/Nm/corr/test_moins_facile"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "make ft_nm"
+		},
+		{
+			"name": "Launch test_moins_facile_32-bit",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/Nm/ft_nm",
+			"args": ["${workspaceFolder}/Nm/corr/test_moins_facile_32-bit"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "make ft_nm"
+		},
+		{
+			"name": "Launch *",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/Nm/ft_nm",
+			"args": ["${workspaceFolder}/testing_files/bash",
+				// "${workspaceFolder}/testing_files/libft_86_64.a",
+				// "${workspaceFolder}/testing_files/get_next_line.o",
+				// "${workspaceFolder}/testing_files/libft_malloc.so",
+				// "${workspaceFolder}/testing_files/libft_malloc_x86_64_Darwin.so",
+				"${workspaceFolder}/testing_files/zsh"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "make ft_nm"
+		},
 	]
 }

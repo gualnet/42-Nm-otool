@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/03/31 04:13:46 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/02 18:44:46 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ int run(char **argv, int argc, t_vault *vault)
 	i = 1;
 	while (i < argc)
 	{
+		path = argv[i];
+		vault = init_vault(vault);
 		// j'ouvre mon fichier
-		if (open_file(argv[i], vault) != 1)
+		if (open_file(path, vault) != 1)
 			to_exit(vault);
 		// check magic number
 		if (check_magic_num(vault) == -1)
@@ -30,24 +32,25 @@ int run(char **argv, int argc, t_vault *vault)
 			return (-1);
 		}
 		
-		path = argv[i];
+		
 		if (argc > 2)
 			ft_printf("\n%s:\n", path);
 		// load commands
 		if ((vault->file_nfo & M_64B) != 0)
 		{
-			inter_cmds(vault);
-			display_list(vault);
+			handle_64bits(vault);
 		}
 		else if ((vault->file_nfo & M_ARCH) != 0)
 		{
-			
 			handle_arch(vault, path);
-			// ft_printf("\nEXIT - main.c line 36\n");
-			// exit(0);
+		}
+		else if ((vault->file_nfo & M_32B) != 0)
+		{
+			handle_32bits(vault);
 		}
 		else
 			exit(0);
+		reset_tab_sym_meta(vault);
 		i++;
 	}
 	
@@ -60,7 +63,7 @@ int	main(int argc, char **argv)
 {
 	t_vault	*vault;
 
-	vault = init_vault();
+	vault = NULL;
 	if (argc < 2)
 	{
 		//check de a.out si pas d'args.

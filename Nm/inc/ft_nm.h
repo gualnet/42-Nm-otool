@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/03/31 06:46:52 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/02 14:37:45 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ typedef struct				s_lc_lnk
 	{
 		t_sect_lnk_32		*lnk_32;
 		t_sect_lnk			*lnk_64;
-	}	t_sect;
-	t_sect_lnk				*sect_lst;
+	}						sect_lst;
+	// t_sect_lnk				*sect_lst;
 	void					*next;
 }							t_lc_lnk;
 
@@ -122,6 +122,11 @@ t_lc_lnk	*add_new_lclink(t_vault *vault, void *adr);
 t_sect_lnk	*add_new_sectlnk(t_lc_lnk *lc_lnk, void *adr);
 int			delete_all_lst(t_vault *vault);
 
+//lst_func_32.c
+t_lc_lnk	*add_new_lclink_32(t_vault *vault, void *adr);
+t_sect_lnk_32	*add_new_sectlnk_32(t_lc_lnk *lc_lnk, void *adr);
+int			delete_all_lst_32(t_vault *vault);
+
 //check_sym_sect.c
 char	print_sym_sect(t_vault *vault, unsigned int i);
 
@@ -141,7 +146,6 @@ int	check_magic_num(t_vault *vault);
 //handle_32.c
 void	handle_32bits(t_vault *vault);
 void	inter_cmds_32(t_vault *vault);
-t_sect_lnk	*add_new_sectlnk_32(t_lc_lnk *lc_lnk, void *adr);
 
 //dev_func.c
 void print_symtab_command(void *sym_cmd);

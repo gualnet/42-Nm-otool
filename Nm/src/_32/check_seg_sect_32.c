@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 05:28:34 by galy              #+#    #+#             */
-/*   Updated: 2018/03/31 06:40:43 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/02 14:57:20 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	handle_sect_name_to_letter_32(char *sectname, int upper)
 	if (ft_strcmp(sectname, "__bss") == 0)
 		return (upper ? 'B' : 'b');
 	if (ft_strcmp(sectname, "__data") == 0)
-		return (upper ? 'B' : 'b');
+		return (upper ? 'D' : 'd');
 	return ('^');
 }
 
@@ -27,19 +27,19 @@ char	get_sect_letter_32(t_vault *vault, unsigned int n_sect, int upper)
 {
 	unsigned int		i;
 	t_lc_lnk			*tmp_seg;
-	t_sect_lnk			*tmp_sect;
+	t_sect_lnk_32		*tmp_sect;
 	struct mach_header	*header;
 
 	i = 1;
 	tmp_seg = vault->lc_lst;
-	tmp_sect = tmp_seg->sect_lst;
+	tmp_sect = tmp_seg->sect_lst.lnk_32;
 	header = vault->header;
 	while (i < header->ncmds && tmp_seg != NULL)
 	{
 		if (tmp_sect == NULL)
 		{
 			tmp_seg = tmp_seg->next;
-			tmp_sect = tmp_seg->sect_lst;
+			tmp_sect = tmp_seg->sect_lst.lnk_32;
 		}
 		else
 		{
@@ -54,7 +54,7 @@ char	get_sect_letter_32(t_vault *vault, unsigned int n_sect, int upper)
 				tmp_seg = tmp_seg->next;
 		}
 	}
-	return (handle_sect_name_to_letter_32(tmp_sect->sect->sectname, upper));
+	return (handle_sect_name_to_letter_32(tmp_sect->sect_32->sectname, upper));
 }
 
 char	handle_n_type_mask_32(t_vault *vault, unsigned int i, int upper)

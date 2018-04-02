@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 04:49:07 by galy              #+#    #+#             */
-/*   Updated: 2018/03/31 05:44:07 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/02 12:51:31 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	inter_cmds_32(t_vault *vault)
 	lc = offset_jumper(vault, vault->f_dump, sizeof(*header));
 	while (i < header->ncmds)
 	{
-		add_new_lclink(vault, lc);
+		add_new_lclink_32(vault, lc);
 		if (lc->cmd == LC_SYMTAB)
 			handle_symtab_32(vault, lc);
 		lc = offset_jumper(vault, lc, lc->cmdsize);

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/04/02 18:44:46 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/03 20:49:01 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,17 @@ int run(char **argv, int argc, t_vault *vault)
 {
 	char	*path;
 	int		i;
-
+	int		store;
+	
 	i = 1;
+	store = arg_pars(argv, argc);
 	while (i < argc)
 	{
+		while (argv[i][0] == '-')
+			i++;
 		path = argv[i];
 		vault = init_vault(vault);
+		vault->option = store;
 		// j'ouvre mon fichier
 		if (open_file(path, vault) != 1)
 			to_exit(vault);
@@ -32,29 +37,31 @@ int run(char **argv, int argc, t_vault *vault)
 			return (-1);
 		}
 		
-		
 		if (argc > 2)
 			ft_printf("\n%s:\n", path);
+		
 		// load commands
 		if ((vault->file_nfo & M_64B) != 0)
 		{
 			handle_64bits(vault);
 		}
+		else if ((vault->file_nfo & M_32B) != 0)
+		{
+			handle_32bits(vault);
+		}
 		else if ((vault->file_nfo & M_ARCH) != 0)
 		{
 			handle_arch(vault, path);
 		}
-		else if ((vault->file_nfo & M_32B) != 0)
+		else if ((vault->file_nfo & M_FAT) != 0)
 		{
-			handle_32bits(vault);
+			handle_fat(vault);
 		}
 		else
 			exit(0);
 		reset_tab_sym_meta(vault);
 		i++;
 	}
-	
-
 	// ft_printf("\nEND\n");
 	return (1);
 }

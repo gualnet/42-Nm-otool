@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:10:59 by galy              #+#    #+#             */
-/*   Updated: 2018/03/31 04:14:20 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/03 20:05:28 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int Magic_32_64(t_vault *vault)
 	// ft_printf("LAAAA %x/%d\n\n", ARMAG, ft_strncmp(ARMAG, test, SARMAG));
 	if (magic_num == MH_MAGIC_64 || magic_num == MH_CIGAM_64)
 	{
-		// ft_printf("==> struct 64bit\n");
+		ft_printf("==> struct 64bit\n");
 		vault->file_nfo = M_64B;
 	}
 	else if (magic_num == MH_MAGIC || magic_num == MH_CIGAM)
@@ -38,6 +38,11 @@ int Magic_32_64(t_vault *vault)
 	{
 		ft_printf("==> struct arch\n");
 		vault->file_nfo = M_ARCH;
+	}
+	else if (magic_num == FAT_MAGIC || magic_num == FAT_CIGAM)
+	{
+		ft_printf("==> struct FAT\n");
+		vault->file_nfo = M_FAT;
 	}
 	else
 		nok = 1;
@@ -69,9 +74,11 @@ int	check_magic_num(t_vault *vault)
 		header_size = sizeof(struct mach_header);
 	else if (vault->file_nfo == 0x02 || vault->file_nfo == 0x06)
 		header_size = sizeof(struct mach_header_64);
-	else
+	else if (vault->file_nfo == 0x10 || vault->file_nfo == 0x14)
+		header_size = sizeof(struct fat_header);
+	if (vault->file_nfo == 0x08)
 		return (1);
-	if ((vault->header = malloc(header_size)) == NULL)
+	if (header_size < 1 || (vault->header = malloc(header_size)) == NULL)
 		return (-1);
 	ft_memcpy(vault->header, vault->f_dump, header_size);
 	return (1);	

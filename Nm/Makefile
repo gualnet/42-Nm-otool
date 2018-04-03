@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/16 16:38:21 by galy              #+#    #+#              #
-#    Updated: 2018/04/02 18:58:10 by galy             ###   ########.fr        #
+#    Updated: 2018/04/03 20:43:49 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ SRC			=	\
 				open_file.c				usage.c \
 				read_undelimited_str.c	vault_func.c \
 				sort_alnum.c			offset_jumper.c \
-				check_magic.c \
+				check_magic.c 			arg_pars.c \
 				_64/handle_64.c			_64/iter_cmds.c \
 				_64/lst_func.c			_64/display.c \
 				_64/check_seg_sect.c \
@@ -58,6 +58,7 @@ SRC			=	\
 				_32/lst_func_32.c		_32/display_32.c \
 				_32/check_seg_sect_32.c \
 				_arch/handle_arch.c \
+				_fat/handle_fat.c		_fat/swap_endian.c \
 				_dev/_dev_func.c
 
 
@@ -112,6 +113,7 @@ OBJD		:
 	@mkdir -p $(OBJDIR)/_32
 	@mkdir -p $(OBJDIR)/_64
 	@mkdir -p $(OBJDIR)/_arch
+	@mkdir -p $(OBJDIR)/_fat
 	@mkdir -p $(OBJDIR)/_dev
 
 reset_cursor	:

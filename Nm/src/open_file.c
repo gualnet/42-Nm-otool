@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 21:01:03 by galy              #+#    #+#             */
-/*   Updated: 2018/04/02 17:39:55 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/03 18:25:09 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 // 	void 				*ptr2;
 // 	unsigned int		res;
 
-
 // 	i = 0;
 // 	ptr = vault->f_dump;
 // 	vault->f_dumptest = malloc(sizeof(vault->f_stat.st_size));
@@ -56,8 +55,6 @@
 // 	exit(0);
 // 	return (1);
 // }
-
-
 
 /*
 ** open the file and return a ptr
@@ -83,7 +80,6 @@ int	open_file(char *path, t_vault *vault)
 		ft_printf("\033[31mnm error :\n[$s] memory alloc has failed\033[0m", path);
 		return (-1);
 	}
-	// ft_printf("OPEN FILE OK vault->f_dump[%p]\n", vault->f_dump);
 	if (close(fd) != 0)
 	{
 		ft_printf("\033[33mnm warning :\n[$s] close not complete\033[0m", path);

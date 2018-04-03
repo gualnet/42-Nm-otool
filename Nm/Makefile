@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/16 16:38:21 by galy              #+#    #+#              #
-#    Updated: 2018/04/03 16:01:01 by galy             ###   ########.fr        #
+#    Updated: 2018/04/03 20:43:49 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ SRC			=	\
 				open_file.c				usage.c \
 				read_undelimited_str.c	vault_func.c \
 				sort_alnum.c			offset_jumper.c \
-				check_magic.c \
+				check_magic.c 			arg_pars.c \
 				_64/handle_64.c			_64/iter_cmds.c \
 				_64/lst_func.c			_64/display.c \
 				_64/check_seg_sect.c \

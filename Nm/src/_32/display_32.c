@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 05:25:08 by galy              #+#    #+#             */
-/*   Updated: 2018/04/03 19:37:14 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/03 19:54:14 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	lssi_2_32(t_vault *vault, t_lc_lnk *lc_lnk, struct load_command *lc)
 	unsigned int				i;
 
 	segcmd = (void*)lc;
-	// seccmd = offset_jumper(vault, lc, sizeof(struct segment_command));
+	seccmd = offset_jumper(vault, lc, sizeof(struct segment_command));
 	i = 0;
 	while (i < segcmd->nsects)
 	{

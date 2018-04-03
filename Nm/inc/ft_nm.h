@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/04/03 17:29:32 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/03 20:43:15 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,22 @@
 #include "get_next_line.h"
 
 /*
+**	OPTIONS 
+**	OPT_REVERSE "-r"
+**	OPT_NOSORT "-p"
+*/
+#define OPT_REVERSE 0x01
+#define OPT_NOSORT 0x02
+// #define OPT_NOSORT
+
+
+/*
 **	Defines for file_nfo
-**	M_32B			- 32 bits
-**	M_64B			- 64 bits
-**	M_SWAP_ENDIAN	-
-**	M_ARCH			- archive 
+**	M_32B			- 32 bits file
+**	M_64B			- 64 bits file
+**	M_SWAP_ENDIAN	- 
+**	M_ARCH			- archive file
+**	M_FAT			- fat file
 */
 #define M_32B				0x01
 #define M_64B				0x02
@@ -74,7 +85,6 @@ typedef struct				s_lc_lnk
 		t_sect_lnk_32		*lnk_32;
 		t_sect_lnk			*lnk_64;
 	}						sect_lst;
-	// t_sect_lnk				*sect_lst;
 	void					*next;
 }							t_lc_lnk;
 
@@ -97,6 +107,7 @@ typedef struct				s_vault
 	t_sym_meta				**tab_sym_meta;	
 	int						file_nfo;
 	unsigned int			nsyms; //nbr of symbols
+	int						option;
 	// bit-flags ::::::swap endian:0x02-64bit:0x01-32bit
 }							t_vault;
 
@@ -164,6 +175,9 @@ long	swap_endian(long value);
 
 //dev_func.c
 void print_symtab_command(void *sym_cmd);
+
+int		arg_pars(char **argv, int argc);
+
 // void	print_lc_lst(t_vault *vault);
 void	display_list_32(t_vault *vault);
 char	print_sym_sect_32(t_vault *vault, unsigned int i);

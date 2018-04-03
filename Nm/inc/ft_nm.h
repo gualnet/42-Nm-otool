@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/04/02 18:45:38 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/03 17:29:32 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,13 @@
 #define M_64B				0x02
 #define M_SWAP_ENDIAN		0x04
 #define M_ARCH				0x08
+#define M_FAT				0x10
 #define LONG_NAME_SIZE		20
 #define AR_NAME_SIZE		16
+
+#if defined (__x86_64__)
+#define CUR_CPU "x86_64"
+#endif
 
 typedef struct				s_sym_meta
 {
@@ -150,6 +155,12 @@ void	handle_64bits(t_vault *vault);
 //handle_32.c
 void	handle_32bits(t_vault *vault);
 void	inter_cmds_32(t_vault *vault);
+
+//handle_fat.c
+void	handle_fat(t_vault *vault);
+
+//swap_endian.c
+long	swap_endian(long value);
 
 //dev_func.c
 void print_symtab_command(void *sym_cmd);

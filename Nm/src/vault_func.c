@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:59:32 by galy              #+#    #+#             */
-/*   Updated: 2018/04/02 18:42:21 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/03 19:31:31 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	reset_tab_sym_meta(t_vault *vault)
 	{
 		while (i < vault->nsyms && vault->tab_sym_meta != NULL)
 		{
-			ft_printf("vault->tab_sym_meta->name %s \n", vault->tab_sym_meta[i]->name);
+			// ft_printf("vault->tab_sym_meta->name %s \n", vault->tab_sym_meta[i]->name);
 			free(vault->tab_sym_meta[i]);
 			i++;
 		}

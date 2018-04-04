@@ -100,5 +100,33 @@
 			"MIMode": "lldb",
 			"preLaunchTask": "make ft_nm"
 		},
+		// OTOOL CONFIG
+		{
+			"name": "(otool) test_universel",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/Otool/ft_otool",
+			"args": ["-t",
+				"${workspaceFolder}/testing_files/test_universel"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "make otool"
+		},
+		{
+			"name": "(lldb) Launch",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/Otool/ft_otool",
+			"args": [""],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "make otool"
+		},
 	]
 }

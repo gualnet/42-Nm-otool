@@ -6,11 +6,11 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/04 16:03:36 by galy              #+#    #+#              #
-#    Updated: 2018/04/04 16:06:06 by galy             ###   ########.fr        #
+#    Updated: 2018/04/04 19:04:15 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	ft_nm
+NAME	=	ft_otool
 # CFLAGS	=	-Wall -Werror -Wextra -g
 CFLAGS	=	-Wall -Werror -Wextra -fsanitize=address -g
 CC		=	clang 
@@ -46,7 +46,8 @@ CUR_CLR		=	\033[K
 ####FILES####
 
 SRC			=	\
-				main.c
+				main.c				open_file.c				check_magic.c \
+				usage.c
 
 
 ####FUNC####
@@ -61,7 +62,7 @@ all			:	reset_cursor make_lib OBJD $(NAME)
 $(NAME)		: $(OBJP)
 	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) $^ -o $(NAME)
 	@printf "$(CUR_RST)$(CGREEN)                         $(CRESET)$(CUR_CLR)"
-	@printf "$(CUR_RST)$(CGREEN)BUILD FT_NM		: SUCCESS$(CRESET)$(CUR_CLR)\n"
+	@printf "$(CUR_RST)$(CGREEN)BUILD FT_OTOOL		: SUCCESS$(CRESET)$(CUR_CLR)\n"
 	
 
 clean		:
@@ -78,7 +79,7 @@ mini_clean	:
 fclean		: mini_clean
 	@make fclean -C $(LIBDIR)
 	@$(RM) $(NAME)
-	@printf "$(CYELLOW)RAZ FT_NM	: Ok$(CRESET)\n"	
+	@printf "$(CYELLOW)RAZ FT_OTOOL	: Ok$(CRESET)\n"	
 
 re			: fclean print_inter_line all
 
@@ -87,7 +88,7 @@ re			: fclean print_inter_line all
 
 $(OBJDIR)/%.o	:	$(SRCDIR)/%.c
 	@$(CC) $(CFLAGS) -I$(INCDIR) -c $< -o $@
-	@printf "$(CUR_RST)$(CUR_SVE)$(CYELLOW)BUILD FT_NM OBJECTS	: $<$(CRESET)$(CUR_CLR)"
+	@printf "$(CUR_RST)$(CUR_SVE)$(CYELLOW)BUILD FT_OTOOL OBJECTS	: $<$(CRESET)$(CUR_CLR)"
 
 make_lib	:
 	@make -C $(LIBDIR)

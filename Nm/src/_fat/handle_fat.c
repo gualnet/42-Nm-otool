@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/02 19:07:19 by galy              #+#    #+#             */
-/*   Updated: 2018/04/03 19:32:48 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/04 12:37:46 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	get_fat_cpu_type(t_vault *vault, unsigned long nbr_arch)
 	i = 0;
 	info = vault->ar_dump + sizeof(struct fat_header);
 
-	print_offset(vault, info);
+	// print_offset(vault, info);
 	
 	while (i < nbr_arch)
 	{

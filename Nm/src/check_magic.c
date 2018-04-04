@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:10:59 by galy              #+#    #+#             */
-/*   Updated: 2018/04/03 20:05:28 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/04 12:36:35 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,29 @@ int Magic_32_64(t_vault *vault)
 	// ft_printf("LAAAA %x/%d\n\n", ARMAG, ft_strncmp(ARMAG, test, SARMAG));
 	if (magic_num == MH_MAGIC_64 || magic_num == MH_CIGAM_64)
 	{
-		ft_printf("==> struct 64bit\n");
+		// ft_printf("==> struct 64bit\n");
 		vault->file_nfo = M_64B;
 	}
 	else if (magic_num == MH_MAGIC || magic_num == MH_CIGAM)
 	{
-		ft_printf("==> struct 32bit\n");
+		// ft_printf("==> struct 32bit\n");
 		vault->file_nfo = M_32B;
 	}
 	else if (ft_strncmp(ARMAG, test, SARMAG) == 0)
 	{
-		ft_printf("==> struct arch\n");
+		// ft_printf("==> struct arch\n");
 		vault->file_nfo = M_ARCH;
 	}
 	else if (magic_num == FAT_MAGIC || magic_num == FAT_CIGAM)
 	{
-		ft_printf("==> struct FAT\n");
+		// ft_printf("==> struct FAT\n");
 		vault->file_nfo = M_FAT;
 	}
 	else
 		nok = 1;
 	if (magic_num == MH_CIGAM || magic_num == MH_CIGAM_64)
 	{
-		ft_printf("==> struct swap endian\n");
+		// ft_printf("==> struct swap endian\n");
 		vault->file_nfo += M_SWAP_ENDIAN;
 	}
 	if (nok == 1)

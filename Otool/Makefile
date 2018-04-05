@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/04 16:03:36 by galy              #+#    #+#              #
-#    Updated: 2018/04/04 19:04:15 by galy             ###   ########.fr        #
+#    Updated: 2018/04/05 10:08:15 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ CUR_CLR		=	\033[K
 
 SRC			=	\
 				main.c				open_file.c				check_magic.c \
-				usage.c
+				usage.c				vault_init.c
 
 
 ####FUNC####

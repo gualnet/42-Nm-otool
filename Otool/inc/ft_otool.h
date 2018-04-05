@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 17:37:50 by galy              #+#    #+#             */
-/*   Updated: 2018/04/04 18:56:27 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/05 10:16:05 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,25 +71,16 @@ typedef struct				s_vault
 */
 
 //open_file.c
-int	open_file(t_vault *vault, char *path);
+int		open_file(t_vault *vault, char *path);
 
 //usage.c
 void	print_usage(void);
 
 //check_magic.c
-int	check_magic_num(t_vault *vault);
+int		check_magic_num(t_vault *vault);
 
-
-
-
-
-
-
-
-
-
-
-
+//vault_init.c
+void	*init_vault(t_vault *vault);
 
 
 

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/04/03 20:49:01 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/04 18:25:23 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ int run(char **argv, int argc, t_vault *vault)
 		path = argv[i];
 		vault = init_vault(vault);
 		vault->option = store;
-		// j'ouvre mon fichier
 		if (open_file(path, vault) != 1)
 			to_exit(vault);
-		// check magic number
 		if (check_magic_num(vault) == -1)
 		{
 			ft_printf("\033[31mnm error :\nECHEC check magic num.\033[0m");

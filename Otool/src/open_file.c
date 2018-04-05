@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 18:21:21 by galy              #+#    #+#             */
-/*   Updated: 2018/04/04 18:29:03 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/05 10:11:08 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,5 @@ int	open_file(t_vault *vault, char *path)
 	{
 		ft_printf("\033[33mnm warning :\n[$s] close not complete\033[0m", path);
 	}
-	exit (1);
 	return (1);
 }

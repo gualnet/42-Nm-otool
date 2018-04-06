@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/04 16:03:36 by galy              #+#    #+#              #
-#    Updated: 2018/04/05 10:08:15 by galy             ###   ########.fr        #
+#    Updated: 2018/04/05 16:27:45 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,8 +46,11 @@ CUR_CLR		=	\033[K
 ####FILES####
 
 SRC			=	\
-				main.c				open_file.c				check_magic.c \
-				usage.c				vault_init.c
+				main.c				open_file.c				check_magic.c	\
+				usage.c				vault_init.c			\
+				handle_64.c			offset_jumper.c			sect_dump_64.c	\
+				handle_32.c			sect_dump_32.c			\
+				handle_fat.c								\
 
 
 ####FUNC####
@@ -117,6 +120,6 @@ print_inter_line	:
 # $> cc test_moins_facile.c -o test_moins_facile 
 # $> cc -m32 test_moins_facile.c -o test_moins_facile_32-bit 
 # $> En cas de doute, pour identifier un binaire (type/architecture): man 1 file 
-#En cas de difficulté pour localiser un binaire universel, une recherche dans le PATH: (IFS=$'\n'; for d in ${PATH//:/$IFS}; do find "$d" -type f -exec file '{}' \+ | grep -i -A3 universal ; done) 
-#Pour créer un binaire universel: clang/gcc: -m32 pour cross-compiler explicitement en 32-bit. lipo -create -output <universel> <binaire arch. 1> <binaire arch. 2> ... 
-#En cas de difficulté pour localiser une bibliothèque dynamique (.so, .dylib): find /usr/lib -type f -iname '*\.dylib' 2>/dev/null
+# En cas de difficulté pour localiser un binaire universel, une recherche dans le PATH: (IFS=$'\n'; for d in ${PATH//:/$IFS}; do find "$d" -type f -exec file '{}' \+ | grep -i -A3 universal ; done) 
+# Pour créer un binaire universel: clang/gcc: -m32 pour cross-compiler explicitement en 32-bit. lipo -create -output <universel> <binaire arch. 1> <binaire arch. 2> ... 
+# En cas de difficulté pour localiser une bibliothèque dynamique (.so, .dylib): find /usr/lib -type f -iname '*\.dylib' 2>/dev/null

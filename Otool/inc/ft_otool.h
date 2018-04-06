@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 17:37:50 by galy              #+#    #+#             */
-/*   Updated: 2018/04/05 10:16:05 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/06 14:54:47 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,9 @@
 /*
 **	defines
 */
-/*
-**	Defines for file_nfo
-**	M_32B			- 32 bits file
-**	M_64B			- 64 bits file
-**	M_SWAP_ENDIAN	- 
-**	M_ARCH			- archive file
-**	M_FAT			- fat file
-*/
+#if defined (__x86_64__)
+# define CUR_CPU "x86_64"
+#endif
 #define M_32B				0x01
 #define M_64B				0x02
 #define M_SWAP_ENDIAN		0x04
@@ -50,19 +45,16 @@
 /*
 **	option
 */
-
 typedef struct				s_vault
 {
 	struct stat				f_stat;
 	void					*fat_dump;
 	void					*ar_dump;
 	void					*o_dump;
+	void					*sect_hdr;
+	void					*sect;
 	int						file_nfo;
 	int						option;
-	// void					*header;
-	// t_lc_lnk				*lc_lst;
-	// t_sym_meta				**tab_sym_meta;	
-	// unsigned int			nsyms; //nbr of symbols
 }							t_vault;
 
 
@@ -81,8 +73,18 @@ int		check_magic_num(t_vault *vault);
 
 //vault_init.c
 void	*init_vault(t_vault *vault);
+void	*re_init_vault(t_vault *vault);
 
+int		handle_64(t_vault *vault);
+int		handle_32(t_vault *vault);
+int		handle_fat(t_vault *vault);
 
+//offset_jumper.c
+void	*offset_jumper(t_vault *vault, void *ptr, long jumpsize);
+
+//sect_dump.c
+void	print_sect_dump_64(t_vault *vault);
+void	print_sect_dump_32(t_vault *vault);
 
 
 

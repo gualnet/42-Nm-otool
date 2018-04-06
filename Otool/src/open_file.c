@@ -6,13 +6,27 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 18:21:21 by galy              #+#    #+#             */
-/*   Updated: 2018/04/05 10:11:08 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/06 14:56:32 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_otool.h"
 
-int	open_file(t_vault *vault, char *path)
+int		replace_map(t_vault *vault)
+{
+	void	*tmp;
+	
+	tmp = vault->fat_dump;
+	if ((vault->fat_dump = malloc(vault->f_stat.st_size)) == NULL)
+		return (-1);
+	if (ft_memcpy(vault->fat_dump, tmp, vault->f_stat.st_size) == NULL)
+		return (-1);
+	if (munmap(tmp, vault->f_stat.st_size) == -1)
+		return (-1);
+	return (1);
+}
+
+int		open_file(t_vault *vault, char *path)
 {
 	int			fd;
 	
@@ -35,5 +49,5 @@ int	open_file(t_vault *vault, char *path)
 	{
 		ft_printf("\033[33mnm warning :\n[$s] close not complete\033[0m", path);
 	}
-	return (1);
+	return (replace_map(vault));
 }

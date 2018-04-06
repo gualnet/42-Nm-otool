@@ -102,6 +102,34 @@
 		},
 		// OTOOL CONFIG
 		{
+			"name": "(otool) test_moins_facile",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/Otool/ft_otool",
+			"args": ["-t",
+				"${workspaceFolder}/testing_files/test_moins_facile"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "make otool"
+		},
+		{
+			"name": "(otool) test_moins_facile_32-bit",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/Otool/ft_otool",
+			"args": ["-t",
+				"${workspaceFolder}/testing_files/test_moins_facile_32-bit"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "make otool"
+		},
+		{
 			"name": "(otool) test_universel",
 			"type": "cppdbg",
 			"request": "launch",
@@ -116,11 +144,32 @@
 			"preLaunchTask": "make otool"
 		},
 		{
-			"name": "(lldb) Launch",
+			"name": "(otool) chain 32->64->uni",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/Otool/ft_otool",
-			"args": [""],
+			"args": ["-t",
+				"${workspaceFolder}/testing_files/test_moins_facile_32-bit",
+				"${workspaceFolder}/testing_files/test_moins_facile",
+				"${workspaceFolder}/testing_files/test_universel"
+				],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "make otool"
+		},
+		{
+			"name": "(otool) chain uni->64->32",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/Otool/ft_otool",
+			"args": ["-t",
+				"${workspaceFolder}/testing_files/test_universel",
+				"${workspaceFolder}/testing_files/test_moins_facile",
+				"${workspaceFolder}/testing_files/test_moins_facile_32-bit"
+				],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 10:26:41 by galy              #+#    #+#             */
-/*   Updated: 2018/04/10 12:03:36 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/10 13:53:13 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ int		check_seg_sect_name(t_vault *vault, struct load_command *lc)
 	sect = offset_jumper(vault, lc, sizeof(struct segment_command_64));
 	if (sect == NULL)
 		return (-1);
-	// ft_printf("[%s|%s]\n",sect->segname,sect->sectname);
-	// void *truc = vault->o_dump;
-	// vault->o_dump = NULL;
-	// print_offset(vault, sect);
-	// vault->o_dump = truc;
 	if (((ft_strncmp(sect->segname, "__TEXT", 6)) == 0) && \
 	(ft_strncmp(sect->sectname, "__text", 6) == 0))
 	{

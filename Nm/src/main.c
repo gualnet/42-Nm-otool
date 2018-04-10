@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/04/04 18:25:23 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/10 19:17:41 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,25 @@ int run(char **argv, int argc, t_vault *vault)
 	int		store;
 	
 	i = 1;
-	store = arg_pars(argv, argc);
+	if ((store = arg_pars(argv, argc)) == -1)
+		return (-1);
 	while (i < argc)
 	{
 		while (argv[i][0] == '-')
+		{
 			i++;
+			if (i == argc)
+				return (-1);
+		}
 		path = argv[i];
 		vault = init_vault(vault);
 		vault->option = store;
 		if (open_file(path, vault) != 1)
+		{
 			to_exit(vault);
+			return (-1);
+		}
+
 		if (check_magic_num(vault) == -1)
 		{
 			ft_printf("\033[31mnm error :\nECHEC check magic num.\033[0m");
@@ -37,8 +46,6 @@ int run(char **argv, int argc, t_vault *vault)
 		
 		if (argc > 2)
 			ft_printf("\n%s:\n", path);
-		
-		// load commands
 		if ((vault->file_nfo & M_64B) != 0)
 		{
 			handle_64bits(vault);
@@ -56,11 +63,13 @@ int run(char **argv, int argc, t_vault *vault)
 			handle_fat(vault);
 		}
 		else
-			exit(0);
+		{
+			ft_printf("\nSORTIE NON GEREE\n");
+			return (-1);
+		}
 		reset_tab_sym_meta(vault);
 		i++;
 	}
-	// ft_printf("\nEND\n");
 	return (1);
 }
 
@@ -73,10 +82,9 @@ int	main(int argc, char **argv)
 	{
 		//check de a.out si pas d'args.
 		print_usage();
-		return (0);
+		return (EXIT_FAILURE);
 	}
-	
-	run(argv, argc, vault);
-
+	if (run(argv, argc, vault) == -1)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

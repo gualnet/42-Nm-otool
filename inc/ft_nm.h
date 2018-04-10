@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/04/03 20:43:15 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/10 17:28:37 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int		check_magic_num(t_vault *vault);
 void	inter_cmds(t_vault *vault);
 
 //to_exit.c
-void	to_exit(t_vault *vault);
+int		to_exit(t_vault *vault);
 
 //sort_alnum.c
 void	sort_alnum(t_vault *vault, unsigned int tab_len);

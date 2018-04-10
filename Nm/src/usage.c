@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:44:29 by galy              #+#    #+#             */
-/*   Updated: 2018/04/04 18:34:02 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/10 19:12:59 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	print_usage(void)
 {
 	ft_putstr("USAGE: nm [options] <input files>\n");
 	ft_putstr("\nOPTIONS:\n\n");
-	ft_putstr("-r ...\n-p ...\n");
-
+	ft_putstr("\t-p     Don't sort; display in symbol-table order.\n");
+	ft_putstr("\t-r     Sort in reverse order.\n");
+	ft_putstr("\n");
 }

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 20:12:13 by galy              #+#    #+#             */
-/*   Updated: 2018/04/10 19:17:44 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/10 19:20:25 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,6 @@ int		store_arg(char *arg)
 	return (store);
 }
 
-// int		check_unique_arg(char **argv, int argc)
-// {
-// 	int		i;
-
-// 	i = 0;
-// 	while (i < argc)
-// 	{
-// 		if (argv[i][0] == '-' )
-
-		
-// 		i++;
-// 	}
-// }
-
-
 int		arg_pars(char **argv, int argc)
 {
 	int	i;
@@ -48,13 +33,8 @@ int		arg_pars(char **argv, int argc)
 	i = 1;
 	after = 0;
 	store = 0;
-
-	// check_unique_arg(argv, argc);
-
-	char *str;
 	while (i < argc)
 	{
-		str = argv[i];
 		if (argv[i][0] != '-' && after == 0)
 			after = 1;
 		else if (argv[i][0] == '-' && after == 1)

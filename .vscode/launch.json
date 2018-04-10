@@ -51,7 +51,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/ft_nm",
-			"args": ["${workspaceFolder}/testing_files/new"],
+			"args": ["${workspaceFolder}/testing_files/bin/new"],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

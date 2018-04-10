@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:10:59 by galy              #+#    #+#             */
-/*   Updated: 2018/04/04 18:31:52 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/10 19:28:55 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,9 @@ int	check_magic_num(t_vault *vault)
 		header_size = sizeof(struct fat_header);
 	if (vault->file_nfo == 0x08)
 		return (1);
-	if (header_size < 1 || (vault->header = malloc(header_size)) == NULL)
-		return (-1);
-	ft_memcpy(vault->header, vault->f_dump, header_size);
+	// if (header_size < 1 || (vault->header = malloc(header_size)) == NULL)
+	// 	return (-1);
+	// ft_memcpy(vault->header, vault->f_dump, header_size);
+	vault->header = vault->f_dump;
 	return (1);	
 }

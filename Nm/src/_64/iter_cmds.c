@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 21:36:21 by galy              #+#    #+#             */
-/*   Updated: 2018/04/10 16:03:33 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/10 19:49:10 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ size_t	ft_strlen_cap(t_vault *vault, const char *s)
 	size_t	i;
 	void	*start_adr;
 	void	*max_adr;
+	void	*cur_adr;
 
 	i = 0;
 	start_adr = (vault->ar_dump != NULL) ? vault->ar_dump : vault->f_dump;
@@ -47,7 +48,8 @@ size_t	ft_strlen_cap(t_vault *vault, const char *s)
 	while (s[i] != '\0')
 	{
 		i++;
-		if (((void*)s + i) > max_adr)
+		cur_adr = ((void*)s + i);
+		if (cur_adr == max_adr)
 			break;
 	}
 	return (i);
@@ -58,21 +60,19 @@ void	symtab_loop(t_vault *vault, struct symtab_command *symtab_cmd, void *strtab
 	unsigned int			i;
 	int						j;
 	char 					*str;
+	int						lenstr;
 	
 	i = 0;
 	j = 0;
 
 	while (i < symtab_cmd->nsyms)
 	{
-		// str = (char*)(strtab + nlist[i].n_un.n_strx);
 		str = offset_jumper(vault, strtab, nlist[i].n_un.n_strx);
 		if (nlist[i].n_un.n_strx != 0)
 		{
-			int lenstr = 0;
-			lenstr = ft_strlen_cap(vault, str);
-			void *alloc = malloc(lenstr + 1 * sizeof(char));
-			// void *alloc = malloc(25000 * sizeof(char));
-			vault->tab_sym_meta[j]->name = alloc;
+			if ((lenstr = ft_strlen_cap(vault, str)) > 1000)
+				lenstr = 1000;
+			vault->tab_sym_meta[j]->name = malloc(lenstr + 1 * sizeof(char));
 			// vault->tab_sym_meta[j]->name = malloc((ft_strlen(str) + 1) * sizeof(char));
 			ft_strncpy(vault->tab_sym_meta[j]->name, str, lenstr);
 			vault->tab_sym_meta[j]->name[lenstr] = '\0';

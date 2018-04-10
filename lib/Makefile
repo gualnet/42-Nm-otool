@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 16:28:28 by galy              #+#    #+#              #
-#    Updated: 2018/03/21 11:03:30 by galy             ###   ########.fr        #
+#    Updated: 2018/04/10 15:41:38 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,7 +89,12 @@ clean :
 	@make clean -C $(DIRFTPRINTF)
 	@printf "$(CYELLOW)LIBS	: CLEANED $(CRESET)\n"
 
-fclean :
+mini_clean :
+	@make clean -C $(DIRLIBFT)
+	@make clean -C $(DIRGNL)
+	@make clean -C $(DIRFTPRINTF)
+
+fclean : mini_clean
 	@make fclean -C $(DIRLIBFT)
 	@make fclean -C $(DIRGNL)
 	@make fclean -C $(DIRFTPRINTF)

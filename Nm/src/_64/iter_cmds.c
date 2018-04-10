@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 21:36:21 by galy              #+#    #+#             */
-/*   Updated: 2018/04/04 15:48:47 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/10 16:03:33 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,14 @@ size_t	ft_strlen_cap(t_vault *vault, const char *s)
 	void	*max_adr;
 
 	i = 0;
-	ft_printf("001\n");
 	start_adr = (vault->ar_dump != NULL) ? vault->ar_dump : vault->f_dump;
 	max_adr = (void*)start_adr + vault->f_stat.st_size;
-	ft_printf("002\n");
 	while (s[i] != '\0')
 	{
-		// if (((void*)s + i) > max_adr)
-		// 	break;
 		i++;
 		if (((void*)s + i) > max_adr)
 			break;
 	}
-	ft_printf("003\n");
 	return (i);
 }
 

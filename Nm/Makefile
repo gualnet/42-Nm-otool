@@ -6,23 +6,23 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/16 16:38:21 by galy              #+#    #+#              #
-#    Updated: 2018/04/03 20:43:49 by galy             ###   ########.fr        #
+#    Updated: 2018/04/10 15:39:53 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	ft_nm
-# CFLAGS	=	-Wall -Werror -Wextra -g
+# CFLAGS	=	-Wall -Werror -Wextra
 CFLAGS	=	-Wall -Werror -Wextra -fsanitize=address -g
 CC		=	clang 
 
-LIBFLAG		=	-L./lib -lftall
+LIBFLAG		=	-L./$(LIBDIR) -lftall
 
 ####DIRECTORY####
 
 SRCDIR		=	src
 OBJDIR		=	objs
-INCDIR		=	inc
-LIBDIR		=	lib
+INCDIR		=	../inc
+LIBDIR		=	../lib
 
 ####COLOR-SET####
 
@@ -69,16 +69,15 @@ OBJP		=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
 ####RULEZ####
 
-all			:	reset_cursor make_lib OBJD $(NAME)
+all			:	reset_cursor OBJD $(NAME)
 
 $(NAME)		: $(OBJP)
-	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) $^ -o $(NAME)
+	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) $^ -o ../$(NAME)
 	@printf "$(CUR_RST)$(CGREEN)                         $(CRESET)$(CUR_CLR)"
 	@printf "$(CUR_RST)$(CGREEN)BUILD FT_NM		: SUCCESS$(CRESET)$(CUR_CLR)\n"
 	
 
 clean		:
-	@make clean -C $(LIBDIR)
 	@$(RM) -f $(OBJP)
 	@$(RM) -r $(OBJDIR)
 	@printf "$(CYELLOW)NM	: CLEANED $(CRESET)\n"
@@ -89,8 +88,7 @@ mini_clean	:
 	@$(RM) -r $(OBJDIR)
 
 fclean		: mini_clean
-	@make fclean -C $(LIBDIR)
-	@$(RM) $(NAME)
+	@$(RM) ../$(NAME)
 	@printf "$(CYELLOW)RAZ FT_NM	: Ok$(CRESET)\n"	
 
 re			: fclean print_inter_line all

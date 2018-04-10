@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 16:06:25 by galy              #+#    #+#             */
-/*   Updated: 2018/04/06 14:58:17 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/10 12:28:06 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		get_option(char **argv, int argc)
 	return (i);
 }
 
-int		type_router(t_vault *vault)
+int		type_router(t_vault *vault, char *path)
 {
 	if ((vault->file_nfo & M_64B) != 0)
 	{
@@ -49,8 +49,11 @@ int		type_router(t_vault *vault)
 		if (handle_fat(vault) == -1)
 			return (-1);
 	}
-	// else if ((vault->file_nfo & M_ARCH) != 0)
-	// 	handle_arch(vault, path);
+	else if ((vault->file_nfo & M_ARCH) != 0)
+	{
+		if (handle_arch(vault, path) == -1)
+			return (-1);
+	}
 	else
 		return (-1);
 	return (1);
@@ -68,10 +71,10 @@ int		run(t_vault *vault, char **argv, int argc)
 	{
 		if ((open_file(vault, argv[i])) == -1)
 			return (-1);
-		ft_printf("%s:\n", argv[i]);
+		ft_printf("Archive : %s\n", extract_file_name(argv[i]));
 		if (check_magic_num(vault) == -1)
 			return (-1); 
-		if (type_router(vault) == -1)
+		if (type_router(vault, argv[i]) == -1)
 			return (-1);
 		if (re_init_vault(vault) == NULL)
 			return (-1);

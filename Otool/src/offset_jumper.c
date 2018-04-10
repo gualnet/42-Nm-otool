@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 10:45:53 by galy              #+#    #+#             */
-/*   Updated: 2018/04/06 14:28:34 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/10 12:02:54 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void	*offset_jumper(t_vault *vault, void *ptr, long jumpsize)
 	max_adr = (void*)start_adr + vault->f_stat.st_size;
 	new_adr = (void*)ptr + jumpsize;
 
-	if (new_adr < start_adr)
-		ft_printf("000001\n");
-	if (new_adr > max_adr)
-		ft_printf("000002\n");
+	// if (new_adr < start_adr)
+	// 	ft_printf("000001\n");
+	// if (new_adr > max_adr)
+	// 	ft_printf("000002\n");
 
 	if (new_adr == NULL || new_adr < start_adr || new_adr > max_adr)
 	{

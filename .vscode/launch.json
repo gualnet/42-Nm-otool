@@ -177,5 +177,20 @@
 			"MIMode": "lldb",
 			"preLaunchTask": "make otool"
 		},
+		{
+			"name": "(otool) ftprintf.a",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/Otool/ft_otool",
+			"args": ["-t",
+				"${workspaceFolder}/testing_files/ftprintf.a",
+				],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "make otool"
+		},
 	]
 }

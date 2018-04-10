@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 18:26:19 by galy              #+#    #+#             */
-/*   Updated: 2018/04/06 14:31:32 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/06 16:01:35 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int Magic_32_64(t_vault *vault)
 
 	nok = 0;
 	magic_num = *(unsigned int *)vault->fat_dump;
-	test = (vault->ar_dump != NULL) ? vault->ar_dump : "";
+	test = (vault->fat_dump != NULL) ? vault->fat_dump : "";
 	if (magic_num == MH_MAGIC_64 || magic_num == MH_CIGAM_64)
 		vault->file_nfo = M_64B;
 	else if (magic_num == MH_MAGIC || magic_num == MH_CIGAM)

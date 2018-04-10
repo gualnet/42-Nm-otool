@@ -6,25 +6,11 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 11:57:35 by galy              #+#    #+#             */
-/*   Updated: 2018/04/06 12:29:49 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/10 12:12:12 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_otool.h"
-
-void	print_offset(t_vault *vault, void *ptr)
-{
-	void	*start;
-	if (vault->fat_dump != NULL && vault->ar_dump == NULL && vault->o_dump == NULL)
-		start = (vault->fat_dump);
-	else if (vault->fat_dump == NULL && vault->ar_dump != NULL && vault->o_dump == NULL)
-		start = (vault->ar_dump);
-	else if (vault->fat_dump == NULL && vault->ar_dump == NULL && vault->o_dump != NULL)
-		start = (vault->o_dump);
-	else
-		start = 0;
-	ft_printf("\n\033[36moffset[%x]\033[00m\n", ptr - start,ptr - start);
-}
 
 void	print_off(t_vault *vault, unsigned long cpt)
 {
@@ -37,7 +23,7 @@ void	print_off(t_vault *vault, unsigned long cpt)
 	// ft_printf("vault->file_nfo [%x][%b]\n",vault->file_nfo,vault->file_nfo);
 	// ft_printf("M_64B [%x][%b]\n",M_64B,M_64B);
 	if ((vault->file_nfo & M_64B) == M_64B)
-		ft_printf("%.16lx %-8c", adr + cpt, ' ');
+		ft_printf("%.16lx%c", adr + cpt, '\t');
 	else
 		ft_printf("\nHEUK !!\n");
 }

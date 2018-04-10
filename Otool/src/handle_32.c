@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:38:23 by galy              #+#    #+#             */
-/*   Updated: 2018/04/06 14:33:44 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/06 16:13:52 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,13 @@ int		get_text_text_sec_32(t_vault *vault)
 int		handle_32(t_vault *vault)
 {
 	// ft_printf("Call handle_64 %p\n\n", vault);
-	// if (vault->o_dump == NULL)
-	// {
-	// 	vault->o_dump = vault->fat_dump;
-	// 	vault->fat_dump = NULL;
-	// }
-	vault->o_dump = vault->fat_dump;
-	vault->fat_dump = NULL;
-
+	if (vault->o_dump == NULL)
+	{
+		vault->o_dump = vault->fat_dump;
+		vault->fat_dump = NULL;
+	}
 	if (get_text_text_sec_32(vault) == -1)
 		return (-1);
-
 	print_sect_dump_32(vault);
 	return (1);
 }

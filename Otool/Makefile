@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/04 16:03:36 by galy              #+#    #+#              #
-#    Updated: 2018/04/05 16:27:45 by galy             ###   ########.fr        #
+#    Updated: 2018/04/09 19:51:25 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,11 +46,13 @@ CUR_CLR		=	\033[K
 ####FILES####
 
 SRC			=	\
-				main.c				open_file.c				check_magic.c	\
-				usage.c				vault_init.c			\
-				handle_64.c			offset_jumper.c			sect_dump_64.c	\
+				dev.c \
+				main.c				open_file.c				check_magic.c		\
+				usage.c				vault_init.c			read_unlim_str.c 	\
+				handle_64.c			offset_jumper.c			sect_dump_64.c		\
 				handle_32.c			sect_dump_32.c			\
 				handle_fat.c								\
+				handle_arch.c		jump_obj_hdr.c
 
 
 ####FUNC####

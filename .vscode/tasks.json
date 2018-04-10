@@ -7,6 +7,12 @@
 			"label": "make ft_nm",
 			"type": "shell",
 			"command": "make -C ./Nm"
+		},
+		{
+			"label": "make otool",
+			"type": "shell",
+			"command": "make -C ./Otool",
+			"problemMatcher": []
 		}
 	]
 }

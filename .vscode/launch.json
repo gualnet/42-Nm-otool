@@ -18,11 +18,11 @@
 			"preLaunchTask": "make ft_nm",
 		},
 		{
-			"name": "Launch libftall.a",
+			"name": "Launch new",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/Nm/ft_nm",
-			"args": ["${workspaceFolder}/Nm/lib/libftall.a"],
+			"args": ["${workspaceFolder}/testing_files/new"],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
@@ -70,6 +70,19 @@
 			"preLaunchTask": "make ft_nm"
 		},
 		{
+			"name": "Launch fat",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/Nm/ft_nm",
+			"args": ["${workspaceFolder}/testing_files/test_universel"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "make ft_nm"
+		},
+		{
 			"name": "Launch *",
 			"type": "cppdbg",
 			"request": "launch",
@@ -86,6 +99,98 @@
 			"externalConsole": false,
 			"MIMode": "lldb",
 			"preLaunchTask": "make ft_nm"
+		},
+		// OTOOL CONFIG
+		{
+			"name": "(otool) test_moins_facile",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/Otool/ft_otool",
+			"args": ["-t",
+				"${workspaceFolder}/testing_files/test_moins_facile"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "make otool"
+		},
+		{
+			"name": "(otool) test_moins_facile_32-bit",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/Otool/ft_otool",
+			"args": ["-t",
+				"${workspaceFolder}/testing_files/test_moins_facile_32-bit"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "make otool"
+		},
+		{
+			"name": "(otool) test_universel",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/Otool/ft_otool",
+			"args": ["-t",
+				"${workspaceFolder}/testing_files/test_universel"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "make otool"
+		},
+		{
+			"name": "(otool) chain 32->64->uni",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/Otool/ft_otool",
+			"args": ["-t",
+				"${workspaceFolder}/testing_files/test_moins_facile_32-bit",
+				"${workspaceFolder}/testing_files/test_moins_facile",
+				"${workspaceFolder}/testing_files/test_universel"
+				],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "make otool"
+		},
+		{
+			"name": "(otool) chain uni->64->32",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/Otool/ft_otool",
+			"args": ["-t",
+				"${workspaceFolder}/testing_files/test_universel",
+				"${workspaceFolder}/testing_files/test_moins_facile",
+				"${workspaceFolder}/testing_files/test_moins_facile_32-bit"
+				],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "make otool"
+		},
+		{
+			"name": "(otool) ftprintf.a",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/Otool/ft_otool",
+			"args": ["-t",
+				"${workspaceFolder}/testing_files/ftprintf.a",
+				],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "make otool"
 		},
 	]
 }

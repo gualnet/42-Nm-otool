@@ -21,7 +21,6 @@
                     "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include",
                     "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
                     "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include",
-                    "${workspaceRoot}",
                     "${workspaceRoot}/Nm/inc",
                     "${workspaceRoot}/Otool/inc"
                 ],
@@ -32,7 +31,7 @@
                 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks"
             ],
             "compilerPath": "/usr/bin/clang",
-            "cStandard": "c11",
+            "cStandard": "c99",
             "cppStandard": "c++17"
         },
         {

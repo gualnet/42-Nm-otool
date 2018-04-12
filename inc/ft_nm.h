@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/04/10 17:28:37 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/10 20:48:58 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int		open_file(char *path, t_vault *vault);
 int		check_magic_num(t_vault *vault);
 
 //inter_cmds.c
-void	inter_cmds(t_vault *vault);
+int		inter_cmds(t_vault *vault);
 
 //to_exit.c
 int		to_exit(t_vault *vault);
@@ -132,7 +132,7 @@ int		to_exit(t_vault *vault);
 void	sort_alnum(t_vault *vault, unsigned int tab_len);
 
 //display.c
-void	display_list(t_vault *vault);
+int		display_list(t_vault *vault);
 
 //lst_func.c
 t_lc_lnk	*add_new_lclink(t_vault *vault, void *adr);
@@ -148,7 +148,7 @@ int			delete_all_lst_32(t_vault *vault);
 char	print_sym_sect(t_vault *vault, unsigned int i);
 
 //handle_arch.c
-void	handle_arch(t_vault *vault, char *path);
+int		handle_arch(t_vault *vault, char *path);
 void	print_offset(t_vault *vault, void *ptr);
 
 // read_undelimited_str.c
@@ -158,17 +158,17 @@ void	read_undelimited_str(char *ptr, size_t size);
 void	*offset_jumper(t_vault *vault, void *ptr, long jumpsize);
 
 //check_magic.c
-int	check_magic_num(t_vault *vault);
+int		check_magic_num(t_vault *vault);
 
 //handle_64.c
-void	handle_64bits(t_vault *vault);
+int		handle_64bits(t_vault *vault);
 
 //handle_32.c
-void	handle_32bits(t_vault *vault);
-void	inter_cmds_32(t_vault *vault);
+int		handle_32bits(t_vault *vault);
+int		inter_cmds_32(t_vault *vault);
 
 //handle_fat.c
-void	handle_fat(t_vault *vault);
+int		handle_fat(t_vault *vault);
 
 //swap_endian.c
 long	swap_endian(long value);
@@ -179,7 +179,7 @@ void print_symtab_command(void *sym_cmd);
 int		arg_pars(char **argv, int argc);
 
 // void	print_lc_lst(t_vault *vault);
-void	display_list_32(t_vault *vault);
+int		display_list_32(t_vault *vault);
 char	print_sym_sect_32(t_vault *vault, unsigned int i);
 
 

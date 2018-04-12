@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 04:55:01 by galy              #+#    #+#             */
-/*   Updated: 2018/04/02 13:15:23 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/10 20:25:36 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int		dal_2_32(t_sect_lnk_32 *sect_lnk)
 	tmp = sect_lnk;
 	while (tmp != NULL)
 	{
-		// ft_printf("[%s][%s]\n", tmp->sect->sectname, tmp->sect->segname);
 		sve = tmp->next;
 		free(tmp);
 		tmp = NULL;
@@ -39,14 +38,10 @@ int		delete_all_lst_32(t_vault *vault)
 	tmp = vault->lc_lst;
 	while (tmp != NULL)
 	{
-		// ft_printf("\n");
-		// ft_printf("tmp->lc->cmd [%x]\n", tmp->lc->cmd);
-		// ft_printf("tmp->lc->cmdsize [%x]\n", tmp->lc->cmdsize);
 		if(tmp->sect_lst.lnk_32 != NULL)
 		{
 			dal_2_32(tmp->sect_lst.lnk_32);
 			tmp->sect_lst.lnk_32 = NULL;
-			// ft_printf("tmp->sect_lst.lnk_32[%p]\n",tmp->sect_lst.lnk_32);
 		}
 		sve = tmp->next;
 		free(tmp);

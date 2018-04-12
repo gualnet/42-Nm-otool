@@ -6,13 +6,13 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 05:25:08 by galy              #+#    #+#             */
-/*   Updated: 2018/04/03 19:54:14 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/10 20:52:07 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-void	lssi_2_32(t_vault *vault, t_lc_lnk *lc_lnk, struct load_command *lc)
+int		lssi_2_32(t_vault *vault, t_lc_lnk *lc_lnk, struct load_command *lc)
 {
 	struct segment_command	*segcmd;
 	struct section			*seccmd;
@@ -23,34 +23,37 @@ void	lssi_2_32(t_vault *vault, t_lc_lnk *lc_lnk, struct load_command *lc)
 	i = 0;
 	while (i < segcmd->nsects)
 	{
+		if (seccmd == NULL)
+			return (-1);
 		if ((add_new_sectlnk(lc_lnk, seccmd)) == NULL)
 		{
 			ft_printf("echec display.c line 56\n");
-			exit (-1);
+			return (-1);
 		}
 		seccmd = offset_jumper(vault, seccmd, sizeof(struct section));
 		i++;
 	}
+	return (1);
 }
 
-void	load_seg_sect_inlist_32(t_vault *vault)
+int		load_seg_sect_inlist_32(t_vault *vault)
 {
 	t_lc_lnk	*tmp;
 
 	tmp = vault->lc_lst;
-	// ft_printf("vault->lc_lst [%p][%p][%p]\n",&vault->lc_lst,vault->lc_lst,*vault->lc_lst);
 	while (tmp != NULL)
 	{
 		if (tmp->lc->cmd == LC_SEGMENT)
 		{
-			lssi_2_32(vault, tmp, tmp->lc);
+			if (lssi_2_32(vault, tmp, tmp->lc) == -1)
+				return (-1);
 		}
 		tmp = tmp->next;
 	}
-	// ft_printf("vault->lc_lst [%p][%p][%p]\n",&vault->lc_lst,vault->lc_lst,*vault->lc_lst);
+	return (1);
 }
 
-void	display_list_32(t_vault *vault)
+int		display_list_32(t_vault *vault)
 {
 	// ft_printf("\nCALL DISPLAY_LIST\n");
 	unsigned int	i;
@@ -59,7 +62,8 @@ void	display_list_32(t_vault *vault)
 	
 	i = 0;
 	j = 0;
-	load_seg_sect_inlist_32(vault);
+	if (load_seg_sect_inlist_32(vault) == -1)
+		return (-1);
 	while (i < vault->nsyms)
 	{		
 		letter = '?';
@@ -75,5 +79,6 @@ void	display_list_32(t_vault *vault)
 		}
 		i++;
 	}
+	return (1);
 	// ft_printf("\nEND DISPLAY_LIST\n");
 }

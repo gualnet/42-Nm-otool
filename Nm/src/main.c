@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/04/10 19:17:41 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/11 18:24:26 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int run(char **argv, int argc, t_vault *vault)
 	char	*path;
 	int		i;
 	int		store;
+	int		ret;
 	
 	i = 1;
 	if ((store = arg_pars(argv, argc)) == -1)
@@ -37,7 +38,7 @@ int run(char **argv, int argc, t_vault *vault)
 			to_exit(vault);
 			return (-1);
 		}
-
+		
 		if (check_magic_num(vault) == -1)
 		{
 			ft_printf("\033[31mnm error :\nECHEC check magic num.\033[0m");
@@ -45,29 +46,19 @@ int run(char **argv, int argc, t_vault *vault)
 		}
 		
 		if (argc > 2)
-			ft_printf("\n%s:\n", path);
+			return (-1); //???
 		if ((vault->file_nfo & M_64B) != 0)
-		{
-			handle_64bits(vault);
-		}
+			ret = handle_64bits(vault, path);
 		else if ((vault->file_nfo & M_32B) != 0)
-		{
-			handle_32bits(vault);
-		}
+			ret = handle_32bits(vault);
 		else if ((vault->file_nfo & M_ARCH) != 0)
-		{
-			handle_arch(vault, path);
-		}
+			ret = handle_arch(vault, path);
 		else if ((vault->file_nfo & M_FAT) != 0)
-		{
-			handle_fat(vault);
-		}
-		else
-		{
-			ft_printf("\nSORTIE NON GEREE\n");
-			return (-1);
-		}
+			ret = handle_fat(vault);
+		// if (ret != 1)
+		// 	return (-1);
 		reset_tab_sym_meta(vault);
+		delete_all_lst(vault);		
 		i++;
 	}
 	return (1);

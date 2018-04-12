@@ -6,56 +6,54 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 15:16:41 by galy              #+#    #+#             */
-/*   Updated: 2018/04/02 16:44:09 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/11 18:04:53 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-void	lssi_2(t_vault *vault, t_lc_lnk *lc_lnk, struct load_command *lc)
+int		lssi_2(t_vault *vault, t_lc_lnk *lc_lnk, struct load_command *lc)
 {
 	struct segment_command_64	*segcmd;
 	struct section_64			*seccmd;
 	unsigned int				i;
 
 	segcmd = (void*)lc;
-	// seccmd = (void*)lc + sizeof(struct segment_command_64);
-	seccmd = offset_jumper(vault, lc, sizeof(struct segment_command_64));
+	if ((seccmd = offset_jumper(vault, lc, sizeof(struct segment_command_64))) == NULL)
+		return (-1);
 	i = 0;
-	// ft_printf("segcmd->nsects [%d]\n",segcmd->nsects);
 	while (i < segcmd->nsects)
 	{
-		// ft_printf("\nseccmd->segname [%s]\n",seccmd->segname);
-		// ft_printf("seccmd->sectname [%s]\n",seccmd->sectname);
 		if ((add_new_sectlnk(lc_lnk, seccmd)) == NULL)
 		{
 			ft_printf("echec display.c line 56\n");
-			exit (-1);
+			return (-1);
 		}
-		// seccmd = (void*)seccmd + sizeof(struct section_64);
-		seccmd = offset_jumper(vault, seccmd, sizeof(struct section_64));
+		if ((seccmd = offset_jumper(vault, seccmd, sizeof(struct section_64))) == NULL)
+			return (-1);
 		i++;
 	}
+	return (1);
 }
 
-void	load_seg_sect_inlist(t_vault *vault)
+int		load_seg_sect_inlist(t_vault *vault)
 {
 	t_lc_lnk	*tmp;
 
 	tmp = vault->lc_lst;
-	// ft_printf("vault->lc_lst [%p][%p][%p]\n",&vault->lc_lst,vault->lc_lst,*vault->lc_lst);
 	while (tmp != NULL)
 	{
 		if (tmp->lc->cmd == LC_SEGMENT_64)
 		{
-			lssi_2(vault, tmp, tmp->lc);
+			if (lssi_2(vault, tmp, tmp->lc) == -1)
+				return (-1);
 		}
 		tmp = tmp->next;
 	}
-	// ft_printf("vault->lc_lst [%p][%p][%p]\n",&vault->lc_lst,vault->lc_lst,*vault->lc_lst);
+	return (1);
 }
 
-void	display_list(t_vault *vault)
+int		display_list(t_vault *vault)
 {
 	// ft_printf("\nCALL DISPLAY_LIST\n");
 	unsigned int	i;
@@ -64,7 +62,8 @@ void	display_list(t_vault *vault)
 	
 	i = 0;
 	j = 0;
-	load_seg_sect_inlist(vault);
+	if (load_seg_sect_inlist(vault) == -1)
+		return (-1);
 	while (i < vault->nsyms)
 	{		
 		letter = '?';
@@ -80,5 +79,6 @@ void	display_list(t_vault *vault)
 		}
 		i++;
 	}
+	return (1);
 	// ft_printf("\nEND DISPLAY_LIST\n");
 }

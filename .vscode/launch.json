@@ -5,11 +5,11 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "NM corrupt libft_fat.a",
+			"name": "NM run_test",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/ft_nm",
-			"args": ["${workspaceFolder}/libft_fat.a"],
+			"args": ["${workspaceFolder}/testing_files/hell_test/appsleepd"],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

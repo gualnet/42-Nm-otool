@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 16:17:47 by galy              #+#    #+#             */
-/*   Updated: 2018/04/06 13:49:10 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/12 15:32:38 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		jump_to_exec(t_vault *vault, struct fat_arch *info)
 	
 	vault->file_nfo += M_64B;
 	jumper = fat_swap_endian(info->offset);
+
 	vault->o_dump = offset_jumper(vault, vault->fat_dump, jumper);
 	if (vault->o_dump == NULL)
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/04/11 18:24:26 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/13 13:26:41 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ int run(char **argv, int argc, t_vault *vault)
 		if (argc > 2)
 			return (-1); //???
 		if ((vault->file_nfo & M_64B) != 0)
-			ret = handle_64bits(vault, path);
+			ret = handle_64bits(vault, path, 1);
 		else if ((vault->file_nfo & M_32B) != 0)
-			ret = handle_32bits(vault);
+			ret = handle_32bits(vault, path);
 		else if ((vault->file_nfo & M_ARCH) != 0)
 			ret = handle_arch(vault, path);
 		else if ((vault->file_nfo & M_FAT) != 0)
-			ret = handle_fat(vault);
+			ret = handle_fat(vault, path);
 		// if (ret != 1)
 		// 	return (-1);
 		reset_tab_sym_meta(vault);

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/02 19:07:19 by galy              #+#    #+#             */
-/*   Updated: 2018/04/11 16:11:46 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/13 13:26:49 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		jump_to_exec(t_vault *vault, struct fat_arch *info, unsigned long nbr)
 	return (1);
 }
 
-int		get_fat_cpu_type(t_vault *vault, unsigned long nbr_arch)
+int		get_fat_cpu_type(t_vault *vault, unsigned long nbr_arch, char *path)
 {
 	unsigned long	i;
 	struct fat_arch	*info;
@@ -41,7 +41,7 @@ int		get_fat_cpu_type(t_vault *vault, unsigned long nbr_arch)
 		{
 			if (jump_to_exec(vault, info, nbr_arch - i) == -1)
 				return (-1);
-			if (handle_64bits(vault) == -1)
+			if (handle_64bits(vault, path, 0) == -1)
 				return (-1);
 			break;
 		}
@@ -51,7 +51,7 @@ int		get_fat_cpu_type(t_vault *vault, unsigned long nbr_arch)
 	return (1);
 }
 
-int		handle_fat(t_vault *vault)
+int		handle_fat(t_vault *vault, char *path)
 {
 	struct fat_header	*header;
 	unsigned long		nbr;
@@ -60,7 +60,7 @@ int		handle_fat(t_vault *vault)
 	vault->f_dump = NULL;
 	header = vault->ar_dump;
 	nbr = swap_endian(header->nfat_arch);
-	if (get_fat_cpu_type(vault, nbr) == -1)
+	if (get_fat_cpu_type(vault, nbr, path) == -1)
 		return (-1);
 	return (1);
 }

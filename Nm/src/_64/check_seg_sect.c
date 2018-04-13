@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 10:08:45 by galy              #+#    #+#             */
-/*   Updated: 2018/04/10 20:25:10 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/13 12:59:06 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ char	handle_sect_name_to_letter(char *sectname, int upper)
 		return (upper ? 'S' : 's');
 	if (ft_strcmp(sectname, "__const") == 0)
 		return (upper ? 'S' : 's');
-	return ('^');
+	return (upper ? 'S' : 's');
+	// return ('^');
 }
 
 char	get_sect_letter(t_vault *vault, unsigned int n_sect, int upper)

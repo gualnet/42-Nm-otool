@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 21:36:21 by galy              #+#    #+#             */
-/*   Updated: 2018/04/10 20:51:05 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/12 11:28:02 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ int		symtab_loop(t_vault *vault, struct symtab_command *symtab_cmd, void *strtab
 		{
 			if ((lenstr = ft_strlen_cap(vault, str)) > 1000)
 				lenstr = 1000;
-			vault->tab_sym_meta[j]->name = malloc(lenstr + 1 * sizeof(char));
+			if ((vault->tab_sym_meta[j]->name = malloc(lenstr + 1 * sizeof(char))) == NULL)
+				return (-1);
 			ft_strncpy(vault->tab_sym_meta[j]->name, str, lenstr);
 			vault->tab_sym_meta[j]->name[lenstr] = '\0';
 			vault->tab_sym_meta[j]->n_sect = nlist[i].n_sect;

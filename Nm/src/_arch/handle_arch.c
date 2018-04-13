@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 11:09:12 by galy              #+#    #+#             */
-/*   Updated: 2018/04/11 15:23:33 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/13 13:31:53 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ int		jump_obj_hdr(t_vault *vault, t_arch_info *arch, char *path)
 		vault->header = (void*)vault->f_dump - 8; //jump neg
 		inter_cmds(vault);
 		// print_offset(vault, (void*)obj_hdr);
-		print_object_path(vault, obj_hdr, path, hdr_ext);
+		// print_object_path(vault, obj_hdr, path, hdr_ext);
 		display_list(vault);
 		if (i < arch->nbr_obj - 1)
 			ft_printf("\n");

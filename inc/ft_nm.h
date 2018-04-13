@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/04/10 20:48:58 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/13 13:25:48 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ int		check_magic_num(t_vault *vault);
 
 //inter_cmds.c
 int		inter_cmds(t_vault *vault);
+size_t	ft_strlen_cap(t_vault *vault, const char *s);
 
 //to_exit.c
 int		to_exit(t_vault *vault);
@@ -148,7 +149,6 @@ int			delete_all_lst_32(t_vault *vault);
 char	print_sym_sect(t_vault *vault, unsigned int i);
 
 //handle_arch.c
-int		handle_arch(t_vault *vault, char *path);
 void	print_offset(t_vault *vault, void *ptr);
 
 // read_undelimited_str.c
@@ -161,15 +161,12 @@ void	*offset_jumper(t_vault *vault, void *ptr, long jumpsize);
 int		check_magic_num(t_vault *vault);
 
 //handle_64.c
-int		handle_64bits(t_vault *vault);
+int		handle_fat(t_vault *vault, char *path);
+int		handle_arch(t_vault *vault, char *path);
+int		handle_32bits(t_vault *vault, char *path);
+int		handle_64bits(t_vault *vault, char *path, int print);
 
-//handle_32.c
-int		handle_32bits(t_vault *vault);
 int		inter_cmds_32(t_vault *vault);
-
-//handle_fat.c
-int		handle_fat(t_vault *vault);
-
 //swap_endian.c
 long	swap_endian(long value);
 

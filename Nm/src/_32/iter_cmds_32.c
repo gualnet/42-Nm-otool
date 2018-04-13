@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 04:49:07 by galy              #+#    #+#             */
-/*   Updated: 2018/04/10 20:36:03 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/12 12:14:03 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		symtab_loop_32(t_vault *vault, struct symtab_command *symtab_cmd, void *str
 	unsigned int	i;
 	int				j;
 	char 			*str;
+	int				lenstr;
 	
 	i = 0;
 	j = 0;
@@ -49,7 +50,9 @@ int		symtab_loop_32(t_vault *vault, struct symtab_command *symtab_cmd, void *str
 			return (-1);
 		if (nlist[i].n_un.n_strx != 0)
 		{
-			if ((vault->tab_sym_meta[j]->name = malloc((ft_strlen(str) + 1) * sizeof(char))) == NULL)
+			if ((lenstr = ft_strlen_cap(vault, str)) > 1000)
+				lenstr = 1000;
+			if ((vault->tab_sym_meta[j]->name = malloc((lenstr + 1) * sizeof(char))) == NULL)
 				return (-1);
 			ft_strcpy(vault->tab_sym_meta[j]->name, str);
 			vault->tab_sym_meta[j]->name[ft_strlen(str)] = '\0';
@@ -73,6 +76,8 @@ int		handle_symtab_32(t_vault *vault, struct load_command *lc)
 	symtab_cmd = (void*)lc;
 	nlist = offset_jumper(vault, vault->f_dump, symtab_cmd->symoff);
 	strtab = offset_jumper(vault, vault->f_dump, symtab_cmd->stroff);
+	if (nlist == NULL || strtab == NULL)
+		return (-1);
 	vault->nsyms = symtab_cmd->nsyms;
 	if (alloc_tab_sym_meta_32(vault, symtab_cmd) == -1)
 		return (-1);

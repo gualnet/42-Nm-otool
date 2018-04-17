@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/02 19:07:19 by galy              #+#    #+#             */
-/*   Updated: 2018/04/17 13:23:22 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/17 18:01:51 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,13 @@ int		get_fat_cpu_type_x86_64(t_vault *vault, unsigned long nbr_arch, char *path)
 {
 	unsigned long	i;
 	struct fat_arch	*info;
+	int				ret;
 
 	i = 0;
 	info = offset_jumper(vault, vault->ar_dump, sizeof(struct fat_header));
 	while (i < nbr_arch)
 	{
+		ret = 0;
 		if (info == NULL)
 			return (-1);
 		if (CUR_CPU == "x86_64" && swap_endian(info->cputype) == \
@@ -65,8 +67,10 @@ int		get_fat_cpu_type_x86_64(t_vault *vault, unsigned long nbr_arch, char *path)
 		{
 			if (jump_to_exec(vault, info, nbr_arch - i) == -1)
 				return (-1);
-			if (handle_64bits(vault, path, 0) == -1)
+			if ((ret = handle_64bits(vault, path, 0)) == -1)
 				return (-1);
+			else if (ret == 1)
+				return (1);
 			break;
 		}
 		info = offset_jumper(vault, info, sizeof(struct fat_arch));

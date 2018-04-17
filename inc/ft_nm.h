@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/04/17 11:48:04 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/17 14:13:32 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int		open_file(char *path, t_vault *vault);
 int		check_magic_num(t_vault *vault);
 
 //inter_cmds.c
-int		inter_cmds(t_vault *vault);
+int		iter_cmds(t_vault *vault);
 size_t	ft_strlen_cap(t_vault *vault, const char *s);
 
 //to_exit.c
@@ -167,9 +167,14 @@ int		handle_32bits(t_vault *vault, char *path);
 int		handle_64bits(t_vault *vault, char *path, int print);
 
 int		handle_32_in_fat(t_vault *vault, char *path);
-int		handle_ppc_in_fat(t_vault *vault, char *path);
+int		handle_ppc_in_fat(t_vault *vault, char *path, struct fat_arch *info);
+int		iter_cmds_ppc(t_vault *vault);
+int		display_list_ppc(t_vault *vault);
+char	print_sym_sect_ppc(t_vault *vault, unsigned int i);
 
-int		inter_cmds_32(t_vault *vault);
+int		iter_cmds_32(t_vault *vault);
+int		iter_cmds_ppc(t_vault *vault);
+
 //swap_endian.c
 long	swap_endian(long value);
 

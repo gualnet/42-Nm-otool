@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 04:43:10 by galy              #+#    #+#             */
-/*   Updated: 2018/04/12 12:15:08 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/17 12:37:18 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		handle_32bits(t_vault *vault, char *path)
 {
-	if (inter_cmds_32(vault) == -1)
+	if (iter_cmds_32(vault) == -1)
 		return (-1);
 	ft_printf("\n%s:\n", path);
 	if (display_list_32(vault) == -1)

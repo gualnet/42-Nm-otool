@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 11:09:12 by galy              #+#    #+#             */
-/*   Updated: 2018/04/13 13:31:53 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/17 12:45:54 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ int		jump_obj_hdr(t_vault *vault, t_arch_info *arch, char *path)
 	
 	vault->header = vault->f_dump;
 	// print_offset(vault, (void*)obj_hdr);
-	inter_cmds(vault);
+	iter_cmds(vault);
 	print_object_path(vault, obj_hdr, path, hdr_ext);
 	display_list(vault);
 	free_useless_vault_components(vault);
@@ -173,7 +173,7 @@ int		jump_obj_hdr(t_vault *vault, t_arch_info *arch, char *path)
 			hdr_ext = 0;
 		}
 		vault->header = (void*)vault->f_dump - 8; //jump neg
-		inter_cmds(vault);
+		iter_cmds(vault);
 		// print_offset(vault, (void*)obj_hdr);
 		// print_object_path(vault, obj_hdr, path, hdr_ext);
 		display_list(vault);

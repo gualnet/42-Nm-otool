@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 21:36:21 by galy              #+#    #+#             */
-/*   Updated: 2018/04/12 11:28:02 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/17 12:37:40 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int		handle_symtab(t_vault *vault, struct load_command *lc)
 	return (1);
 }
 
-int		inter_cmds(t_vault *vault)
+int		iter_cmds(t_vault *vault)
 {
 	// ft_printf("\nCALL INTER_CMDS\n");
 	unsigned int			i;

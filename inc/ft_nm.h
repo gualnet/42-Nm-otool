@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/04/13 13:25:48 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/17 11:48:04 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,9 @@ int		handle_fat(t_vault *vault, char *path);
 int		handle_arch(t_vault *vault, char *path);
 int		handle_32bits(t_vault *vault, char *path);
 int		handle_64bits(t_vault *vault, char *path, int print);
+
+int		handle_32_in_fat(t_vault *vault, char *path);
+int		handle_ppc_in_fat(t_vault *vault, char *path);
 
 int		inter_cmds_32(t_vault *vault);
 //swap_endian.c

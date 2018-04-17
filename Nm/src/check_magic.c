@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:10:59 by galy              #+#    #+#             */
-/*   Updated: 2018/04/10 19:28:55 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/17 10:36:21 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ int	check_magic_num(t_vault *vault)
 	header_size = -1;
 	if ((Magic_32_64(vault)) == -1)
 		return (-1);
-	if (vault->file_nfo == 0x01 || vault->file_nfo == 0x05)
-		header_size = sizeof(struct mach_header);
-	else if (vault->file_nfo == 0x02 || vault->file_nfo == 0x06)
-		header_size = sizeof(struct mach_header_64);
-	else if (vault->file_nfo == 0x10 || vault->file_nfo == 0x14)
-		header_size = sizeof(struct fat_header);
-	if (vault->file_nfo == 0x08)
-		return (1);
+	// if (vault->file_nfo == 0x01 || vault->file_nfo == 0x05)
+	// 	header_size = sizeof(struct mach_header);
+	// else if (vault->file_nfo == 0x02 || vault->file_nfo == 0x06)
+	// 	header_size = sizeof(struct mach_header_64);
+	// else if (vault->file_nfo == 0x10 || vault->file_nfo == 0x14)
+	// 	header_size = sizeof(struct fat_header);
+	// if (vault->file_nfo == 0x08)
+	// 	return (1);
 	// if (header_size < 1 || (vault->header = malloc(header_size)) == NULL)
 	// 	return (-1);
 	// ft_memcpy(vault->header, vault->f_dump, header_size);

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/04/13 13:26:41 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/17 10:53:58 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ int run(char **argv, int argc, t_vault *vault)
 	int		i;
 	int		store;
 	int		ret;
+	int		print;
 	
 	i = 1;
+	print = 0;
 	if ((store = arg_pars(argv, argc)) == -1)
 		return (-1);
 	while (i < argc)
@@ -46,9 +48,9 @@ int run(char **argv, int argc, t_vault *vault)
 		}
 		
 		if (argc > 2)
-			return (-1); //???
+			print = 1;
 		if ((vault->file_nfo & M_64B) != 0)
-			ret = handle_64bits(vault, path, 1);
+			ret = handle_64bits(vault, path, print);
 		else if ((vault->file_nfo & M_32B) != 0)
 			ret = handle_32bits(vault, path);
 		else if ((vault->file_nfo & M_ARCH) != 0)

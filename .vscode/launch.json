@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/ft_nm",
-			"args": ["${workspaceFolder}/testing_files/hell_test/appsleepd"],
+			"args": ["${workspaceFolder}/testing_files/hell_test/audiodevice"],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

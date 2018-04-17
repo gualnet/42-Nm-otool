@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 13:50:31 by galy              #+#    #+#             */
-/*   Updated: 2018/04/17 14:06:10 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/17 16:22:58 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ int		symtab_loop_ppc(t_vault *vault, struct symtab_command *symtab_cmd, void *st
 				return (-1);
 			ft_strcpy(vault->tab_sym_meta[j]->name, str);
 			vault->tab_sym_meta[j]->name[ft_strlen(str)] = '\0';
-			vault->tab_sym_meta[j]->n_sect = swap_endian(nlist[i].n_sect);
-			vault->tab_sym_meta[j]->n_type = swap_endian(nlist[i].n_type);
-			vault->tab_sym_meta[j]->n_value = swap_endian(nlist[i].n_value);
+			vault->tab_sym_meta[j]->n_sect = nlist[i].n_sect;
+			vault->tab_sym_meta[j]->n_type = nlist[i].n_type;
+			vault->tab_sym_meta[j]->n_value = nlist[i].n_value;
 			j++;
 		}
 		i++;
@@ -102,7 +102,7 @@ int		iter_cmds_ppc(t_vault *vault)
 		if (lc == NULL)
 			return (-1);
 		add_new_lclink_32(vault, lc);
-		if (lc->cmd == swap_endian(LC_SYMTAB))
+		if (swap_endian(lc->cmd) == LC_SYMTAB)
 		{
 			if (handle_symtab_ppc(vault, lc) == -1)
 				return (-1);

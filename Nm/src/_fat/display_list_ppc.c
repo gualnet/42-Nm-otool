@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:07:46 by galy              #+#    #+#             */
-/*   Updated: 2018/04/17 14:26:33 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/17 16:44:29 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int		lssi_2_ppc(t_vault *vault, t_lc_lnk *lc_lnk, struct load_command *lc)
 	segcmd = (void*)lc;
 	seccmd = offset_jumper(vault, lc, sizeof(struct segment_command));
 	i = 0;
-	uint test = swap_endian(segcmd->nsects);
-	printf("test %d", test);
 	while (i < swap_endian(segcmd->nsects))
 	{
 		if (seccmd == NULL)
@@ -70,15 +68,12 @@ int		display_list_ppc(t_vault *vault)
 	{		
 		letter = '?';
 		letter = print_sym_sect_ppc(vault, i);
-		if (letter != '@')
-		{
-			if (letter != 'U')
-				ft_printf("%08llx ",vault->tab_sym_meta[i]->n_value);
-			else
-				ft_printf("%-9s", "");
-			ft_printf("%c ", letter);
-			ft_printf("%s\n", vault->tab_sym_meta[i]->name);	
-		}
+		if (letter != 'U')
+			ft_printf("%08llx ",swap_endian(vault->tab_sym_meta[i]->n_value));
+		else
+			ft_printf("%-9s", "");
+		ft_printf("%c ", letter);
+		ft_printf("%s\n", vault->tab_sym_meta[i]->name);	
 		i++;
 	}
 	return (1);

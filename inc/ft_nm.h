@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/04/17 14:13:32 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/17 15:51:04 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,7 @@ long	swap_endian(long value);
 
 //dev_func.c
 void print_symtab_command(void *sym_cmd);
+void	print_lc_lst(t_vault *vault);
 
 int		arg_pars(char **argv, int argc);
 

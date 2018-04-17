@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:11:47 by galy              #+#    #+#             */
-/*   Updated: 2018/04/17 14:30:43 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/17 16:47:11 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	get_sect_letter_ppc(t_vault *vault, unsigned int n_sect, int upper)
 	tmp_seg = vault->lc_lst;
 	tmp_sect = tmp_seg->sect_lst.lnk_32;
 	header = vault->header;
-	while (i < header->ncmds && tmp_seg != NULL)
+	while (i < swap_endian(header->ncmds) && tmp_seg != NULL)
 	{
 		if (tmp_sect == NULL)
 		{
@@ -67,13 +67,13 @@ char	handle_n_type_mask_ppc(t_vault *vault, unsigned int i, int upper)
 	char	letter;
 	
 	letter = '@';
-	if ((swap_endian(vault->tab_sym_meta[i]->n_type) & N_TYPE) == N_ABS)
+	if ((vault->tab_sym_meta[i]->n_type & N_TYPE) == N_ABS)
 		letter = upper ? 'A' : 'a';
-	else if ((swap_endian(vault->tab_sym_meta[i]->n_type) & N_TYPE) == N_SECT)
+	else if ((vault->tab_sym_meta[i]->n_type & N_TYPE) == N_SECT)
 	{
 		letter = get_sect_letter_ppc(vault, vault->tab_sym_meta[i]->n_sect, upper);
 	}
-	else if ((swap_endian(vault->tab_sym_meta[i]->n_type) & N_TYPE) == N_INDR)
+	else if ((vault->tab_sym_meta[i]->n_type & N_TYPE) == N_INDR)
 		letter = 'I';
 	// else if ((vault->tab_sym_meta[i]->n_type & N_TYPE) == N_PBUD)
 	// {

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 11:46:07 by galy              #+#    #+#             */
-/*   Updated: 2018/04/17 17:04:54 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/18 20:26:46 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void	*dump_endian_reverse_ppc(t_vault *vault, size_t size)
 	return (dump);
 }
 
-int		handle_ppc_in_fat(t_vault *vault, char *path, struct fat_arch *info)
+// int		handle_ppc_in_fat(t_vault *vault, char *path, struct fat_arch *info)
+int		handle_ppc_in_fat(t_vault *vault, char *path)
 {
-	ft_printf("CALL PPC IN FAT [%p]\n", info);
-	// return (-1);
+	// ft_printf("CALL PPC IN FAT\n");
 	
 	if (iter_cmds_ppc(vault) == -1)
 		return (-1);

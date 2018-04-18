@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/04/18 18:26:22 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/18 18:39:21 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ int		handle_32bits(t_vault *vault, char *path);
 int		handle_64bits(t_vault *vault, char *path, int print);
 
 int		handle_32_in_fat(t_vault *vault, char *path);
-int		handle_ppc_in_fat(t_vault *vault, char *path, struct fat_arch *info);
+int		handle_ppc_in_fat(t_vault *vault, char *path);
 int		iter_cmds_ppc(t_vault *vault);
 int		display_list_ppc(t_vault *vault);
 char	print_sym_sect_ppc(t_vault *vault, unsigned int i);

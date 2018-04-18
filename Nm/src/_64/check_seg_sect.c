@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 10:08:45 by galy              #+#    #+#             */
-/*   Updated: 2018/04/13 12:59:06 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/18 11:34:41 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ char	handle_sect_name_to_letter(char *sectname, int upper)
 	if (ft_strcmp(sectname, "__const") == 0)
 		return (upper ? 'S' : 's');
 	return (upper ? 'S' : 's');
-	// return ('^');
 }
 
 char	get_sect_letter(t_vault *vault, unsigned int n_sect, int upper)
@@ -88,7 +87,7 @@ char	print_sym_sect(t_vault *vault, unsigned int i)
 	if ((vault->tab_sym_meta[i]->n_type & N_STAB) != 0)
 		return (letter = 'N');
 	if ((vault->tab_sym_meta[i]->n_type & N_PEXT) != 0)
-		ext = 1;
+		ext = 0;
 	if ((vault->tab_sym_meta[i]->n_type & N_EXT) != 0)
 		ext = 1;
 	if ((vault->tab_sym_meta[i]->n_type & N_TYPE) == N_UNDF)

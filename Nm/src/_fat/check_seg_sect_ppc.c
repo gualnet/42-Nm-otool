@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:11:47 by galy              #+#    #+#             */
-/*   Updated: 2018/04/17 16:47:11 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/18 11:34:57 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char	print_sym_sect_ppc(t_vault *vault, unsigned int i)
 	if ((num_type & N_STAB) != 0)
 		letter = 'N';
 	if ((num_type & N_PEXT) != 0)
-		ext = 1;
+		ext = 0;
 	if ((num_type & N_EXT) != 0)
 		ext = 1;
 	if ((num_type & N_TYPE) == N_UNDF)

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_seg_sect.c                                   :+:      :+:    :+:   */
+/*   check_seg_sect_64_swap.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 10:08:45 by galy              #+#    #+#             */
-/*   Updated: 2018/04/18 18:18:51 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/18 18:27:17 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-char	handle_sect_name_to_letter(char *sectname, int upper)
+char	handle_sect_name_to_letter_64_swap(char *sectname, int upper)
 {
 	char name[16];
 
@@ -31,7 +31,7 @@ char	handle_sect_name_to_letter(char *sectname, int upper)
 	return (upper ? 'S' : 's');
 }
 
-char	get_sect_letter(t_vault *vault, unsigned int n_sect, int upper)
+char	get_sect_letter_64_swap(t_vault *vault, unsigned int n_sect, int upper)
 {
 	unsigned int			i;
 	t_lc_lnk				*tmp_seg;
@@ -41,7 +41,7 @@ char	get_sect_letter(t_vault *vault, unsigned int n_sect, int upper)
 
 	i = 1;
 	tmp_seg = vault->lc_lst;
-	tot_sect = ((struct segment_command_64*)(tmp_seg))->nsects;
+	tot_sect = swap_endian(((struct segment_command_64*)(tmp_seg))->nsects);
 	tmp_sect = tmp_seg->sect_lst.lnk_64;
 	header = vault->header;
 	while (i < tot_sect && tmp_seg)
@@ -66,10 +66,10 @@ char	get_sect_letter(t_vault *vault, unsigned int n_sect, int upper)
 		}
 		
 	}
-	return (handle_sect_name_to_letter(tmp_sect->sect->sectname, upper));
+	return (handle_sect_name_to_letter_64_swap(tmp_sect->sect->sectname, upper));
 }
 
-char	handle_n_type_mask(t_vault *vault, unsigned int i, int upper)
+char	handle_n_type_mask_64_swap(t_vault *vault, unsigned int i, int upper)
 {
 	char letter;
 	
@@ -77,13 +77,13 @@ char	handle_n_type_mask(t_vault *vault, unsigned int i, int upper)
 	if ((vault->tab_sym_meta[i]->n_type & N_TYPE) == N_ABS)
 		letter = upper ? 'A' : 'a';
 	else if ((vault->tab_sym_meta[i]->n_type & N_TYPE) == N_SECT)
-		letter = get_sect_letter(vault, vault->tab_sym_meta[i]->n_sect, upper);
+		letter = get_sect_letter_64_swap(vault, vault->tab_sym_meta[i]->n_sect, upper);
 	else if ((vault->tab_sym_meta[i]->n_type & N_TYPE) == N_INDR)
 		letter = 'I';
 	return (letter);
 }
 
-char	print_sym_sect(t_vault *vault, unsigned int i)
+char	print_sym_sect_64_swap(t_vault *vault, unsigned int i)
 {
 	int ext;
 	char letter;	
@@ -100,6 +100,6 @@ char	print_sym_sect(t_vault *vault, unsigned int i)
 	if ((vault->tab_sym_meta[i]->n_type & N_TYPE) == N_UNDF)
 		letter = ext ? 'U' : 'u';
 	if ((vault->tab_sym_meta[i]->n_type & N_TYPE) != 0)
-		letter = handle_n_type_mask(vault, i, ext);
+		letter = handle_n_type_mask_64_swap(vault, i, ext);
 	return (letter);
 }

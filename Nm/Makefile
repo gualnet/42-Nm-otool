@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/16 16:38:21 by galy              #+#    #+#              #
-#    Updated: 2018/04/17 14:14:22 by galy             ###   ########.fr        #
+#    Updated: 2018/04/18 18:26:44 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,8 @@ SRC			=	\
 				_fat/handle_fat.c		_fat/swap_endian.c			\
 				_fat/handle_32_in_fat.c _fat/handle_ppc_in_fat.c	\
 				_fat/iter_cmds_ppc.c 	_fat/display_list_ppc.c		\
+				_fat/handle_64_swap.c 	_fat/display_list_64_swap.c	\
+				_fat/check_seg_sect_64_swap.c						\
 				_fat/check_seg_sect_ppc.c							\
 				_dev/_dev_func.c
 

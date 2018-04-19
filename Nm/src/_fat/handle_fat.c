@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/02 19:07:19 by galy              #+#    #+#             */
-/*   Updated: 2018/04/17 18:01:51 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/19 11:10:17 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		get_fat_cpu_type_else(t_vault *vault, unsigned long nbr_arch, char *path)
 				return (-1);
 		if (swap_endian(info->cputype) == CPU_TYPE_I386 && handle_32_in_fat(vault, path) == -1)
 			return (-1);
-		if (swap_endian(info->cputype) == CPU_TYPE_POWERPC && handle_ppc_in_fat(vault, path, info) == -1)
+		if (swap_endian(info->cputype) == CPU_TYPE_POWERPC && handle_ppc_in_fat(vault, path) == -1)
 			return (-1);
 		if ((info = offset_jumper(vault, info, sizeof(struct fat_arch))) == NULL)
 			return (-1);

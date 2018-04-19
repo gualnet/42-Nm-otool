@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/04/18 18:39:21 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/19 12:52:40 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ int		check_magic_num(t_vault *vault);
 //handle_64.c
 int		handle_fat(t_vault *vault, char *path);
 int		handle_arch(t_vault *vault, char *path);
-int		handle_32bits(t_vault *vault, char *path);
+int		handle_32bits(t_vault *vault, char *path, int print);
 int		handle_64bits(t_vault *vault, char *path, int print);
 
 int		handle_32_in_fat(t_vault *vault, char *path);

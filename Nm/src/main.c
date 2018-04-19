@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/04/17 10:53:58 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/19 12:53:02 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int run(char **argv, int argc, t_vault *vault)
 		if ((vault->file_nfo & M_64B) != 0)
 			ret = handle_64bits(vault, path, print);
 		else if ((vault->file_nfo & M_32B) != 0)
-			ret = handle_32bits(vault, path);
+			ret = handle_32bits(vault, path, print);
 		else if ((vault->file_nfo & M_ARCH) != 0)
 			ret = handle_arch(vault, path);
 		else if ((vault->file_nfo & M_FAT) != 0)

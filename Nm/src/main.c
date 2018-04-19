@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/04/19 12:53:02 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/19 13:03:06 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,26 @@ int run(char **argv, int argc, t_vault *vault)
 		
 		if (check_magic_num(vault) == -1)
 		{
-			ft_printf("\033[31mnm error :\nECHEC check magic num.\033[0m");
+			ft_printf("\033[31mnm error :\n[%s] was not recognized as a valid object file\033[0m", path);
 			return (-1);
 		}
-		
-		if (argc > 2)
-			print = 1;
-		if ((vault->file_nfo & M_64B) != 0)
-			ret = handle_64bits(vault, path, print);
-		else if ((vault->file_nfo & M_32B) != 0)
-			ret = handle_32bits(vault, path, print);
-		else if ((vault->file_nfo & M_ARCH) != 0)
-			ret = handle_arch(vault, path);
-		else if ((vault->file_nfo & M_FAT) != 0)
-			ret = handle_fat(vault, path);
-		// if (ret != 1)
-		// 	return (-1);
-		reset_tab_sym_meta(vault);
-		delete_all_lst(vault);		
+		else
+		{
+			if (argc > 2)
+				print = 1;
+			if ((vault->file_nfo & M_64B) != 0)
+				ret = handle_64bits(vault, path, print);
+			else if ((vault->file_nfo & M_32B) != 0)
+				ret = handle_32bits(vault, path, print);
+			else if ((vault->file_nfo & M_ARCH) != 0)
+				ret = handle_arch(vault, path);
+			else if ((vault->file_nfo & M_FAT) != 0)
+				ret = handle_fat(vault, path);
+			// if (ret != 1)
+			// 	return (-1);
+			reset_tab_sym_meta(vault);
+			delete_all_lst(vault);
+		}
 		i++;
 	}
 	return (1);

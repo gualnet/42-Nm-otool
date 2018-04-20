@@ -9,7 +9,9 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/ft_nm",
-			"args": ["${workspaceFolder}/testing_files/hell_test/hell_test/PN548_OSX.dylib"],
+			"args": ["-p",
+				"${workspaceFolder}/testing_files/hell_test/libc++.1.dylib"
+			],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

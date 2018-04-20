@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/04/19 12:52:40 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/20 11:54:04 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ typedef struct				s_vault
 	void					*f_dump;
 	void					*header;
 	t_lc_lnk				*lc_lst;
-	t_sym_meta				**tab_sym_meta;	
+	t_sym_meta				**tab_sym_meta;
+	void					*strtab;
 	int						file_nfo;
 	unsigned int			nsyms; //nbr of symbols
 	int						option;
@@ -180,6 +181,9 @@ int		iter_cmds_ppc(t_vault *vault);
 
 //swap_endian.c
 long	swap_endian(long value);
+
+//get_indirection_name.c
+void	*get_indirection_name(t_vault *vault, unsigned int i);
 
 //dev_func.c
 void print_symtab_command(void *sym_cmd);

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 21:36:21 by galy              #+#    #+#             */
-/*   Updated: 2018/04/18 14:31:11 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/20 11:39:39 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ size_t	ft_strlen_cap(t_vault *vault, const char *s)
 	return (i);
 }
 
-int		symtab_loop(t_vault *vault, struct symtab_command *symtab_cmd, void *strtab, struct nlist_64 *nlist)
+int		symtab_loop(t_vault *vault, struct symtab_command *symtab_cmd, struct nlist_64 *nlist)
 {
 	unsigned int			i;
 	int						j;
@@ -67,7 +67,7 @@ int		symtab_loop(t_vault *vault, struct symtab_command *symtab_cmd, void *strtab
 
 	while (i < symtab_cmd->nsyms)
 	{
-		if ((str = offset_jumper(vault, strtab, nlist[i].n_un.n_strx)) == NULL)
+		if ((str = offset_jumper(vault, vault->strtab, nlist[i].n_un.n_strx)) == NULL)
 			return (-1);
 		if (nlist[i].n_un.n_strx != 0)
 		{
@@ -90,19 +90,19 @@ int		symtab_loop(t_vault *vault, struct symtab_command *symtab_cmd, void *strtab
 int		handle_symtab(t_vault *vault, struct load_command *lc)
 {
 	// ft_printf("\nCALL HANDLE_SIMTAB\n");
-	void					*strtab;
+	
 	struct symtab_command	*symtab_cmd;
 	struct nlist_64			*nlist;
 	
 	symtab_cmd = (void*)lc;
 	nlist = offset_jumper(vault, vault->f_dump, symtab_cmd->symoff);
-	strtab = offset_jumper(vault, vault->f_dump, symtab_cmd->stroff);
-	if (nlist == NULL || strtab == NULL)
+	vault->strtab = offset_jumper(vault, vault->f_dump, symtab_cmd->stroff);
+	if (nlist == NULL || vault->strtab == NULL)
 		return (-1);
 	vault->nsyms = symtab_cmd->nsyms;
 	if (alloc_tab_sym_meta(vault, symtab_cmd) == -1)
 		return (-1);
-	if (symtab_loop(vault, symtab_cmd, strtab, nlist) == -1)
+	if (symtab_loop(vault, symtab_cmd, nlist) == -1)
 		return (-1);
 	sort_alnum(vault, symtab_cmd->nsyms);
 	return (1);

@@ -1,13 +1,14 @@
 #!/bin/bash
 
-outdir=(./hell_out)
+testdir=$1
+outdir=(./$1_out)
 
 rm ./ft_nm
 rm -r $outdir
 
 mkdir -p $outdir
 
-for pathname in ./hell_test/*; do
+for pathname in $testdir/*; do
 	filename=${pathname##*/}
 	# echo "$outdir"/"$filename""_nm_"
 	nm -p "$pathname" > "$outdir"/"$filename""_nm_"
@@ -15,17 +16,17 @@ done
 
 make -C ../ && mv ../ft_nm ./
 
-for pathname in ./hell_test/*; do
+for pathname in $testdir/*; do
 	filename=${pathname##*/}
 	# echo "$outdir"/"$filename""_nm_"
 	./ft_nm -p "$pathname" > "$outdir"/"$filename""_ft_"
 done
 
-for pathname in ./hell_test/*; do
+for pathname in $testdir/*; do
 	filename=${pathname##*/}
 	echo "->>" "$outdir"/"$filename""_nm_" "$outdir"/"$filename""_ft_"
 	diff "$outdir"/"$filename""_nm_" "$outdir"/"$filename""_ft_"
 done
 
-# rm ./ft_nm
+rm ./ft_nm
 # rm -r $outdir

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/04/19 13:03:06 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/20 16:08:33 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int run(char **argv, int argc, t_vault *vault)
 		}
 		else
 		{
-			if (argc > 2)
+			if (i > 2)
 				print = 1;
 			if ((vault->file_nfo & M_64B) != 0)
 				ret = handle_64bits(vault, path, print);

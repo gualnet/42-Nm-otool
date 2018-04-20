@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 21:36:21 by galy              #+#    #+#             */
-/*   Updated: 2018/04/20 11:39:39 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/20 19:10:04 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,13 +111,15 @@ int		handle_symtab(t_vault *vault, struct load_command *lc)
 int		iter_cmds(t_vault *vault)
 {
 	// ft_printf("\nCALL INTER_CMDS\n");
-	unsigned int			i;
+	u_int32_t				i;
 	struct mach_header_64	*header;
 	struct load_command		*lc;
 	
 	i = 0;
 	header = vault->header;
-	lc = offset_jumper(vault, vault->f_dump, sizeof(*header));
+	// print_offset(vault, header);
+	if ((lc = offset_jumper(vault, vault->f_dump, sizeof(*header))) == NULL)
+		return (-1);
 	while (i < header->ncmds)
 	{
 		add_new_lclink(vault, lc);

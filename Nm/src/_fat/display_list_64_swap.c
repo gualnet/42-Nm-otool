@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 15:16:41 by galy              #+#    #+#             */
-/*   Updated: 2018/04/20 12:03:02 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/20 15:11:26 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		display_list_64_swap(t_vault *vault)
 	{		
 		letter = '?';
 		letter = print_sym_sect_64_swap(vault, i);
-		if (letter != '?' && letter != 'N')
+		if (letter != '?' && letter != 'N' && letter != 'I')
 		{
 			if (letter != 'U' && letter != 'I')
 				ft_printf("%016llx ",vault->tab_sym_meta[i]->n_value);
@@ -84,7 +84,6 @@ int		display_list_64_swap(t_vault *vault)
 			{
 				if ((indr_str = get_indirection_name(vault, i)) == NULL)
 					indr_str = &("unknown");
-				// exit(0);
 				ft_printf("%c ", letter);
 				ft_printf("%s ", vault->tab_sym_meta[i]->name);
 				ft_printf("(indirect for %s)\n", indr_str);

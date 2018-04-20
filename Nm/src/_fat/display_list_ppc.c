@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:07:46 by galy              #+#    #+#             */
-/*   Updated: 2018/04/17 16:44:29 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/20 14:15:20 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int		display_list_ppc(t_vault *vault)
 	{		
 		letter = '?';
 		letter = print_sym_sect_ppc(vault, i);
-		if (letter != 'U')
+		if (letter != '?' && letter != 'N' && letter != 'I')
 			ft_printf("%08llx ",swap_endian(vault->tab_sym_meta[i]->n_value));
 		else
 			ft_printf("%-9s", "");

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-outdir=(./hell_out)
+testdir=$1
+outdir=(./$1)
 # outdir=$(dirname `pwd`)
 
 # for pathname in ./hell_out/*_ft_; do

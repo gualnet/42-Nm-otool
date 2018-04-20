@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 05:28:34 by galy              #+#    #+#             */
-/*   Updated: 2018/04/18 19:25:40 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/20 14:09:30 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char	print_sym_sect_32(t_vault *vault, unsigned int i)
 	ext = 0;
 	letter = '*';
 	if ((vault->tab_sym_meta[i]->n_type & N_STAB) != 0)
-		letter = 'N';
+		return ('N');
 	if ((vault->tab_sym_meta[i]->n_type & N_PEXT) != 0)
 		ext = 0;
 	if ((vault->tab_sym_meta[i]->n_type & N_EXT) != 0)

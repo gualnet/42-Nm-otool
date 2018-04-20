@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/04/20 11:54:04 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/20 19:16:19 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@
 #define M_SWAP_ENDIAN		0x04
 #define M_ARCH				0x08
 #define M_FAT				0x10
-#define LONG_NAME_SIZE		20
+
 #define AR_NAME_SIZE		16
 
 #if defined (__x86_64__)

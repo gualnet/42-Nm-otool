@@ -9,9 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/ft_nm",
-			"args": ["-p",
-				"${workspaceFolder}/testing_files/hell_test/libc++.1.dylib"
-			],
+			"args": ["${workspaceFolder}/testing_files/hell_test/libftprintf.a"],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

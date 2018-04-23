@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/04/23 11:00:28 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/23 11:23:28 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int run(char **argv, int argc, t_vault *vault)
 		if (ret != -1 && check_magic_num(vault) == -1)
 		{
 			ft_printf("\033[31mnm error :\n[%s] was not recognized as a valid object file\033[0m\n", path);
-			return (-1);
+			ret = -1;
 		}
 		else if (ret != -1)
 		{

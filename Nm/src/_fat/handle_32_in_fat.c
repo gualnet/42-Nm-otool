@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 11:23:35 by galy              #+#    #+#             */
-/*   Updated: 2018/04/17 13:19:37 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/23 10:27:07 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,7 @@ int		handle_32_in_fat(t_vault *vault, char *path)
 	ft_printf("\n%s (for architecture i386):\n", path);
 	if (display_list_32(vault) == -1)
 		return (-1);
+	reset_tab_sym_meta(vault);
+	delete_all_lst(vault);
 	return (1);
 }

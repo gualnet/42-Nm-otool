@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/04/20 16:08:33 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/23 11:00:28 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int run(char **argv, int argc, t_vault *vault)
 		return (-1);
 	while (i < argc)
 	{
+		ret = 0;
 		while (argv[i][0] == '-')
 		{
 			i++;
@@ -37,16 +38,16 @@ int run(char **argv, int argc, t_vault *vault)
 		vault->option = store;
 		if (open_file(path, vault) != 1)
 		{
-			to_exit(vault);
-			return (-1);
+			// to_exit(vault);
+			ret = -1;
 		}
 		
-		if (check_magic_num(vault) == -1)
+		if (ret != -1 && check_magic_num(vault) == -1)
 		{
-			ft_printf("\033[31mnm error :\n[%s] was not recognized as a valid object file\033[0m", path);
+			ft_printf("\033[31mnm error :\n[%s] was not recognized as a valid object file\033[0m\n", path);
 			return (-1);
 		}
-		else
+		else if (ret != -1)
 		{
 			if (i > 2)
 				print = 1;
@@ -58,8 +59,6 @@ int run(char **argv, int argc, t_vault *vault)
 				ret = handle_arch(vault, path);
 			else if ((vault->file_nfo & M_FAT) != 0)
 				ret = handle_fat(vault, path);
-			// if (ret != 1)
-			// 	return (-1);
 			reset_tab_sym_meta(vault);
 			delete_all_lst(vault);
 		}

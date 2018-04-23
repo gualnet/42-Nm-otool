@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/02 18:43:29 by galy              #+#    #+#             */
-/*   Updated: 2018/04/18 18:22:11 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/23 11:08:37 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@ int		handle_64_swap(t_vault *vault, char *path, int print)
 		ft_printf("\n%s:\n", path);
 	if (display_list_64_swap(vault) == -1)
 		return (-1);
+	reset_tab_sym_meta(vault);
+	delete_all_lst(vault);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 17:37:50 by galy              #+#    #+#             */
-/*   Updated: 2018/04/24 16:31:05 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:18:21 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@
 #define M_ARCH				0x08
 #define M_FAT				0x10
 
-// #define LONG_NAME_SIZE		20
 #define AR_NAME_SIZE		16
 
 /*
@@ -50,7 +49,6 @@
 
 typedef struct				s_arch_info
 {
-	// void					*symtab_hdr;
 	struct ar_hdr			*symtab_hdr;
 	void					*off_symbol_tab;
 	void					*off_symstr_tab;

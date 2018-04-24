@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 04:49:07 by galy              #+#    #+#             */
-/*   Updated: 2018/04/20 11:42:41 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:25:15 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	 alloc_tab_sym_meta_32(t_vault *vault, struct symtab_command *symtab_cmd)
 {
-	// ft_printf("\nCALL ALLOC_TAB_SYM_META\n");
 	unsigned int	i;
 
 	if ((vault->tab_sym_meta = malloc(symtab_cmd->nsyms * sizeof(void*))) == NULL)
@@ -68,7 +67,6 @@ int		symtab_loop_32(t_vault *vault, struct symtab_command *symtab_cmd, struct nl
 
 int		handle_symtab_32(t_vault *vault, struct load_command *lc)
 {
-	// ft_printf("\nCALL HANDLE_SIMTAB\n");
 	struct symtab_command	*symtab_cmd;
 	struct nlist			*nlist;
 	
@@ -88,7 +86,6 @@ int		handle_symtab_32(t_vault *vault, struct load_command *lc)
 
 int		iter_cmds_32(t_vault *vault)
 {
-	// ft_printf("\nCALL INTER_CMDS\n");
 	unsigned int			i;
 	struct mach_header		*header;
 	struct load_command		*lc;
@@ -110,5 +107,4 @@ int		iter_cmds_32(t_vault *vault)
 		i++;
 	}
 	return (1);
-	// ft_printf("\nEND INTER_CMDS\n");
 }

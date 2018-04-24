@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 18:26:19 by galy              #+#    #+#             */
-/*   Updated: 2018/04/06 16:01:35 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:33:48 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int Magic_32_64(t_vault *vault)
 {
-	// ft_printf("MH_MAGIC_64 [%x]\n", MH_MAGIC_64);
 	unsigned int magic_num;
 	char *test;
 	int nok;
@@ -41,19 +40,10 @@ int Magic_32_64(t_vault *vault)
 
 int	check_magic_num(t_vault *vault)
 {
-	// ft_printf("\nCALL CHECK MAGIC NUM\n");
 	size_t header_size;
 	
 	header_size = -1;
 	if ((Magic_32_64(vault)) == -1)
 		return (-1);
-	// if (vault->file_nfo == 0x01 || vault->file_nfo == 0x05)
-	// 	header_size = sizeof(struct mach_header);
-	// else if (vault->file_nfo == 0x02 || vault->file_nfo == 0x06)
-	// 	header_size = sizeof(struct mach_header_64);
-	// else if (vault->file_nfo == 0x10 || vault->file_nfo == 0x14)
-	// 	header_size = sizeof(struct fat_header);
-	// if (vault->file_nfo == 0x08)
-	// 	return (1);
 	return (1);	
 }

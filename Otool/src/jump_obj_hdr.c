@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 17:47:38 by galy              #+#    #+#             */
-/*   Updated: 2018/04/24 17:20:24 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:36:32 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	print_object_path(t_vault* vault, struct ar_hdr *obj_hdr, char *path)
 {
 	char *o_name;
 
-	// ft_printf("%s", extract_file_name(path));
 	ft_printf("%s", path);
 	if (ft_strncmp(obj_hdr->ar_name, AR_EFMT1, 2) == 0)
 	{
@@ -46,7 +45,6 @@ void	print_object_path(t_vault* vault, struct ar_hdr *obj_hdr, char *path)
 		read_undelimited_str(o_name, AR_NAME_SIZE);
 		ft_printf("):\n");
 	}
-	
 }
 
 void 	*first_jump(t_vault *vault, t_arch_info *arch_i, char *hdr_ext)
@@ -71,7 +69,6 @@ void 	*first_jump(t_vault *vault, t_arch_info *arch_i, char *hdr_ext)
 			return (NULL);
 		*hdr_ext = 0;
 	}
-	
 	return (obj_hdr);
 }
 
@@ -81,7 +78,6 @@ void	*next_jump(t_vault *vault, struct ar_hdr *obj_hdr, char *hdr_ext)
 	long			jump;
 
 	vault->o_dump = NULL;
-
 	jump = sizeof(*obj_hdr) + ft_atoi(obj_hdr->ar_size);	
 	if ((next_obj_hdr = offset_jumper(vault, obj_hdr, jump)) == NULL)
 		return (NULL);
@@ -124,7 +120,7 @@ int		jump_obj_hdr(t_vault *vault, t_arch_info *arch_i, char *path)
 	
 	i = 1;
 	if ((obj_hdr = first_jump(vault, arch_i, &hdr_ext)) == NULL)
-		return (-1); //truncated
+		return (-1);
 	if (inner_arch_check_magic(vault) == -1)
 		return (-1);
 	print_object_path(vault, obj_hdr, path);

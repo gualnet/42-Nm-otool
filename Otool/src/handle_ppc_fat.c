@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 11:46:07 by galy              #+#    #+#             */
-/*   Updated: 2018/04/24 11:54:41 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:35:57 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	swap_header_data(struct mach_header	*header)
 
 int		get_text_text_sec_ppc_fat(t_vault *vault)
 {
-	// ft_printf("Call get_text_text_sec \n\n");
 	unsigned int		i;
 	struct mach_header	*header;
 	struct load_command	*lc;
@@ -115,7 +114,6 @@ int		get_text_text_sec_ppc_fat(t_vault *vault)
 
 int		handle_ppc_fat(t_vault *vault, char *path)
 {
-	// ft_printf("Call handle_64 %p\n\n", vault);
 	if (vault->o_dump == NULL)
 	{
 		vault->o_dump = vault->fat_dump;

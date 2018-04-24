@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 10:08:45 by galy              #+#    #+#             */
-/*   Updated: 2018/04/20 14:12:47 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:26:08 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ char	get_sect_letter(t_vault *vault, unsigned int n_sect, int upper)
 				tmp_sect = tmp_seg->sect_lst.lnk_64;
 			}
 		}
-		
 	}
 	return (handle_sect_name_to_letter(tmp_sect->sect->sectname, upper));
 }

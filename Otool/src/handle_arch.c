@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 16:05:03 by galy              #+#    #+#             */
-/*   Updated: 2018/04/24 17:14:49 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:35:07 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,11 @@ int		set_arch_i(t_vault *vault, t_arch_info *arch_i)
 
 	jump = 0;
 	arch_i->symtab_hdr = (void*)vault->ar_dump + SARMAG;
-	//
 	jump = sizeof(struct ar_hdr); 
 	jump += (ft_strncmp(arch_i->symtab_hdr->ar_name, AR_EFMT1, 2) == 0) ? 20 : 0;
 	arch_i->off_symbol_tab = offset_jumper(vault, arch_i->symtab_hdr, jump);
-	//
 	jump = *(int*)arch_i->off_symbol_tab + sizeof(int);
 	arch_i->off_symstr_tab = offset_jumper(vault, arch_i->off_symbol_tab, jump);
-	//
-	// print_offset(vault, arch_i->symtab_hdr);
-	// print_offset(vault, arch_i->off_symbol_tab);
-	// print_offset(vault, arch_i->off_symstr_tab);
 	if (arch_i->symtab_hdr == NULL || arch_i->off_symbol_tab == NULL || arch_i->off_symstr_tab == NULL)
 		return (-1);
 	return (1);
@@ -83,13 +77,10 @@ int		handle_arch(t_vault *vault, char *path)
 		vault->ar_dump = vault->fat_dump;
 		vault->fat_dump = NULL;
 	}
-
 	if (set_arch_i(vault, &arch_i) == -1)
 		return (-1);
-	
 	if (get_nbr_symbols(vault, &arch_i) == - 1)
 		return (-1);
-
 	if (jump_obj_hdr(vault, &arch_i, path) == -1)
 		return (-1);
 	return (0);

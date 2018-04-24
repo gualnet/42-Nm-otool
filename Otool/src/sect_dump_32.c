@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:46:00 by galy              #+#    #+#             */
-/*   Updated: 2018/04/23 17:15:50 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:38:14 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	print_off_32(t_vault *vault, unsigned long cpt)
 		ft_printf("%.8x%c", adr + cpt, '\t');
 	else
 		ft_printf("%.8x%c", adr + cpt, '\t');
-		// ft_printf("\nHEUK !!\n");
 }
 
 int		print_sect_dump_32(t_vault *vault)

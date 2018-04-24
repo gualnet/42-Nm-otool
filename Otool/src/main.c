@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 16:06:25 by galy              #+#    #+#             */
-/*   Updated: 2018/04/24 17:18:04 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:36:55 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int		run(t_vault *vault, char **argv, int argc)
 	
 	if ((vault = init_vault(vault)) == NULL)
 		return (-1);
-	
 	if ((i = get_option(argv, argc)) == -1)
 		return (-1);
 	while (i < argc)
@@ -84,7 +83,6 @@ int		run(t_vault *vault, char **argv, int argc)
 				ft_printf("Archive : %s\n", argv[i]);
 			else if (!((vault->file_nfo & M_FAT) == M_FAT))
 				ft_printf("%s:\n", argv[i]);
-				// ft_printf("%s:\n", extract_file_name(argv[i]));
 			if (type_router(vault, argv[i]) == -1)
 				return (-1);
 			if (re_init_vault(vault) == NULL)

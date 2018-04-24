@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 05:28:34 by galy              #+#    #+#             */
-/*   Updated: 2018/04/20 14:09:30 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:23:58 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,6 @@ char	handle_n_type_mask_32(t_vault *vault, unsigned int i, int upper)
 	}
 	else if ((vault->tab_sym_meta[i]->n_type & N_TYPE) == N_INDR)
 		letter = 'I';
-	// else if ((vault->tab_sym_meta[i]->n_type & N_TYPE) == N_PBUD)
-	// {
-	// 	// ft_printf("prebound undefined ");
-	// }
 	return (letter);
 }
 

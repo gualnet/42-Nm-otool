@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 16:17:47 by galy              #+#    #+#             */
-/*   Updated: 2018/04/24 14:30:37 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:35:39 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int		jump_to_exec(t_vault *vault, struct fat_arch *info)
 	uint32_t			jumper;
 	
 	jumper = info->offset;
-
 	vault->o_dump = offset_jumper(vault, vault->fat_dump, jumper);
 	if (vault->o_dump == NULL)
 		return (-1);
@@ -64,17 +63,12 @@ int		get_fat_cpu_type(t_vault *vault, unsigned long nbr_arch, char *path)
 
 int		handle_fat(t_vault *vault, char *path)
 {
-	// ft_printf("Call handle_fat %p\n\n", path);
 	struct fat_header	*header;
 	unsigned long		nbr;
 	int					ret;
 	
 	header = (void*)vault->fat_dump;
 	nbr = fat_swap_endian(header->nfat_arch);
-	// si le fat contient l'obj du meme type que le cpu - 
-	// la func return (1).
-	// si la func return (0) architecture du systeme n'est pas
-	//	presente dans l'archive/fat.
 	if ((ret = get_fat_cpu_type(vault, nbr, path)) == -1)
 		return (-1);
 	if (ret != 1)

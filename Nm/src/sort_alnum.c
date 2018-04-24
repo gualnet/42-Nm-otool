@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 13:59:25 by galy              #+#    #+#             */
-/*   Updated: 2018/04/04 12:36:08 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:22:37 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void sort_alnum_(t_vault *vault, unsigned int tab_len)
 	while (i < tab_len - 1)
 	{
 		cmp_res = ft_strcmp(vault->tab_sym_meta[i]->name, vault->tab_sym_meta[i + 1]->name);
-		if (cmp_res > 0)// alpha sort
+		if (cmp_res > 0)
 		{
 			tmp = vault->tab_sym_meta[i + 1];
 			vault->tab_sym_meta[i + 1] = vault->tab_sym_meta[i];
@@ -35,7 +35,9 @@ void sort_alnum_(t_vault *vault, unsigned int tab_len)
 			j = 0;
 		}
 		else
-			// ft_printf("%s / %s => %d\n", vault->tab_sym_meta[i]->name, vault->tab_sym_meta[i+1]->name, cmp_res);
+		{
+			// a tester	
+		}
 		i++;
 	}
 }
@@ -53,7 +55,7 @@ void sort_alnum_reverse(t_vault *vault, unsigned int tab_len)
 	while (i < tab_len - 1)
 	{
 		cmp_res = ft_strcmp(vault->tab_sym_meta[i]->name, vault->tab_sym_meta[i + 1]->name);
-		if (cmp_res < 0)// sort alpha invert > option -r
+		if (cmp_res < 0)
 		{
 			tmp = vault->tab_sym_meta[i + 1];
 			vault->tab_sym_meta[i + 1] = vault->tab_sym_meta[i];
@@ -63,7 +65,9 @@ void sort_alnum_reverse(t_vault *vault, unsigned int tab_len)
 			j = 0;
 		}
 		else
-			// ft_printf("%s / %s => %d\n", vault->tab_sym_meta[i]->name, vault->tab_sym_meta[i+1]->name, cmp_res);
+		{
+			// a tester
+		}
 		i++;
 	}
 }

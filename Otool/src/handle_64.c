@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 10:26:41 by galy              #+#    #+#             */
-/*   Updated: 2018/04/10 13:53:13 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:34:42 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int		check_seg_sect_name(t_vault *vault, struct load_command *lc)
 
 int		get_text_text_sec(t_vault *vault)
 {
-	// ft_printf("Call get_text_text_sec \n\n");
 	unsigned int			i;
 	struct mach_header_64	*header;
 	struct load_command		*lc;
@@ -54,7 +53,6 @@ int		get_text_text_sec(t_vault *vault)
 
 int		handle_64(t_vault *vault)
 {
-	// ft_printf("Call handle_64 %p\n\n", vault);
 	if (vault->o_dump == NULL)
 	{
 		vault->o_dump = vault->fat_dump;

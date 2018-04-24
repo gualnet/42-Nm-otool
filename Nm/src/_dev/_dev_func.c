@@ -17,23 +17,6 @@ void print_symtab_command(void *sym_cmd)
 	ft_printf("----- ----- ----- -----\n\n", sym->strsize);
 }
 
-// void print_struct_nlist(void *n_list)
-// {
-// 	ft_printf("\nPRINT_SIMTAB_COMMAND\n");
-// 	struct nlist nlist;
-
-// 	nlist = n_list;
-
-// 	ft_printf("nlist.n_un.name : [%s]", nlist.n_un.name);
-// 	ft_printf("nlist.n_un.",);
-// 	ft_printf("",);
-// 	ft_printf("",);
-// 	ft_printf("",);
-// 	ft_printf("",);
-// 	ft_printf("",);
-
-// }
-
 void	print_lc_lst(t_vault *vault)
 {
 	ft_printf("\nPRINT_LC_LST\n");

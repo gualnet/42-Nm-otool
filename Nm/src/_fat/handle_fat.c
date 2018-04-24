@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/02 19:07:19 by galy              #+#    #+#             */
-/*   Updated: 2018/04/23 11:00:51 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:31:45 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int		handle_fat(t_vault *vault, char *path)
 	vault->f_dump = NULL;
 	header = vault->ar_dump;
 	nbr = swap_endian(header->nfat_arch);
-	//only for x_86_64 cpu arch
 	ret = get_fat_cpu_type_x86_64(vault, nbr, path);
 	if (ret == -1)
 		return (-1);

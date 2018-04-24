@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/04/23 11:23:28 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:19:43 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int run(char **argv, int argc, t_vault *vault)
 		vault->option = store;
 		if (open_file(path, vault) != 1)
 		{
-			// to_exit(vault);
 			ret = -1;
 		}
 		

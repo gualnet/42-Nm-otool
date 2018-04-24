@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:59:32 by galy              #+#    #+#             */
-/*   Updated: 2018/04/20 11:44:30 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:24:14 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	reset_tab_sym_meta(t_vault *vault)
 	{
 		while (i < vault->nsyms && vault->tab_sym_meta != NULL)
 		{
-			// ft_printf("vault->tab_sym_meta->name %s \n", vault->tab_sym_meta[i]->name);
 			free(vault->tab_sym_meta[i]);
 			i++;
 		}
@@ -32,8 +31,6 @@ void	reset_tab_sym_meta(t_vault *vault)
 
 void	loop_reinit(t_vault *vault)
 {
-	// ft_printf("vault->f_stat [%p]\n", vault->f_stat);
-	// ft_printf("vault->f_stat.st_size [%lld]\n", vault->f_stat.st_size);
 	munmap(vault->f_dump, vault->f_stat.st_size);
 	vault->f_dump = NULL;
 	vault->ar_dump = NULL;

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 11:57:35 by galy              #+#    #+#             */
-/*   Updated: 2018/04/24 18:05:51 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:38:45 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	print_off(t_vault *vault, unsigned long cpt)
 	if ((vault->file_nfo & M_64B) == M_64B)
 		ft_printf("%.16lx%c", adr + cpt, '\t');
 	else
-		ft_printf("\nHEUK !!\n");
+		ft_printf("%.16lx%c", adr + cpt, '\t');
 }
 
 int		print_sect_dump_64(t_vault *vault)

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:07:46 by galy              #+#    #+#             */
-/*   Updated: 2018/04/23 11:16:37 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:31:21 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int		load_seg_sect_inlist_ppc(t_vault *vault)
 
 int		display_list_ppc(t_vault *vault)
 {
-	// ft_printf("\nCALL DISPLAY_LIST\n");
 	unsigned int	i;
 	int				j;
 	char			letter;
@@ -80,5 +79,4 @@ int		display_list_ppc(t_vault *vault)
 		i++;
 	}
 	return (1);
-	// ft_printf("\nEND DISPLAY_LIST\n");
 }

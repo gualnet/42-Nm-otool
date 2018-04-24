@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 11:09:12 by galy              #+#    #+#             */
-/*   Updated: 2018/04/23 12:11:27 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:29:30 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,24 +71,18 @@ int		get_nbr_symbols(t_vault *vault, t_arch_info *arch)
 
 	counter = 0;
 	symtab_size = *(size_t*)arch->off_symbol_tab;
-	max_offset = arch->off_symbol_tab - vault->ar_dump + symtab_size + 4; //offset_jump_neg
-	cur_offset = arch->off_symbol_tab - vault->ar_dump + 4; //offset_jump_neg
+	max_offset = arch->off_symbol_tab - vault->ar_dump + symtab_size + 4;
+	cur_offset = arch->off_symbol_tab - vault->ar_dump + 4;
 	if ((arch->off_symstr_tab = offset_jumper(vault, \
 	(void*)arch->off_symbol_tab, symtab_size + 4)) == NULL)
 		return (-1);
-
-	// symtab = (void*)vault->ar_dump + cur_offset;
-	// void	*strtab = symtab + symtab_size; // pour le print
 	while (cur_offset < max_offset)
 	{
 		if ((symtab = offset_jumper(vault, vault->ar_dump, cur_offset)) == NULL)
 			return (-1);
 		if (check_double_occur(vault, arch, *(int*)(symtab + 4), cur_offset) == 1)
-		{
 			counter++;
-		}
 		cur_offset += (sizeof(void*));
-		// ft_printf("counter[%d]\n", counter);
 	}
 	arch->nbr_obj = counter;
 	return (1);
@@ -100,7 +94,6 @@ void	print_object_path(t_vault *vault, struct ar_hdr *obj_hdr, char *path, char 
 
 	if (hdr_ext == 1)
 	{
-		// o_name = (void*)obj_hdr + sizeof(struct ar_hdr);
 		o_name = offset_jumper(vault, obj_hdr, sizeof(struct ar_hdr));
 		ft_printf("\n%s", path);
 		ft_printf("(");
@@ -119,7 +112,6 @@ void	print_object_path(t_vault *vault, struct ar_hdr *obj_hdr, char *path, char 
 
 int		jump_obj_hdr(t_vault *vault, t_arch_info *arch, char *path)
 {
-	// ft_printf("\nCALL JUMP_OBJ_HDR\n");
 	struct ar_hdr	*obj_hdr;
 	unsigned int	i;
 	char			hdr_ext;
@@ -160,7 +152,6 @@ int		jump_obj_hdr(t_vault *vault, t_arch_info *arch, char *path)
 		free_useless_vault_components(vault);
 		reset_tab_sym_meta(vault);
 	}
-	
 	
 	i = 1;
 	while (i < arch->nbr_obj)
@@ -207,15 +198,12 @@ int		jump_obj_hdr(t_vault *vault, t_arch_info *arch, char *path)
 
 int		handle_arch(t_vault *vault, char *path)
 {
-	// ft_printf("\nCALL HANDLE_ARCH\n");
 	t_arch_info	*arch_info;
 	arch_info = malloc(sizeof(struct s_arch_info));
 	if (offset_init(vault, arch_info) == -1)
 		return (-1);
-	//get number of symbols in symbol tab
 	if (get_nbr_symbols(vault, arch_info) == -1)
 		return (-1);
-	//jump between objects
 	jump_obj_hdr(vault, arch_info, path);
 	return (1);
 }

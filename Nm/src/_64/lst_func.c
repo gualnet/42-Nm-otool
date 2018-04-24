@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 10:32:54 by galy              #+#    #+#             */
-/*   Updated: 2018/04/02 18:21:16 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:27:20 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int		dal_2(t_sect_lnk *sect_lnk)
 	tmp = sect_lnk;
 	while (tmp != NULL)
 	{
-		// ft_printf("[%s][%s]\n", tmp->sect->sectname, tmp->sect->segname);
 		sve = tmp->next;
 		free(tmp);
 		tmp = NULL;
@@ -39,14 +38,10 @@ int		delete_all_lst(t_vault *vault)
 	tmp = vault->lc_lst;
 	while (tmp != NULL)
 	{
-		// ft_printf("\n");
-		// ft_printf("tmp->lc->cmd [%x]\n", tmp->lc->cmd);
-		// ft_printf("tmp->lc->cmdsize [%x]\n", tmp->lc->cmdsize);
 		if(tmp->sect_lst.lnk_64 != NULL)
 		{
 			dal_2(tmp->sect_lst.lnk_64);
 			tmp->sect_lst.lnk_64 = NULL;
-			// ft_printf("tmp->sect_lst.lnk_64[%p]\n",tmp->sect_lst.lnk_64);
 		}
 		sve = tmp->next;
 		free(tmp);
@@ -59,8 +54,6 @@ int		delete_all_lst(t_vault *vault)
 
 t_lc_lnk	*add_new_lclink(t_vault *vault, void *adr)
 {
-	// ft_printf("\nCALL ADD_NEW_LC_LINK [%p]\n", vault->lc_lst);
-	
 	t_lc_lnk	*new_elem;
 	t_lc_lnk	*tmp;
 	void		*entry;
@@ -75,7 +68,6 @@ t_lc_lnk	*add_new_lclink(t_vault *vault, void *adr)
 	{
 		vault->lc_lst = new_elem;
 		entry = new_elem;
-		// ft_printf("ENTRY POINT : %p \n", new_elem);
 	}
 	else
 	{
@@ -85,23 +77,18 @@ t_lc_lnk	*add_new_lclink(t_vault *vault, void *adr)
 		tmp->next = new_elem;
 	}
 	vault->lc_lst = entry;
-	// ft_printf("\nEND ADD_NEW_LC_LINK [%p][%p]\n", vault->lc_lst, entry);
 	return (new_elem);
 }
 
 t_sect_lnk	*add_new_sectlnk(t_lc_lnk *lc_lnk, void *adr)
 {
-	// ft_printf("\nCALL ADD_NEW_SECTION LINK [%p]\n", lc_lnk->sect_lst);
-	
 	t_sect_lnk	*new_elem;
 	t_sect_lnk	*tmp;
 	void		*entry;
 
 	tmp = lc_lnk->sect_lst.lnk_64;
-	// ft_printf("---0\n");	
 	if (NULL == (new_elem = (t_sect_lnk*)malloc(sizeof(*new_elem))))
 		return (NULL);
-	// ft_printf("---1\n");
 	new_elem->sect = adr;
 	new_elem->next = NULL;
 	if (tmp == NULL)
@@ -122,6 +109,5 @@ t_sect_lnk	*add_new_sectlnk(t_lc_lnk *lc_lnk, void *adr)
 
 	}
 	lc_lnk->sect_lst.lnk_64 = entry;
-	// ft_printf("\nEND ADD_NEW_SECTION LINK [%p]\n", lc_lnk->sect_lst);
 	return (new_elem);
 }

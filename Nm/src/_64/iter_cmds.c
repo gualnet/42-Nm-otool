@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 21:36:21 by galy              #+#    #+#             */
-/*   Updated: 2018/04/20 19:10:04 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:26:49 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	 alloc_tab_sym_meta(t_vault *vault, struct symtab_command *symtab_cmd)
 {
-	// ft_printf("\nCALL ALLOC_TAB_SYM_META\n");
 	unsigned int	i;
 
 	if ((vault->tab_sym_meta = malloc(symtab_cmd->nsyms * sizeof(void*))) == NULL)
@@ -89,8 +88,6 @@ int		symtab_loop(t_vault *vault, struct symtab_command *symtab_cmd, struct nlist
 
 int		handle_symtab(t_vault *vault, struct load_command *lc)
 {
-	// ft_printf("\nCALL HANDLE_SIMTAB\n");
-	
 	struct symtab_command	*symtab_cmd;
 	struct nlist_64			*nlist;
 	
@@ -110,14 +107,12 @@ int		handle_symtab(t_vault *vault, struct load_command *lc)
 
 int		iter_cmds(t_vault *vault)
 {
-	// ft_printf("\nCALL INTER_CMDS\n");
 	u_int32_t				i;
 	struct mach_header_64	*header;
 	struct load_command		*lc;
 	
 	i = 0;
 	header = vault->header;
-	// print_offset(vault, header);
 	if ((lc = offset_jumper(vault, vault->f_dump, sizeof(*header))) == NULL)
 		return (-1);
 	while (i < header->ncmds)
@@ -133,5 +128,4 @@ int		iter_cmds(t_vault *vault)
 		i++;
 	}
 	return (1);
-	// ft_printf("\nEND INTER_CMDS\n");
 }

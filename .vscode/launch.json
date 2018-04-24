@@ -5,17 +5,17 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "NM run_test",
+			"name": "OTOOL run_test",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/ft_nm",
-			"args": ["${workspaceFolder}/testing_files/hell_test/libftprintf.a"],
+			"program": "${workspaceFolder}/ft_otool",
+			"args": ["-t", "${workspaceFolder}/testing_files/hell_test/libft.a"],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb",
-			"preLaunchTask": "make ft_nm"
+			"preLaunchTask": "make"
 		},
 		{
 			"name": "NM test_args",

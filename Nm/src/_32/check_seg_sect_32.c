@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 05:28:34 by galy              #+#    #+#             */
-/*   Updated: 2018/04/18 11:32:33 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/20 14:09:30 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,19 @@
 
 char	handle_sect_name_to_letter_32(char *sectname, int upper)
 {
-	if (ft_strcmp(sectname, "__text") == 0)
+	char name[16];
+
+	ft_bzero(&name, 16);
+	ft_memcpy(&name, sectname, 16);
+	if (ft_strcmp((const char*)&name, "__text") == 0)
 		return (upper ? 'T' : 't');
-	if (ft_strcmp(sectname, "__bss") == 0)
+	if (ft_strcmp((const char*)&name, "__bss") == 0)
 		return (upper ? 'B' : 'b');
-	if (ft_strcmp(sectname, "__data") == 0)
+	if (ft_strcmp((const char*)&name, "__data") == 0)
 		return (upper ? 'D' : 'd');
-	if (ft_strcmp(sectname, "__common") == 0)
+	if (ft_strcmp((const char*)&name, "__common") == 0)
 		return (upper ? 'S' : 's');
-	if (ft_strcmp(sectname, "__const") == 0)
+	if (ft_strcmp((const char*)&name, "__const") == 0)
 		return (upper ? 'S' : 's');
 	return (upper ? 'S' : 's');
 }
@@ -90,7 +94,7 @@ char	print_sym_sect_32(t_vault *vault, unsigned int i)
 	ext = 0;
 	letter = '*';
 	if ((vault->tab_sym_meta[i]->n_type & N_STAB) != 0)
-		letter = 'N';
+		return ('N');
 	if ((vault->tab_sym_meta[i]->n_type & N_PEXT) != 0)
 		ext = 0;
 	if ((vault->tab_sym_meta[i]->n_type & N_EXT) != 0)

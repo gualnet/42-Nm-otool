@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_32.c                                        :+:      :+:    :+:   */
+/*   handle_32_fat.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:38:23 by galy              #+#    #+#             */
-/*   Updated: 2018/04/23 12:45:01 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/23 17:13:52 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_otool.h"
 
-int		check_seg_sect_name_32(t_vault *vault, struct load_command *lc)
+int		check_seg_sect_name_32_fat(t_vault *vault, struct load_command *lc)
 {
 	struct section *sect;
 
@@ -27,7 +27,7 @@ int		check_seg_sect_name_32(t_vault *vault, struct load_command *lc)
 	return (0);
 }
 
-int		get_text_text_sec_32(t_vault *vault)
+int		get_text_text_sec_32_fat(t_vault *vault)
 {
 	// ft_printf("Call get_text_text_sec \n\n");
 	unsigned int		i;
@@ -40,7 +40,7 @@ int		get_text_text_sec_32(t_vault *vault)
 	lc = offset_jumper(vault, vault->o_dump, sizeof(*header));
 	while (i < header->ncmds && lc != NULL)
 	{
-		if ((ret = check_seg_sect_name_32(vault, lc)) == -1)
+		if ((ret = check_seg_sect_name_32_fat(vault, lc)) == -1)
 			break;
 		if (lc->cmd == LC_SEGMENT && (ret == 1))
 			return (1);
@@ -51,7 +51,7 @@ int		get_text_text_sec_32(t_vault *vault)
 	return (-1);
 }
 
-int		handle_32(t_vault *vault)
+int		handle_32_fat(t_vault *vault, char *path)
 {
 	// ft_printf("Call handle_64 %p\n\n", vault);
 	if (vault->o_dump == NULL)
@@ -59,8 +59,9 @@ int		handle_32(t_vault *vault)
 		vault->o_dump = vault->fat_dump;
 		vault->fat_dump = NULL;
 	}
-	if (get_text_text_sec_32(vault) == -1)
+	if (get_text_text_sec_32_fat(vault) == -1)
 		return (-1);
+	ft_printf("%s (architecture i386):\n", path);
 	print_sect_dump_32(vault);
 	return (1);
 }

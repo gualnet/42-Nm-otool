@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 10:45:53 by galy              #+#    #+#             */
-/*   Updated: 2018/04/10 12:02:54 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:09:33 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,15 @@ void	*offset_jumper(t_vault *vault, void *ptr, long jumpsize)
 	// if (new_adr > max_adr)
 	// 	ft_printf("000002\n");
 
-	if (new_adr == NULL || new_adr < start_adr || new_adr > max_adr)
+	if (new_adr == NULL || new_adr <= start_adr || new_adr >= max_adr)
 	{
-		ft_printf("\n\nERROR JUMPER_AR [%p][%x]\n\n", new_adr,\
-		(void*)vault->ar_dump - new_adr);
+		// ft_printf("\n\nERROR JUMPER_AR [%p][%x]\n\n", new_adr,\
+		// (void*)vault->ar_dump - new_adr);
+		ft_printf("\033[31motool error:\n\tTruncated or malformed object\n\033[0m");
 		return (NULL);
 	}
-	// ft_printf("\033[36mjumped to [%p] - offset [%x]\033[0m\n"\
-	// , new_adr, new_adr - start_adr);
+	// ft_printf("\033[36mjumped to [%p]/[%p] - offset [%x]\033[0m\n"\
+	// , new_adr, max_adr,new_adr - start_adr);
 	return (new_adr);
 }
 

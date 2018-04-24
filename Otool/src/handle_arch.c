@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 16:05:03 by galy              #+#    #+#             */
-/*   Updated: 2018/04/09 19:37:59 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 17:14:49 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,6 @@ int		handle_arch(t_vault *vault, char *path)
 		return (-1);
 
 	if (jump_obj_hdr(vault, &arch_i, path) == -1)
-	{
-		ft_printf("\nend on -1\n");
 		return (-1);
-	}
-
 	return (0);
 }

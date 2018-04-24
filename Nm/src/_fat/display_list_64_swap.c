@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   display_list_64_swap.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 15:16:41 by galy              #+#    #+#             */
-/*   Updated: 2018/04/22 14:23:07 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/23 11:15:52 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-int		lssi_2(t_vault *vault, t_lc_lnk *lc_lnk, struct load_command *lc)
+int		lssi_2_64_swap(t_vault *vault, t_lc_lnk *lc_lnk, struct load_command *lc)
 {
 	struct segment_command_64	*segcmd;
 	struct section_64			*seccmd;
@@ -36,7 +36,7 @@ int		lssi_2(t_vault *vault, t_lc_lnk *lc_lnk, struct load_command *lc)
 	return (1);
 }
 
-int		load_seg_sect_inlist(t_vault *vault)
+int		load_seg_sect_inlist_64_swap(t_vault *vault)
 {
 	t_lc_lnk	*tmp;
 
@@ -45,7 +45,7 @@ int		load_seg_sect_inlist(t_vault *vault)
 	{
 		if (tmp->lc->cmd == LC_SEGMENT_64)
 		{
-			if (lssi_2(vault, tmp, tmp->lc) == -1)
+			if (lssi_2_64_swap(vault, tmp, tmp->lc) == -1)
 				return (-1);
 		}
 		tmp = tmp->next;
@@ -53,29 +53,41 @@ int		load_seg_sect_inlist(t_vault *vault)
 	return (1);
 }
 
-int		display_list(t_vault *vault)
+int		display_list_64_swap(t_vault *vault)
 {
 	// ft_printf("\nCALL DISPLAY_LIST\n");
 	unsigned int	i;
 	int				j;
 	char			letter;
+	void			*indr_str;
 	
 	i = 0;
 	j = 0;
-	if (load_seg_sect_inlist(vault) == -1)
+	if (load_seg_sect_inlist_64_swap(vault) == -1)
 		return (-1);
 	while (i < vault->nsyms)
 	{		
 		letter = '?';
-		letter = print_sym_sect(vault, i);
+		letter = print_sym_sect_64_swap(vault, i);
 		if (letter != '?' && letter != 'N')
 		{
-			if (letter != 'U')
+			if (letter != 'U' && letter != 'I')
 				ft_printf("%016llx ",vault->tab_sym_meta[i]->n_value);
 			else
 				ft_printf("%-17s", "");
-			ft_printf("%c ", letter);
-			ft_printf("%s\n", vault->tab_sym_meta[i]->name);	
+			if (letter != 'I')
+			{
+				ft_printf("%c ", letter);
+				ft_printf("%s\n", vault->tab_sym_meta[i]->name);
+			}
+			if (letter == 'I')
+			{
+				if ((indr_str = get_indirection_name(vault, i)) == NULL)
+					indr_str = &("unknown");
+				ft_printf("%c ", letter);
+				ft_printf("%s ", vault->tab_sym_meta[i]->name);
+				ft_printf("(indirect for %s)\n", indr_str);
+			}
 		}
 		i++;
 	}

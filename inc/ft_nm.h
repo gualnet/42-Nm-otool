@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/04/17 15:51:04 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/20 19:16:19 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@
 #define M_SWAP_ENDIAN		0x04
 #define M_ARCH				0x08
 #define M_FAT				0x10
-#define LONG_NAME_SIZE		20
+
 #define AR_NAME_SIZE		16
 
 #if defined (__x86_64__)
@@ -104,7 +104,8 @@ typedef struct				s_vault
 	void					*f_dump;
 	void					*header;
 	t_lc_lnk				*lc_lst;
-	t_sym_meta				**tab_sym_meta;	
+	t_sym_meta				**tab_sym_meta;
+	void					*strtab;
 	int						file_nfo;
 	unsigned int			nsyms; //nbr of symbols
 	int						option;
@@ -163,20 +164,26 @@ int		check_magic_num(t_vault *vault);
 //handle_64.c
 int		handle_fat(t_vault *vault, char *path);
 int		handle_arch(t_vault *vault, char *path);
-int		handle_32bits(t_vault *vault, char *path);
+int		handle_32bits(t_vault *vault, char *path, int print);
 int		handle_64bits(t_vault *vault, char *path, int print);
 
 int		handle_32_in_fat(t_vault *vault, char *path);
-int		handle_ppc_in_fat(t_vault *vault, char *path, struct fat_arch *info);
+int		handle_ppc_in_fat(t_vault *vault, char *path);
 int		iter_cmds_ppc(t_vault *vault);
 int		display_list_ppc(t_vault *vault);
 char	print_sym_sect_ppc(t_vault *vault, unsigned int i);
+int		handle_64_swap(t_vault *vault, char *path, int print);
+int		display_list_64_swap(t_vault *vault);
+char	print_sym_sect_64_swap(t_vault *vault, unsigned int i);
 
 int		iter_cmds_32(t_vault *vault);
 int		iter_cmds_ppc(t_vault *vault);
 
 //swap_endian.c
 long	swap_endian(long value);
+
+//get_indirection_name.c
+void	*get_indirection_name(t_vault *vault, unsigned int i);
 
 //dev_func.c
 void print_symtab_command(void *sym_cmd);

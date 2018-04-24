@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 18:22:16 by galy              #+#    #+#             */
-/*   Updated: 2018/04/17 13:48:32 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 14:13:21 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	*offset_jumper(t_vault *vault, void *ptr, long jumpsize)
 	{
 		// ft_printf("\n\nERROR JUMPER_AR [%p][%x]\n\n", new_adr,\
 		// (void*)vault->ar_dump - new_adr);
-		ft_printf("Object truncated or malformed\n");
+		// ft_printf("Object truncated or malformed\n");
 		return (NULL);
 	}
 	// ft_printf("\033[36mjumped to [%p] - offset [%x]\033[0m\n"\
@@ -47,15 +47,14 @@ void	*offset_jumper_neg(t_vault *vault, void *ptr, long jumpsize)
 	// ft_printf("max_adr [%p]\n", max_adr);
 
 	new_adr = (void*)ptr + jumpsize;
-	if (new_adr == NULL || new_adr < vault->ar_dump || new_adr > max_adr)
+	if (new_adr == NULL || new_adr < vault->ar_dump || new_adr >= max_adr)
 	{
-		ft_printf("\n\nERROR JUMPER_AR [%p][%x]\n\n", new_adr,\
-		(void*)vault->ar_dump - new_adr);
-		ft_printf("[FILE NAME] truncated or malformed object\n");
-		exit(-1);
-		return (vault->ar_dump);
+		// ft_printf("\n\nERROR JUMPER_AR [%p][%x]\n\n", new_adr,\
+		// (void*)vault->ar_dump - new_adr);
+		// ft_printf("[FILE NAME] truncated or malformed object\n");
+		return (NULL);
 	}
-	ft_printf("\033[36mjumped to [%p] - offset [%x]\033[0m\n"\
-	, new_adr, new_adr - start_adr);
+	// ft_printf("\033[36mjumped to [%p] - offset [%x]\033[0m\n"\
+	// , new_adr, new_adr - start_adr);
 	return (new_adr);
 }

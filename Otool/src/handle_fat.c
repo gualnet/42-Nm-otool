@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 16:17:47 by galy              #+#    #+#             */
-/*   Updated: 2018/04/12 15:32:38 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 14:30:37 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ int		jump_to_exec(t_vault *vault, struct fat_arch *info)
 {
 	uint32_t			jumper;
 	
-	vault->file_nfo += M_64B;
-	jumper = fat_swap_endian(info->offset);
+	jumper = info->offset;
 
 	vault->o_dump = offset_jumper(vault, vault->fat_dump, jumper);
 	if (vault->o_dump == NULL)
@@ -37,7 +36,7 @@ int		jump_to_exec(t_vault *vault, struct fat_arch *info)
 	return (1);
 }
 
-int		get_fat_cpu_type(t_vault *vault, unsigned long nbr_arch)
+int		get_fat_cpu_type(t_vault *vault, unsigned long nbr_arch, char *path)
 {
 	unsigned long		i;
 	struct	fat_arch	*info;
@@ -46,11 +45,14 @@ int		get_fat_cpu_type(t_vault *vault, unsigned long nbr_arch)
 	info = vault->fat_dump + sizeof(struct fat_header);
 	while (i < nbr_arch)
 	{
-		if (CUR_CPU == "x86_64" && fat_swap_endian(info->cputype) == \
+		swap_info_data(info);
+		if (CUR_CPU == "x86_64" && info->cputype == \
 		(CPU_TYPE_I386 | CPU_ARCH_ABI64))
 		{
+			vault->file_nfo += M_64B;			
 			if (jump_to_exec(vault, info) == -1)
 				return (-1);
+			ft_printf("%s:\n", path);
 			handle_64(vault);
 			return (1);
 		}
@@ -60,9 +62,9 @@ int		get_fat_cpu_type(t_vault *vault, unsigned long nbr_arch)
 	return (0);
 }
 
-int		handle_fat(t_vault *vault)
+int		handle_fat(t_vault *vault, char *path)
 {
-	// ft_printf("Call handle_64 %p\n\n", vault);
+	// ft_printf("Call handle_fat %p\n\n", path);
 	struct fat_header	*header;
 	unsigned long		nbr;
 	int					ret;
@@ -73,14 +75,9 @@ int		handle_fat(t_vault *vault)
 	// la func return (1).
 	// si la func return (0) architecture du systeme n'est pas
 	//	presente dans l'archive/fat.
-	if ((ret = get_fat_cpu_type(vault, nbr)) == -1)
+	if ((ret = get_fat_cpu_type(vault, nbr, path)) == -1)
 		return (-1);
 	if (ret != 1)
-	{
-		ft_printf("\nhandle_fat.c need more function\n");
-		//need a func to print everything..
-		exit (-1);
-	}
-
+			ret = get_fat_cpu_type_else(vault, nbr, path);
 	return (1);
 }

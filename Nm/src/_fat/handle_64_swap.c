@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_32_in_fat.c                                 :+:      :+:    :+:   */
+/*   handle_64_swap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/17 11:23:35 by galy              #+#    #+#             */
-/*   Updated: 2018/04/23 10:27:07 by galy             ###   ########.fr       */
+/*   Created: 2018/04/02 18:43:29 by galy              #+#    #+#             */
+/*   Updated: 2018/04/23 11:08:37 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-int		handle_32_in_fat(t_vault *vault, char *path)
-{
-	if (iter_cmds_32(vault) == -1)
+int		handle_64_swap(t_vault *vault, char *path, int print)
+{	
+	if (iter_cmds(vault) == -1)
 		return (-1);
-	ft_printf("\n%s (for architecture i386):\n", path);
-	if (display_list_32(vault) == -1)
+	if (print)
+		ft_printf("\n%s:\n", path);
+	if (display_list_64_swap(vault) == -1)
 		return (-1);
 	reset_tab_sym_meta(vault);
 	delete_all_lst(vault);

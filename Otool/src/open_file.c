@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 18:21:21 by galy              #+#    #+#             */
-/*   Updated: 2018/04/06 14:56:32 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 14:22:57 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,24 @@ int		open_file(t_vault *vault, char *path)
 	
 	if ((fd = open(path, O_RDONLY)) == -1)
 	{
-		ft_printf("\033[31mnm error :\n[%s] No such file or directory.\033[0m", path);
+		ft_printf("\033[31motool error :\n[%s] No such file or directory.\033[0m", path);
 		return (-1);
 	}
 	if ((fstat(fd, &vault->f_stat)) < 0)
 	{
-		ft_printf("\033[31mnm error :\n[%s] stat gethering has failed\033[0m", path);
+		ft_printf("\033[31motool error :\n[%s] stat gethering has failed\033[0m", path);
 		return (-1);
 	}
 	if ((vault->fat_dump = (void *)mmap(NULL, vault->f_stat.st_size, PROT_READ, MAP_FILE | MAP_PRIVATE, fd, 0)) == MAP_FAILED)
 	{
-		ft_printf("\033[31mnm error :\n[$s] memory alloc has failed\033[0m", path);
+		ft_printf("\033[31motool error :\n[%s] ", path);
+		ft_printf("File may be empty or was not recognized as a valid object file\
+		\033[0m\n");
 		return (-1);
 	}
 	if (close(fd) != 0)
 	{
-		ft_printf("\033[33mnm warning :\n[$s] close not complete\033[0m", path);
+		ft_printf("\033[33motool warning :\n[%s] close not complete\033[0m", path);
 	}
 	return (replace_map(vault));
 }

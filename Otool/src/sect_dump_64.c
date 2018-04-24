@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 11:57:35 by galy              #+#    #+#             */
-/*   Updated: 2018/04/23 15:27:04 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 18:05:51 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int		print_sect_dump_64(t_vault *vault)
 	cpt = 0;
 	hex_letter = NULL;
 	sect_hdr = vault->sect_hdr;
-	vault->sect = offset_jumper(vault, vault->o_dump, sect_hdr->offset);
+	if ((vault->sect = offset_jumper(vault, vault->o_dump, sect_hdr->offset)) == NULL)
+		return (-1);
 	ft_printf("Contents of (%s,%s) section\n", sect_hdr->segname, sect_hdr->sectname);
 	while (cpt < sect_hdr->size && vault->sect != NULL)
 	{

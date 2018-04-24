@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 17:37:50 by galy              #+#    #+#             */
-/*   Updated: 2018/04/10 12:25:09 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/24 16:31:05 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 #define M_ARCH				0x08
 #define M_FAT				0x10
 
-#define LONG_NAME_SIZE		20
+// #define LONG_NAME_SIZE		20
 #define AR_NAME_SIZE		16
 
 /*
@@ -89,15 +89,15 @@ void	*re_init_vault(t_vault *vault);
 
 int		handle_64(t_vault *vault);
 int		handle_32(t_vault *vault);
-int		handle_fat(t_vault *vault);
+int		handle_fat(t_vault *vault, char *path);
 int		handle_arch(t_vault *vault, char *path);
 
 //offset_jumper.c
 void	*offset_jumper(t_vault *vault, void *ptr, long jumpsize);
 
 //sect_dump.c
-void	print_sect_dump_64(t_vault *vault);
-void	print_sect_dump_32(t_vault *vault);
+int		print_sect_dump_64(t_vault *vault);
+int		print_sect_dump_32(t_vault *vault);
 
 //jump_obj_hdr.c
 int		jump_obj_hdr(t_vault *vault, t_arch_info *arch, char *path);
@@ -105,6 +105,15 @@ int		jump_obj_hdr(t_vault *vault, t_arch_info *arch, char *path);
 //
 void	read_undelimited_str(char *ptr, size_t size);
 char	*extract_file_name(char *path);
+
+//get_fat_cpu_type_else.c
+int		get_fat_cpu_type_else(t_vault *vault, unsigned long nbr_arch, char *path);
+int		jump_to_exec(t_vault *vault, struct fat_arch *info);
+int		swap_endian(int value);
+long    swap_long_endian(long value);
+int		handle_32_fat(t_vault *vault, char *path);
+int		handle_ppc_fat(t_vault *vault, char *path);
+void	swap_info_data(struct fat_arch *info);
 
 //dev
 void	print_offset(t_vault *vault, void *ptr);

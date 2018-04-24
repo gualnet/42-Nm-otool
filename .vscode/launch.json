@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/ft_otool",
-			"args": ["-t", "${workspaceFolder}/testing_files/hell_test/libft.a"],
+			"args": ["-t", "${workspaceFolder}/testing_files/hell_test/object_easy"],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

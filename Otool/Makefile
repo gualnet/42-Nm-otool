@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/04 16:03:36 by galy              #+#    #+#              #
-#    Updated: 2018/04/24 18:18:29 by galy             ###   ########.fr        #
+#    Updated: 2018/04/25 17:02:45 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,8 @@ SRC			=	\
 				handle_64.c			offset_jumper.c			sect_dump_64.c		\
 				handle_32.c			sect_dump_32.c			swap_endian.c		\
 				handle_fat.c		get_fat_cpu_type_else.c	handle_32_fat.c		\
-				handle_arch.c		jump_obj_hdr.c			handle_ppc_fat.c
+				handle_arch.c		jump_obj_hdr.c			handle_ppc_fat.c	\
+				funcs_ppc_fat.c		print_object_path.c
 
 
 ####FUNC####

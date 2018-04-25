@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   usage.c                                            :+:      :+:    :+:   */
+/*   extract_file_name.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/04 18:31:40 by galy              #+#    #+#             */
-/*   Updated: 2018/04/25 19:13:54 by galy             ###   ########.fr       */
+/*   Created: 2018/04/25 18:43:12 by galy              #+#    #+#             */
+/*   Updated: 2018/04/25 18:43:29 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_otool.h"
 
-void	print_usage(void)
+char	*extract_file_name(char *path)
 {
-	ft_putstr("USAGE: nm [options] <input files>\n");
-	ft_putstr("\nOPTIONS:\n\n");
-	ft_putstr("\t\033[37;1m-t\033[0m\tDisplay the contents of the "
-	"(__TEXT,__text) section.  With the  -v\n\tflag,  this disassembles "
-	"the text.  With the -V flag, it also sym-\n\tbolically disassembles "
-	"the operands.\n");
+	int	i;
+
+	i = ft_strlen(path) - 1;
+	while (i > 0)
+	{
+		if (path[i] == '/')
+			return (path + i + 1);
+		i--;
+	}
+	return (path);
 }

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 09:08:16 by galy              #+#    #+#             */
-/*   Updated: 2018/04/24 18:39:57 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/25 19:12:22 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,12 @@ void	*init_vault(t_vault *vault)
 		ft_printf("NEED LOOP\n");
 		exit(-1);
 		// loop_reinit(vault);
-		return (vault);	
+		return (vault);
 	}
 	if ((init = malloc(sizeof(t_vault))) == NULL)
 	{
-		ft_printf("\033[31mnm (init.c - line 19) error :\nmalloc vault struct space FAILED\033[0m\n");
+		ft_printf("\033[31mnm (init.c - line 19) error :"
+		"\nmalloc vault struct space FAILED\033[0m\n");
 		return (NULL);
 	}
 	init->fat_dump = NULL;

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:38:23 by galy              #+#    #+#             */
-/*   Updated: 2018/04/24 18:34:18 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/25 15:57:26 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int		check_seg_sect_name_32_fat(t_vault *vault, struct load_command *lc)
 {
 	struct section *sect;
 
-	if ((sect = offset_jumper(vault, lc, sizeof(struct segment_command))) == NULL)
+	if ((sect = offset_jumper(vault, lc, \
+	sizeof(struct segment_command))) == NULL)
 		return (-1);
 	if (((ft_strncmp(sect->segname, "__TEXT", 6)) == 0) && \
 	(ft_strncmp(sect->sectname, "__text", 6) == 0))
@@ -40,7 +41,7 @@ int		get_text_text_sec_32_fat(t_vault *vault)
 	while (i < header->ncmds && lc != NULL)
 	{
 		if ((ret = check_seg_sect_name_32_fat(vault, lc)) == -1)
-			break;
+			break ;
 		if (lc->cmd == LC_SEGMENT && (ret == 1))
 			return (1);
 		if ((lc = offset_jumper(vault, lc, lc->cmdsize)) == NULL)

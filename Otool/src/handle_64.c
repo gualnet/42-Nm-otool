@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 10:26:41 by galy              #+#    #+#             */
-/*   Updated: 2018/04/24 18:34:42 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/25 15:58:26 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		check_seg_sect_name(t_vault *vault, struct load_command *lc)
 {
 	struct section_64 *sect;
-	
+
 	sect = offset_jumper(vault, lc, sizeof(struct segment_command_64));
 	if (sect == NULL)
 		return (-1);
@@ -41,7 +41,7 @@ int		get_text_text_sec(t_vault *vault)
 	while (i < header->ncmds && lc != NULL)
 	{
 		if ((ret = check_seg_sect_name(vault, lc)) == -1)
-			break;
+			break ;
 		if (lc->cmd == LC_SEGMENT_64 && (ret == 1))
 			return (1);
 		if ((lc = offset_jumper(vault, lc, lc->cmdsize)) == NULL)

@@ -6,17 +6,17 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 18:26:19 by galy              #+#    #+#             */
-/*   Updated: 2018/04/24 18:33:48 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/25 15:40:35 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_otool.h"
 
-int Magic_32_64(t_vault *vault)
+int		magic_32_64(t_vault *vault)
 {
-	unsigned int magic_num;
-	char *test;
-	int nok;
+	unsigned int	magic_num;
+	char			*test;
+	int				nok;
 
 	nok = 0;
 	magic_num = *(unsigned int *)vault->fat_dump;
@@ -38,12 +38,12 @@ int Magic_32_64(t_vault *vault)
 	return (1);
 }
 
-int	check_magic_num(t_vault *vault)
+int		check_magic_num(t_vault *vault)
 {
 	size_t header_size;
-	
+
 	header_size = -1;
-	if ((Magic_32_64(vault)) == -1)
+	if ((magic_32_64(vault)) == -1)
 		return (-1);
-	return (1);	
+	return (1);
 }

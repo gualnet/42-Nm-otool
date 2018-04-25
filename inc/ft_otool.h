@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 17:37:50 by galy              #+#    #+#             */
-/*   Updated: 2018/04/24 18:18:21 by galy             ###   ########.fr       */
+/*   Updated: 2018/04/25 17:02:16 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,9 @@ long    swap_long_endian(long value);
 int		handle_32_fat(t_vault *vault, char *path);
 int		handle_ppc_fat(t_vault *vault, char *path);
 void	swap_info_data(struct fat_arch *info);
+void	swap_header_data(struct mach_header	*header);
+int		print_sect_dump_ppc(t_vault *vault);
+void	print_object_path(t_vault* vault, struct ar_hdr *obj_hdr, char *path);
 
 //dev
 void	print_offset(t_vault *vault, void *ptr);

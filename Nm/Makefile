@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/16 16:38:21 by galy              #+#    #+#              #
-#    Updated: 2018/04/20 10:32:24 by galy             ###   ########.fr        #
+#    Updated: 2018/05/02 17:43:53 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ CUR_CLR		=	\033[K
 ####FILES####
 
 SRC			=	\
-				main.c					to_exit.c					\
+				main.c					run.c						\
 				open_file.c				usage.c						\
 				read_undelimited_str.c	vault_func.c				\
 				sort_alnum.c			offset_jumper.c				\

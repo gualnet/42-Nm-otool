@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 05:25:08 by galy              #+#    #+#             */
-/*   Updated: 2018/04/24 18:24:27 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/02 18:11:03 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		lssi_2_32(t_vault *vault, t_lc_lnk *lc_lnk, struct load_command *lc)
 {
 	struct segment_command	*segcmd;
 	struct section			*seccmd;
-	unsigned int				i;
+	unsigned int			i;
 
 	segcmd = (void*)lc;
 	seccmd = offset_jumper(vault, lc, sizeof(struct segment_command));
@@ -58,19 +58,19 @@ int		display_list_32(t_vault *vault)
 	unsigned int	i;
 	int				j;
 	char			letter;
-	
+
 	i = 0;
 	j = 0;
 	if (load_seg_sect_inlist_32(vault) == -1)
 		return (-1);
 	while (i < vault->nsyms)
-	{		
+	{
 		letter = '?';
 		letter = print_sym_sect_32(vault, i);
 		if (letter != '@' && letter != 'N' && letter != 'I')
 		{
 			if (letter != 'U')
-				ft_printf("%08llx ",vault->tab_sym_meta[i]->n_value);
+				ft_printf("%08llx ", vault->tab_sym_meta[i]->n_value);
 			else
 				ft_printf("%-9s", "");
 			ft_printf("%c ", letter);

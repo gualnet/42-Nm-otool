@@ -11,7 +11,7 @@ mkdir -p $outdir
 for pathname in $testdir/*; do
 	filename=${pathname##*/}
 	# echo "$outdir"/"$filename""_nm_"
-	nm -p "$pathname" > "$outdir"/"$filename""_nm_"
+	nm "$pathname" > "$outdir"/"$filename""_nm_"
 done
 
 make -C ../ && mv ../ft_nm ./
@@ -19,7 +19,7 @@ make -C ../ && mv ../ft_nm ./
 for pathname in $testdir/*; do
 	filename=${pathname##*/}
 	# echo "$outdir"/"$filename""_nm_"
-	./ft_nm -p "$pathname" > "$outdir"/"$filename""_ft_"
+	./ft_nm "$pathname" > "$outdir"/"$filename""_ft_"
 done
 
 for pathname in $testdir/*; do

@@ -6,13 +6,13 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 04:55:01 by galy              #+#    #+#             */
-/*   Updated: 2018/04/24 18:25:47 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/02 18:32:33 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-int		dal_2_32(t_sect_lnk_32 *sect_lnk)
+int				dal_2_32(t_sect_lnk_32 *sect_lnk)
 {
 	t_sect_lnk_32	*tmp;
 	t_sect_lnk_32	*sve;
@@ -26,19 +26,19 @@ int		dal_2_32(t_sect_lnk_32 *sect_lnk)
 		tmp = sve;
 	}
 	return (0);
-}	
+}
 
-int		delete_all_lst_32(t_vault *vault)
+int				delete_all_lst_32(t_vault *vault)
 {
 	t_lc_lnk	*tmp;
 	t_lc_lnk	*sve;
 
-	if(vault->lc_lst == NULL)
+	if (vault->lc_lst == NULL)
 		return (0);
 	tmp = vault->lc_lst;
 	while (tmp != NULL)
 	{
-		if(tmp->sect_lst.lnk_32 != NULL)
+		if (tmp->sect_lst.lnk_32 != NULL)
 		{
 			dal_2_32(tmp->sect_lst.lnk_32);
 			tmp->sect_lst.lnk_32 = NULL;
@@ -52,12 +52,12 @@ int		delete_all_lst_32(t_vault *vault)
 	return (0);
 }
 
-t_lc_lnk	*add_new_lclink_32(t_vault *vault, void *adr)
+t_lc_lnk		*add_new_lclink_32(t_vault *vault, void *adr)
 {
 	t_lc_lnk	*new_elem;
 	t_lc_lnk	*tmp;
 	void		*entry;
-	
+
 	tmp = vault->lc_lst;
 	if (NULL == (new_elem = (t_lc_lnk*)malloc(sizeof(*new_elem))))
 		return (NULL);
@@ -80,17 +80,27 @@ t_lc_lnk	*add_new_lclink_32(t_vault *vault, void *adr)
 	return (new_elem);
 }
 
-t_sect_lnk_32	*add_new_sectlnk_32(t_lc_lnk *lc_lnk, void *adr)
+void			*ans_32_2(t_sect_lnk_32 *tmp, t_lc_lnk *lc_lnk, void *adr)
 {
 	t_sect_lnk_32	*new_elem;
-	t_sect_lnk_32	*tmp;
-	void			*entry;
 
 	tmp = lc_lnk->sect_lst.lnk_32;
 	if (NULL == (new_elem = (t_sect_lnk_32*)malloc(sizeof(*new_elem))))
 		return (NULL);
 	new_elem->sect_32 = adr;
 	new_elem->next = NULL;
+	return (new_elem);
+}
+
+t_sect_lnk_32	*add_new_sectlnk_32(t_lc_lnk *lc_lnk, void *adr)
+{
+	t_sect_lnk_32	*new_elem;
+	t_sect_lnk_32	*tmp;
+	void			*entry;
+	int				i;
+
+	tmp = NULL;
+	new_elem = ans_32_2(&(*tmp), lc_lnk, adr);
 	if (tmp == NULL)
 	{
 		tmp = new_elem;
@@ -98,8 +108,8 @@ t_sect_lnk_32	*add_new_sectlnk_32(t_lc_lnk *lc_lnk, void *adr)
 	}
 	else
 	{
-		int i = 0;
 		entry = (void*)lc_lnk->sect_lst.lnk_32;
+		i = 0;
 		while (tmp->next != NULL)
 		{
 			tmp = tmp->next;

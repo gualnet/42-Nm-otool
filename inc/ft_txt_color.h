@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   to_exit.c                                          :+:      :+:    :+:   */
+/*   ft_txt_color.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/23 20:53:28 by galy              #+#    #+#             */
-/*   Updated: 2018/04/24 18:23:09 by galy             ###   ########.fr       */
+/*   Created: 2018/05/02 14:43:21 by galy              #+#    #+#             */
+/*   Updated: 2018/05/02 14:55:10 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#ifndef FT_TXT_COLOR_H
+# define FT_TXT_COLOR_H
 
-int		to_exit(t_vault *vault)
-{
+# define TXT_0			"\033[0m"
+# define TXT_RED		"\033[31m"
+# define TXT_GREEN		"\033[32m"
+# define TXT_GREEN2		"\033[32;1;5m"
+# define TXT_YELLOW		"\033[33m"
+# define TXT_YELLOW2	"\033[33;1m"
+# define TXT_BLUE		"\033[34m"
+# define TXT_MAGENTA	"\033[35m"
+# define TXT_CYAN		"\033[36m"
+# define TXT_WHITE		"\033[37m"
 
-	//free le vault..
-	if (vault == NULL)
-		return (0);
-	if (vault->f_dump != NULL)
-		munmap(vault->f_dump, vault->f_stat.st_size);
-	ft_printf("TO EXIT(func)\n");
-	return (-1);
-}
+#endif

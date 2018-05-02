@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 21:36:21 by galy              #+#    #+#             */
-/*   Updated: 2018/04/24 18:26:49 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/02 14:33:11 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ int		symtab_loop(t_vault *vault, struct symtab_command *symtab_cmd, struct nlist
 	while (i < symtab_cmd->nsyms)
 	{
 		if ((str = offset_jumper(vault, vault->strtab, nlist[i].n_un.n_strx)) == NULL)
+		{
+
 			return (-1);
+		}
 		if (nlist[i].n_un.n_strx != 0)
 		{
 			if ((lenstr = ft_strlen_cap(vault, str)) > 1000)
@@ -93,8 +96,10 @@ int		handle_symtab(t_vault *vault, struct load_command *lc)
 	
 	symtab_cmd = (void*)lc;
 	nlist = offset_jumper(vault, vault->f_dump, symtab_cmd->symoff);
+	if (nlist == NULL)
+		return (-1);
 	vault->strtab = offset_jumper(vault, vault->f_dump, symtab_cmd->stroff);
-	if (nlist == NULL || vault->strtab == NULL)
+	if (vault->strtab == NULL)
 		return (-1);
 	vault->nsyms = symtab_cmd->nsyms;
 	if (alloc_tab_sym_meta(vault, symtab_cmd) == -1)

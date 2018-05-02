@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:32:02 by galy              #+#    #+#             */
-/*   Updated: 2018/04/24 18:19:43 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/02 12:04:55 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,20 @@ int run(char **argv, int argc, t_vault *vault)
 	return (1);
 }
 
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_vault	*vault;
+	char	*alt[2];
 
 	vault = NULL;
 	if (argc < 2)
 	{
 		//check de a.out si pas d'args.
-		print_usage();
-		return (EXIT_FAILURE);
+		alt[0] = "NULL";
+		alt[1] = "./a.out";
+		if (run(alt, 2, vault) == -1)
+			return (EXIT_FAILURE);
+		return (EXIT_SUCCESS);
 	}
 	if (run(argv, argc, vault) == -1)
 		return (EXIT_FAILURE);

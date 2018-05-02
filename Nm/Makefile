@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/16 16:38:21 by galy              #+#    #+#              #
-#    Updated: 2018/05/02 17:43:53 by galy             ###   ########.fr        #
+#    Updated: 2018/05/02 19:33:34 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,13 +51,15 @@ SRC			=	\
 				read_undelimited_str.c	vault_func.c				\
 				sort_alnum.c			offset_jumper.c				\
 				check_magic.c 			arg_pars.c					\
+				ft_strlen_cap.c										\
 				_64/handle_64.c			_64/iter_cmds.c				\
 				_64/lst_func.c			_64/display.c				\
 				_64/check_seg_sect.c								\
 				_32/handle_32.c			_32/iter_cmds_32.c			\
 				_32/lst_func_32.c		_32/display_32.c			\
 				_32/check_seg_sect_32.c								\
-				_arch/handle_arch.c									\
+				_arch/handle_arch.c		_arch/printers_arch.c		\
+				_arch/jumpers_arch.c								\
 				_fat/handle_fat.c		_fat/swap_endian.c			\
 				_fat/handle_32_in_fat.c _fat/handle_ppc_in_fat.c	\
 				_fat/iter_cmds_ppc.c 	_fat/display_list_ppc.c		\

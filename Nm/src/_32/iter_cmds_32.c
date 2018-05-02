@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 04:49:07 by galy              #+#    #+#             */
-/*   Updated: 2018/05/02 18:23:03 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/02 19:19:56 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ int		sl_32_2(t_vault *vault, char *str, int j)
 	if ((vault->tab_sym_meta[j]->name = \
 	malloc((lenstr + 1) * sizeof(char))) == NULL)
 		return (-1);
-	return (1);
+	ft_strcpy(vault->tab_sym_meta[j]->name, str);
+	vault->tab_sym_meta[j]->name[lenstr] = '\0';
+	return (0);
 }
 
 int		symtab_loop_32(t_vault *vault, struct symtab_command *symtab_cmd, \
@@ -65,8 +67,6 @@ struct nlist *nlist)
 		{
 			if (sl_32_2(vault, str, j) == -1)
 				return (-1);
-			ft_strcpy(vault->tab_sym_meta[j]->name, str);
-			vault->tab_sym_meta[j]->name[ft_strlen(str)] = '\0';
 			vault->tab_sym_meta[j]->n_sect = nlist[i].n_sect;
 			vault->tab_sym_meta[j]->n_type = nlist[i].n_type;
 			vault->tab_sym_meta[j]->n_value = nlist[i].n_value;

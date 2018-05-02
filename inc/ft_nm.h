@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/05/02 14:48:36 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/02 19:47:03 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,5 +158,11 @@ int							arg_pars(char **argv, int argc);
 int							display_list_32(t_vault *vault);
 char						print_sym_sect_32(t_vault *vault, unsigned int i);
 int							run(char **argv, int argc, t_vault *vault);
+size_t						ft_strlen_cap(t_vault *vault, const char *s);
+int							jump_obj_hdr(t_vault *vault, t_arch_info *arch, char *path);
+void						print_object_path(t_vault *vault, struct ar_hdr *obj_hdr, \
+							char *path, char hdr_ext);
+void						free_useless_vault_components(t_vault *vault);
+
 
 #endif

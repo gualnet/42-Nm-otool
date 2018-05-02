@@ -6,13 +6,13 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 10:32:54 by galy              #+#    #+#             */
-/*   Updated: 2018/04/24 18:27:20 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/02 19:28:11 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-int		dal_2(t_sect_lnk *sect_lnk)
+int			dal_2(t_sect_lnk *sect_lnk)
 {
 	t_sect_lnk	*tmp;
 	t_sect_lnk	*sve;
@@ -26,19 +26,19 @@ int		dal_2(t_sect_lnk *sect_lnk)
 		tmp = sve;
 	}
 	return (0);
-}	
+}
 
-int		delete_all_lst(t_vault *vault)
+int			delete_all_lst(t_vault *vault)
 {
 	t_lc_lnk	*tmp;
 	t_lc_lnk	*sve;
 
-	if(vault->lc_lst == NULL)
+	if (vault->lc_lst == NULL)
 		return (0);
 	tmp = vault->lc_lst;
 	while (tmp != NULL)
 	{
-		if(tmp->sect_lst.lnk_64 != NULL)
+		if (tmp->sect_lst.lnk_64 != NULL)
 		{
 			dal_2(tmp->sect_lst.lnk_64);
 			tmp->sect_lst.lnk_64 = NULL;
@@ -57,7 +57,7 @@ t_lc_lnk	*add_new_lclink(t_vault *vault, void *adr)
 	t_lc_lnk	*new_elem;
 	t_lc_lnk	*tmp;
 	void		*entry;
-	
+
 	tmp = vault->lc_lst;
 	if (NULL == (new_elem = (t_lc_lnk*)malloc(sizeof(*new_elem))))
 		return (NULL);
@@ -80,17 +80,26 @@ t_lc_lnk	*add_new_lclink(t_vault *vault, void *adr)
 	return (new_elem);
 }
 
+void		*ans_2(void *adr)
+{
+	t_sect_lnk	*new_elem;
+
+	if (NULL == (new_elem = (t_sect_lnk*)malloc(sizeof(*new_elem))))
+		return (NULL);
+	new_elem->sect = adr;
+	new_elem->next = NULL;
+	return (new_elem);
+}
+
 t_sect_lnk	*add_new_sectlnk(t_lc_lnk *lc_lnk, void *adr)
 {
 	t_sect_lnk	*new_elem;
 	t_sect_lnk	*tmp;
 	void		*entry;
+	int			i;
 
 	tmp = lc_lnk->sect_lst.lnk_64;
-	if (NULL == (new_elem = (t_sect_lnk*)malloc(sizeof(*new_elem))))
-		return (NULL);
-	new_elem->sect = adr;
-	new_elem->next = NULL;
+	new_elem = ans_2(adr);
 	if (tmp == NULL)
 	{
 		tmp = new_elem;
@@ -98,15 +107,14 @@ t_sect_lnk	*add_new_sectlnk(t_lc_lnk *lc_lnk, void *adr)
 	}
 	else
 	{
-		int i = 0;
 		entry = (void*)lc_lnk->sect_lst.lnk_64;
+		i = 0;
 		while (tmp->next != NULL)
 		{
 			tmp = tmp->next;
 			i++;
 		}
 		tmp->next = new_elem;
-
 	}
 	lc_lnk->sect_lst.lnk_64 = entry;
 	return (new_elem);

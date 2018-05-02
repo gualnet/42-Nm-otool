@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 09:08:16 by galy              #+#    #+#             */
-/*   Updated: 2018/04/25 19:12:22 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/02 10:38:56 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	*re_init_vault(t_vault *vault)
 	vault->sect_hdr = NULL;
 	vault->sect = NULL;
 	vault->file_nfo = 0;
+	vault->option = 0;
 	return (vault);
 }
 
@@ -37,12 +38,7 @@ void	*init_vault(t_vault *vault)
 	t_vault *init;
 
 	if (vault != NULL)
-	{
-		ft_printf("NEED LOOP\n");
-		exit(-1);
-		// loop_reinit(vault);
-		return (vault);
-	}
+		vault = NULL;
 	if ((init = malloc(sizeof(t_vault))) == NULL)
 	{
 		ft_printf("\033[31mnm (init.c - line 19) error :"

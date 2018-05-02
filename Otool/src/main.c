@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 16:06:25 by galy              #+#    #+#             */
-/*   Updated: 2018/04/25 15:56:43 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/02 10:28:56 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ int		get_option(char **argv, int argc)
 		if (i != 1 && argv[i][0] != '-')
 			break ;
 		i++;
+	}
+	if (argc == 2)
+	{
+		print_usage();
+		return (-1);
 	}
 	return (i);
 }
@@ -94,6 +99,8 @@ int		main(int argc, char **argv)
 	t_vault *vault;
 
 	vault = NULL;
+	if (argc < 2)
+		print_usage();
 	if (run(vault, argv, argc) == -1)
 		return (-1);
 	return (0);

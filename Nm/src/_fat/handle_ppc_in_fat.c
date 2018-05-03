@@ -6,20 +6,19 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 11:46:07 by galy              #+#    #+#             */
-/*   Updated: 2018/04/24 18:32:15 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/03 11:35:46 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-
 void	*dump_endian_reverse_ppc(t_vault *vault, size_t size)
 {
-	size_t 	i;
+	size_t	i;
 	void	*dump;
-	void 	*tete;
+	void	*tete;
 	void	*ppc;
-	
+
 	i = 0;
 	tete = NULL;
 	if ((dump = malloc(size)) == NULL)

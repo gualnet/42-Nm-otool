@@ -6,13 +6,13 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 10:08:45 by galy              #+#    #+#             */
-/*   Updated: 2018/04/24 18:30:00 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/03 10:39:00 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-char	handle_sect_name_to_letter_64_swap(char *sectname, int upper)
+char			sect_name_to_letter_64_swap(char *sectname, int upper)
 {
 	char name[16];
 
@@ -31,7 +31,32 @@ char	handle_sect_name_to_letter_64_swap(char *sectname, int upper)
 	return (upper ? 'S' : 's');
 }
 
-char	get_sect_letter_64_swap(t_vault *vault, unsigned int n_sect, int upper)
+unsigned int	gsl64s_2(t_lc_lnk **tmp_seg, t_sect_lnk **tmp_sect, \
+unsigned int i, int sector)
+{
+	if (sector == 1)
+	{
+		*tmp_seg = (*tmp_seg)->next;
+		*tmp_sect = (*tmp_seg)->sect_lst.lnk_64;
+		return (0);
+	}
+	else if (sector == 2)
+	{
+		i = (*tmp_sect != NULL) ? (i + 1) : i;
+		if ((*tmp_sect)->next != NULL)
+			*tmp_sect = (*tmp_sect)->next;
+		else if ((*tmp_seg)->next != NULL)
+		{
+			*tmp_seg = (*tmp_seg)->next;
+			*tmp_sect = (*tmp_seg)->sect_lst.lnk_64;
+		}
+		return (i);
+	}
+	return (-1);
+}
+
+char			get_sect_letter_64_swap(t_vault *vault, unsigned int n_sect, \
+int upper)
 {
 	unsigned int			i;
 	t_lc_lnk				*tmp_seg;
@@ -47,46 +72,37 @@ char	get_sect_letter_64_swap(t_vault *vault, unsigned int n_sect, int upper)
 	while (i < tot_sect && tmp_seg)
 	{
 		if (tmp_sect == NULL)
-		{
-			tmp_seg = tmp_seg->next;
-			tmp_sect = tmp_seg->sect_lst.lnk_64;
-		}
+			gsl64s_2(&tmp_seg, &tmp_sect, i, 1);
 		else
 		{
 			if (i == n_sect && tmp_sect != NULL)
-				break;
-			i = (tmp_sect != NULL) ? (i + 1) : i;
-			if (tmp_sect->next != NULL)
-				tmp_sect = tmp_sect->next;
-			else if (tmp_seg->next != NULL)
-			{
-				tmp_seg = tmp_seg->next;
-				tmp_sect = tmp_seg->sect_lst.lnk_64;
-			}
+				break ;
+			i = gsl64s_2(&tmp_seg, &tmp_sect, i, 2);
 		}
-		
 	}
-	return (handle_sect_name_to_letter_64_swap(tmp_sect->sect->sectname, upper));
+	return (sect_name_to_letter_64_swap(tmp_sect->sect->sectname, upper));
 }
 
-char	handle_n_type_mask_64_swap(t_vault *vault, unsigned int i, int upper)
+char			handle_n_type_mask_64_swap(t_vault *vault, unsigned int i, \
+int upper)
 {
 	char letter;
-	
+
 	letter = '@';
 	if ((vault->tab_sym_meta[i]->n_type & N_TYPE) == N_ABS)
 		letter = upper ? 'A' : 'a';
 	else if ((vault->tab_sym_meta[i]->n_type & N_TYPE) == N_SECT)
-		letter = get_sect_letter_64_swap(vault, vault->tab_sym_meta[i]->n_sect, upper);
+		letter = get_sect_letter_64_swap(vault, \
+		vault->tab_sym_meta[i]->n_sect, upper);
 	else if ((vault->tab_sym_meta[i]->n_type & N_TYPE) == N_INDR)
 		letter = 'I';
 	return (letter);
 }
 
-char	print_sym_sect_64_swap(t_vault *vault, unsigned int i)
+char			print_sym_sect_64_swap(t_vault *vault, unsigned int i)
 {
-	int ext;
-	char letter;	
+	int		ext;
+	char	letter;
 
 	ext = 0;
 	letter = '*';

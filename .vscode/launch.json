@@ -5,11 +5,11 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "OTOOL run_test",
+			"name": "NM run_test",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/ft_otool",
-			"args": ["-t", "${workspaceFolder}/testing_files/hell_test/object_easy"],
+			"program": "${workspaceFolder}/ft_nm",
+			"args": ["${workspaceFolder}/testing_files/hell_test/audiodevice"],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

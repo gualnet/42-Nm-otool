@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/02 19:07:19 by galy              #+#    #+#             */
-/*   Updated: 2018/04/24 18:31:45 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/03 11:33:31 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int		jump_to_exec(t_vault *vault, struct fat_arch *info, unsigned long nbr)
 	return (1);
 }
 
-int		get_fat_cpu_type_else(t_vault *vault, unsigned long nbr_arch, char *path)
+int		get_fat_cpu_type_else(t_vault *vault, unsigned long nbr_arch, \
+char *path)
 {
 	unsigned long	i;
 	struct fat_arch	*info;
@@ -37,19 +38,22 @@ int		get_fat_cpu_type_else(t_vault *vault, unsigned long nbr_arch, char *path)
 		if (info == NULL)
 			return (-1);
 		if (jump_to_exec(vault, info, nbr_arch - i) == -1)
-				return (-1);
-		if (swap_endian(info->cputype) == CPU_TYPE_I386 && handle_32_in_fat(vault, path) == -1)
 			return (-1);
-		if (swap_endian(info->cputype) == CPU_TYPE_POWERPC && handle_ppc_in_fat(vault, path) == -1)
+		if (swap_endian(info->cputype) == CPU_TYPE_I386 \
+		&& handle_32_in_fat(vault, path) == -1)
 			return (-1);
-		if ((info = offset_jumper(vault, info, sizeof(struct fat_arch))) == NULL)
+		if (swap_endian(info->cputype) == CPU_TYPE_POWERPC \
+		&& handle_ppc_in_fat(vault, path) == -1)
+			return (-1);
+		if ((info = offset_jumper(vault, info, sizeof(*info))) == NULL)
 			return (-1);
 		i++;
 	}
 	return (-1);
 }
 
-int		get_fat_cpu_type_x86_64(t_vault *vault, unsigned long nbr_arch, char *path)
+int		get_fat_cpu_type_x86_64(t_vault *vault, unsigned long nbr_arch, \
+char *path)
 {
 	unsigned long	i;
 	struct fat_arch	*info;
@@ -65,13 +69,12 @@ int		get_fat_cpu_type_x86_64(t_vault *vault, unsigned long nbr_arch, char *path)
 		if (CUR_CPU == "x86_64" && swap_endian(info->cputype) == \
 		(CPU_TYPE_I386 | CPU_ARCH_ABI64))
 		{
-			if (jump_to_exec(vault, info, nbr_arch - i) == -1)
-				return (-1);
-			if ((ret = handle_64_swap(vault, path, 0)) == -1)
+			if ((jump_to_exec(vault, info, nbr_arch - i) == -1) \
+			|| ((ret = handle_64_swap(vault, path, 0)) == -1))
 				return (-1);
 			else if (ret == 1)
 				return (1);
-			break;
+			break ;
 		}
 		info = offset_jumper(vault, info, sizeof(struct fat_arch));
 		i++;

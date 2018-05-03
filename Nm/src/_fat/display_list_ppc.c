@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:07:46 by galy              #+#    #+#             */
-/*   Updated: 2018/04/24 18:31:21 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/03 11:29:37 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		lssi_2_ppc(t_vault *vault, t_lc_lnk *lc_lnk, struct load_command *lc)
 {
 	struct segment_command	*segcmd;
 	struct section			*seccmd;
-	unsigned int				i;
+	unsigned int			i;
 
 	segcmd = (void*)lc;
 	seccmd = offset_jumper(vault, lc, sizeof(struct segment_command));
@@ -58,19 +58,20 @@ int		display_list_ppc(t_vault *vault)
 	unsigned int	i;
 	int				j;
 	char			letter;
-	
+
 	i = 0;
 	j = 0;
 	if (load_seg_sect_inlist_ppc(vault) == -1)
 		return (-1);
 	while (i < vault->nsyms)
-	{		
+	{
 		letter = '?';
 		letter = print_sym_sect_ppc(vault, i);
 		if (letter != '@' && letter != 'N')
 		{
 			if (letter != 'U' && letter != 'I')
-				ft_printf("%08llx ", swap_endian(vault->tab_sym_meta[i]->n_value));
+				ft_printf("%08llx ", \
+				swap_endian(vault->tab_sym_meta[i]->n_value));
 			else
 				ft_printf("%-9s", "");
 			ft_printf("%c ", letter);

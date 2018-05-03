@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/02 19:07:19 by galy              #+#    #+#             */
-/*   Updated: 2018/05/03 11:33:31 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/03 12:00:10 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,6 @@ int		handle_fat(t_vault *vault, char *path)
 	if (ret == -1)
 		return (-1);
 	else if (ret == 0)
-		get_fat_cpu_type_else(vault, nbr, path);
-	return (1);
+		ret = get_fat_cpu_type_else(vault, nbr, path);
+	return (ret);
 }

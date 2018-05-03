@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 18:21:21 by galy              #+#    #+#             */
-/*   Updated: 2018/05/03 15:48:12 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/03 15:57:46 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ int		open_file(t_vault *vault, char *path)
 	if ((fstat(fd, &vault->f_stat)) < 0)
 		return (err_msg_open_file(2, path));
 	if (((vault->fat_dump = (void *)mmap(NULL, vault->f_stat.st_size, \
-	PROT_READ, MAP_FILE | MAP_PRIVATE, fd, 0)) == MAP_FAILED)  || (vault->f_stat.st_size < 8))
+	PROT_READ, MAP_FILE | MAP_PRIVATE, fd, 0)) == MAP_FAILED) || \
+	(vault->f_stat.st_size < 8))
 		return (err_msg_open_file(3, path));
 	if (close(fd) != 0)
 		ft_printf("\033[33motool warning :\n[%s] "

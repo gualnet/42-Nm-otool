@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 21:01:03 by galy              #+#    #+#             */
-/*   Updated: 2018/05/02 15:01:31 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/03 15:04:21 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		open_file(char *path, t_vault *vault)
 {
 	int			fd;
 
-	if ((fd = open(path, O_RDONLY)) == -1)
+	if ((fd = open(path, O_RDONLY | O_NONBLOCK)) == -1)
 	{
 		ft_printf(TXT_RED"error :\n[%s] No such file or directory."
 		TXT_0"\n", path);

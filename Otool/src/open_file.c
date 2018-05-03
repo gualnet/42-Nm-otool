@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 18:21:21 by galy              #+#    #+#             */
-/*   Updated: 2018/04/25 18:55:12 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/03 15:48:12 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int		err_msg_open_file(int i, char *path)
 {
 	if (i == 1)
 		ft_printf("\033[31motool error :\n[%s] "
-		"No such file or directory.\033[0m", path);
+		"No such file or directory.\033[0m\n", path);
 	else if (i == 2)
 		ft_printf("\033[31motool error :\n[%s] "
-		"stat gethering has failed\033[0m", path);
+		"stat gethering has failed\033[0m\n", path);
 	else if (i == 3)
 		ft_printf("\033[31motool error :\n[%s] "
 		"File may be empty or was not recognized as a valid object file"
@@ -45,12 +45,12 @@ int		open_file(t_vault *vault, char *path)
 {
 	int			fd;
 
-	if ((fd = open(path, O_RDONLY)) == -1)
+	if ((fd = open(path, O_RDONLY | O_NONBLOCK)) == -1)
 		return (err_msg_open_file(1, path));
 	if ((fstat(fd, &vault->f_stat)) < 0)
 		return (err_msg_open_file(2, path));
-	if ((vault->fat_dump = (void *)mmap(NULL, vault->f_stat.st_size, \
-	PROT_READ, MAP_FILE | MAP_PRIVATE, fd, 0)) == MAP_FAILED)
+	if (((vault->fat_dump = (void *)mmap(NULL, vault->f_stat.st_size, \
+	PROT_READ, MAP_FILE | MAP_PRIVATE, fd, 0)) == MAP_FAILED)  || (vault->f_stat.st_size < 8))
 		return (err_msg_open_file(3, path));
 	if (close(fd) != 0)
 		ft_printf("\033[33motool warning :\n[%s] "

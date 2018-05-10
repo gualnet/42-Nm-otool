@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 16:28:28 by galy              #+#    #+#              #
-#    Updated: 2018/03/21 11:03:49 by galy             ###   ########.fr        #
+#    Updated: 2018/05/08 18:23:21 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,9 +43,9 @@ SRC		=	\
 OBJ		= $(SRC:.c=.o)
 INCP	=	$(foreach dir, $(INCDIR), -I$(dir))
 
-all : reset_cursor $(NAME)
+all : make_libft reset_cursor $(NAME)
 
-$(NAME) : make_libft $(OBJ)
+$(NAME) : $(OBJ)
 	@ar -rc $(NAME) $(OBJ)
 	@printf "$(CUR_RST)$(CGREEN)BUILD GNL		: SUCCESS$(CRESET)$(CUR_CLR)\n"
 

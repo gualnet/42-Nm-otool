@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 16:28:28 by galy              #+#    #+#              #
-#    Updated: 2018/04/10 15:41:38 by galy             ###   ########.fr        #
+#    Updated: 2018/05/08 18:16:03 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,9 +72,9 @@ OBJLIBFT	=	$(addprefix $(DIRLIBFT)/, $(SRCLIBFT:.c=.o))
 OBJGNL	=	$(addprefix $(DIRGNL)/, $(SRCGNL:.c=.o))
 OBJFTPRINTF	=	$(addprefix $(DIRFTPRINTF)/, $(SRCFTPRINTF:.c=.o))
 
-all : $(NAME)
+all : make_libs $(NAME)
 
-$(NAME)	: make_libs reset_cursor
+$(NAME)	: reset_cursor
 	@ar -rc $(NAME) $(OBJLIBFT)
 #	@printf "$(CUR_SVE)$(CYELLOW)Adding libft.a to $(NAME)$(CRESET)$(CUR_CLR)"
 	@ar -rc $(NAME) $(OBJGNL)

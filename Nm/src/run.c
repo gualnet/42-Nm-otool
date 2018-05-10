@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 12:09:26 by galy              #+#    #+#             */
-/*   Updated: 2018/05/02 12:30:44 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/10 11:53:56 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,12 @@ int		little_if_forest(t_vault *vault, char *path, int i)
 int		running_loop(t_vault *vault, char **argv, int argc, int store)
 {
 	int		i;
+	int		j;
 	int		ret;
 	char	*path;
 
 	i = 1;
+	j = 0;
 	while (i < argc)
 	{
 		ret = 0;

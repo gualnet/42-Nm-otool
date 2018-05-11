@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/16 16:38:21 by galy              #+#    #+#              #
-#    Updated: 2018/05/10 18:02:46 by galy             ###   ########.fr        #
+#    Updated: 2018/05/11 16:41:58 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,6 @@ SRC			=	\
 				_fat/get_indirection_name.c							\
 				_fat/check_seg_sect_64_swap.c						\
 				_fat/check_seg_sect_ppc.c							\
-				dev_func.c
 
 ####FUNC####
 

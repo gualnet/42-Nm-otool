@@ -30,15 +30,31 @@
 			"cwd": "${workspaceFolder}",
 			"environment": [],
 			"externalConsole": false,
-			"MIMode": "lldb",
+			"MIMode": "lldb"
 			// "preLaunchTask": "make"
 		},
 		{
-			"name": "Launch ftprintf.a",
+			"name": "NM no_option_no_arg",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/ft_nm",
-			"args": ["${workspaceFolder}/Nm/lib/ft_printf/ftprintf.a"],
+			"args": ["-"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "make"
+		},
+		{
+			"name": "NM ft_ottol ft_nm",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/ft_nm",
+			"args": [
+				"${workspaceFolder}/ft_otool",
+				"${workspaceFolder}/ft_nm"
+			],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

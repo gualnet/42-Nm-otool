@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:11:47 by galy              #+#    #+#             */
-/*   Updated: 2018/05/03 11:16:44 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/11 14:18:33 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int upper)
 	tmp_seg = vault->lc_lst;
 	tmp_sect = tmp_seg->sect_lst.lnk_32;
 	header = vault->header;
-	while (i < swap_endian(header->ncmds) && tmp_seg != NULL)
+	while (i < vault->nsyms && tmp_seg != NULL)
 	{
 		if (tmp_sect == NULL)
 			gslppc(&tmp_seg, &tmp_sect, i, 1);

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 10:08:45 by galy              #+#    #+#             */
-/*   Updated: 2018/05/10 19:13:54 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/11 13:44:18 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,6 @@ char			get_sect_letter(t_vault *vault, unsigned int n_sect, int upper)
 	t_sect_lnk				*tmp_sect;
 	struct mach_header_64	*header;
 
-	// print_lc_lst(vault, n_sect);
-	// sleep(10);
-
 	i = 1;
 	tmp_seg = vault->lc_lst;
 	tmp_sect = tmp_seg->sect_lst.lnk_64;
@@ -80,8 +77,6 @@ char			get_sect_letter(t_vault *vault, unsigned int n_sect, int upper)
 			i = gsl_2(&tmp_seg, &tmp_sect, i, 2);
 		}
 	}
-	if (tmp_sect == NULL)
-		ft_printf("YES\n");
 	return (handle_sect_name_to_letter(tmp_sect->sect->sectname, upper));
 }
 

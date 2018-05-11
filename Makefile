@@ -6,22 +6,12 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/10 15:15:34 by galy              #+#    #+#              #
-#    Updated: 2018/04/12 15:12:04 by galy             ###   ########.fr        #
+#    Updated: 2018/05/10 10:51:50 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	ft_nm
-# CFLAGS	=	-Wall -Werror -Wextra
-CFLAGS	=	-Wall -Werror -Wextra -fsanitize=address -g
-CC		=	clang 
-
-LIBFLAG		=	-L./lib -lftall
-
 ####DIRECTORY####
 
-SRCDIR		=	src
-OBJDIR		=	objs
-INCDIR		=	inc
 LIBDIR		=	lib
 NMDIR		=	Nm
 OTDIR		= 	Otool
@@ -54,12 +44,10 @@ clean		:
 	@make clean -C $(NMDIR)
 	@make clean -C $(OTDIR)
 
-mini_clean		:
+fclean		:
 	@make fclean -C $(LIBDIR)
 	@make fclean -C $(NMDIR)
 	@make fclean -C $(OTDIR)
-
-fclean		: mini_clean
 
 re			: fclean print_inter_line all
 

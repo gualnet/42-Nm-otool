@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 12:09:26 by galy              #+#    #+#             */
-/*   Updated: 2018/05/02 12:30:44 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/11 15:25:11 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int		jump_params(char **argv, int argc, int i)
 	{
 		i++;
 		if (i == argc)
+		{
+			ft_printf("\033[31mnm error :\nError in parameters check\033[0m\n");
 			return (-1);
+		}
 	}
 	return (i);
 }
@@ -45,30 +48,36 @@ int		little_if_forest(t_vault *vault, char *path, int i)
 	return (ret);
 }
 
+void	rl_err_msg(char *path)
+{
+	ft_printf("\033[31mnm error :\n[%s] was not recognized as a valid "
+	"object file\033[0m\n", path);
+}
+
 int		running_loop(t_vault *vault, char **argv, int argc, int store)
 {
 	int		i;
+	int		j;
 	int		ret;
-	char	*path;
 
 	i = 1;
+	j = 0;
 	while (i < argc)
 	{
 		ret = 0;
-		i = jump_params(argv, argc, i);
-		path = argv[i];
+		if ((i = jump_params(argv, argc, i)) == -1)
+			return (-1);
 		vault = init_vault(vault);
 		vault->option = store;
-		if (open_file(path, vault) != 1)
+		if (open_file(argv[i], vault) != 1)
 			ret = -1;
 		if (ret != -1 && check_magic_num(vault) == -1)
 		{
-			ft_printf("\033[31mnm error :\n[%s] was not recognized as a valid "
-			"object file\033[0m\n", path);
+			rl_err_msg(argv[i]);
 			ret = -1;
 		}
 		else if (ret != -1)
-			little_if_forest(vault, path, i);
+			little_if_forest(vault, argv[i], argc);
 		i++;
 	}
 	return (1);

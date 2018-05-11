@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:34:15 by galy              #+#    #+#             */
-/*   Updated: 2018/05/03 11:49:55 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/10 19:21:09 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct				s_vault
 	void					*strtab;
 	int						file_nfo;
 	unsigned int			nsyms;
+	unsigned long			nbr_sect;
 	int						option;
 }							t_vault;
 
@@ -153,7 +154,6 @@ long						swap_endian(long value);
 void						*get_indirection_name(t_vault *vault, \
 							unsigned int i);
 void						print_symtab_command(void *sym_cmd);
-void						print_lc_lst(t_vault *vault);
 int							arg_pars(char **argv, int argc);
 int							display_list_32(t_vault *vault);
 char						print_sym_sect_32(t_vault *vault, unsigned int i);

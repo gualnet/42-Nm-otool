@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 20:59:32 by galy              #+#    #+#             */
-/*   Updated: 2018/05/03 12:22:19 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/10 19:11:46 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	loop_reinit(t_vault *vault)
 	vault->ar_dump = NULL;
 	vault->header = NULL;
 	vault->strtab = NULL;
+	vault->nbr_sect = 0;
 	if (vault->file_nfo == 0x01 || vault->file_nfo == 0x05)
 		delete_all_lst_32(vault);
 	else if (vault->file_nfo == 0x02 || vault->file_nfo == 0x06)
@@ -63,6 +64,7 @@ void	*init_vault(t_vault *vault)
 	init->lc_lst = NULL;
 	init->tab_sym_meta = NULL;
 	init->strtab = NULL;
+	init->nbr_sect = 0;
 	init->file_nfo = 0;
 	init->nsyms = 0;
 	return (init);

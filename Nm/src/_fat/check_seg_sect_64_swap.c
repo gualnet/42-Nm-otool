@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 10:08:45 by galy              #+#    #+#             */
-/*   Updated: 2018/05/03 10:39:00 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/11 13:49:29 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,12 @@ int upper)
 	t_lc_lnk				*tmp_seg;
 	t_sect_lnk				*tmp_sect;
 	struct mach_header_64	*header;
-	unsigned int			tot_sect;
 
 	i = 1;
 	tmp_seg = vault->lc_lst;
-	tot_sect = swap_endian(((struct segment_command_64*)(tmp_seg))->nsects);
 	tmp_sect = tmp_seg->sect_lst.lnk_64;
 	header = vault->header;
-	while (i < tot_sect && tmp_seg)
+	while (i < vault->nbr_sect && tmp_seg)
 	{
 		if (tmp_sect == NULL)
 			gsl64s_2(&tmp_seg, &tmp_sect, i, 1);

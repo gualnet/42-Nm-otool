@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 21:36:21 by galy              #+#    #+#             */
-/*   Updated: 2018/05/02 19:19:23 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/10 19:14:20 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ int		iter_cmds(t_vault *vault)
 	while (i < header->ncmds)
 	{
 		add_new_lclink(vault, lc);
+		if (lc->cmd == LC_SEGMENT_64)
+			vault->nbr_sect += ((struct segment_command_64*)lc)->nsects;
 		if (lc->cmd == LC_SYMTAB)
 		{
 			if (handle_symtab(vault, lc) == -1)

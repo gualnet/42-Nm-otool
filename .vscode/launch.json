@@ -5,11 +5,11 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "NM run_test",
+			"name": "OTOOL run_test",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/ft_nm",
-			"args": ["${workspaceFolder}/testing_files/crash_test/fat_stackoverflow"],
+			"args": ["-t", "${workspaceFolder}/perso"],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
@@ -18,32 +18,49 @@
 			"preLaunchTask": "make"
 		},
 		{
-			"name": "NM test_args",
+			"name": "NM run_test",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/ft_nm",
-			"args": ["-p",
-				"${workspaceFolder}/testing_files/bin/ft_nm",
-				"-p"],
+			"args": [
+				"${workspaceFolder}/bad_otool",
+				"${workspaceFolder}/ft_nm"
+			],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
 			"externalConsole": false,
-			"MIMode": "lldb",
-			"preLaunchTask": "make ft_nm"
+			"MIMode": "lldb"
+			// "preLaunchTask": "make"
 		},
 		{
-			"name": "Launch ftprintf.a",
+			"name": "NM no_option_no_arg",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/ft_nm",
-			"args": ["${workspaceFolder}/Nm/lib/ft_printf/ftprintf.a"],
+			"args": ["-"],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb",
-			"preLaunchTask": "make ft_nm",
+			"preLaunchTask": "make"
+		},
+		{
+			"name": "NM ft_ottol ft_nm",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/ft_nm",
+			"args": [
+				"${workspaceFolder}/ft_otool",
+				"${workspaceFolder}/ft_nm"
+			],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "make",
 		},
 		{
 			"name": "Launch new",
@@ -56,7 +73,7 @@
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb",
-			"preLaunchTask": "make ft_nm"
+			"preLaunchTask": "make"
 		},
 		{
 			"name": "Launch bash",
@@ -69,7 +86,7 @@
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb",
-			"preLaunchTask": "make ft_nm"
+			"preLaunchTask": "make"
 		},
 		{
 			"name": "Launch test_moins_facile",
@@ -82,7 +99,7 @@
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb",
-			"preLaunchTask": "make ft_nm"
+			"preLaunchTask": "make"
 		},
 		{
 			"name": "Launch test_moins_facile_32-bit",
@@ -95,7 +112,7 @@
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb",
-			"preLaunchTask": "make ft_nm"
+			"preLaunchTask": "make"
 		},
 		{
 			"name": "Launch fat",
@@ -108,7 +125,7 @@
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb",
-			"preLaunchTask": "make ft_nm"
+			"preLaunchTask": "make"
 		},
 		{
 			"name": "Launch *",
@@ -126,7 +143,7 @@
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb",
-			"preLaunchTask": "make ft_nm"
+			"preLaunchTask": "make"
 		},
 		// OTOOL CONFIG
 		{

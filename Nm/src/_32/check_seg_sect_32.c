@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 05:28:34 by galy              #+#    #+#             */
-/*   Updated: 2018/05/02 18:09:14 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/11 13:45:15 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int upper)
 	tmp_seg = vault->lc_lst;
 	tmp_sect = tmp_seg->sect_lst.lnk_32;
 	header = vault->header;
-	while (i < header->ncmds && tmp_seg != NULL)
+	while (i < vault->nbr_sect && tmp_seg != NULL)
 	{
 		if (tmp_sect == NULL)
 		{

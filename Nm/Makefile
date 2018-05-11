@@ -6,14 +6,14 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/16 16:38:21 by galy              #+#    #+#              #
-#    Updated: 2018/05/03 12:12:00 by galy             ###   ########.fr        #
+#    Updated: 2018/05/10 18:02:46 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	ft_nm
 # CFLAGS	=	-Wall -Werror -Wextra
-CFLAGS	=	-Wall -Werror -Wextra -fsanitize=address -g
-CC		=	clang 
+CFLAGS	=	-Wall -Werror -Wextra -g
+CC		=	clang
 
 LIBFLAG		=	-L./$(LIBDIR) -lftall
 
@@ -67,8 +67,7 @@ SRC			=	\
 				_fat/get_indirection_name.c							\
 				_fat/check_seg_sect_64_swap.c						\
 				_fat/check_seg_sect_ppc.c							\
-#				_dev/_dev_func.c
-
+				dev_func.c
 
 ####FUNC####
 
@@ -95,9 +94,11 @@ mini_clean	:
 	@$(RM)  $(OBJP)
 	@$(RM) -r $(OBJDIR)
 
+
 fclean		: mini_clean
 	@$(RM) ../$(NAME)
 	@printf "$(CYELLOW)RAZ FT_NM	: Ok$(CRESET)\n"	
+
 
 re			: fclean print_inter_line all
 
@@ -127,14 +128,3 @@ reset_cursor	:
 
 print_inter_line	:
 	@printf "$(CYELLOW+)	-----	-----	-----$(CRESET)\n"
-
-# Vous utiliserez les codes suivants pour tester le rendu : 
-# $> cat test_facile.c #include <stdio.h> int main(void) { puts("Test facile"); return (0); } 
-# $> cat test_moins_facile.c #include <stdio.h> int une_globale = 40; int main(void) { printf("La globale vaut: %d\n", une_globale); return (0); } 
-# $> cc test_facile.c -o test_facile 
-# $> cc test_moins_facile.c -o test_moins_facile 
-# $> cc -m32 test_moins_facile.c -o test_moins_facile_32-bit 
-# $> En cas de doute, pour identifier un binaire (type/architecture): man 1 file 
-#En cas de difficulté pour localiser un binaire universel, une recherche dans le PATH: (IFS=$'\n'; for d in ${PATH//:/$IFS}; do find "$d" -type f -exec file '{}' \+ | grep -i -A3 universal ; done) 
-#Pour créer un binaire universel: clang/gcc: -m32 pour cross-compiler explicitement en 32-bit. lipo -create -output <universel> <binaire arch. 1> <binaire arch. 2> ... 
-#En cas de difficulté pour localiser une bibliothèque dynamique (.so, .dylib): find /usr/lib -type f -iname '*\.dylib' 2>/dev/null

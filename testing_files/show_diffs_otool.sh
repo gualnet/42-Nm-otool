@@ -16,7 +16,7 @@ for pathname in $outdir/*_ft_; do
 	echo "\033[36m- diff on $filename_otool $filename_ft\033[0m"
 	
 	if result="$(diff -y $outdir/$filename_otool $outdir/$filename_ft)"; then
-		echo "- Files are the sames"
+		echo "- No Diff"
 	else
 		echo "\033[31m- Files are differents\033[0m"
 		# result=$result | grep -e "<" -e ">"
